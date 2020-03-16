@@ -9,7 +9,7 @@ The canvas-plus project contains a ready to use Canvas application with few cool
 * All new pages added to this project should use the Canvas Sample TM1 instance
 
 # To install it
-1. Duplicate the ROOT folder and rename it to new desired name
+1. Duplicate the ROOT folder and rename folder
 1. Download the canvas-template2.0 folder
 1. Paste it inside your new application folder
  
