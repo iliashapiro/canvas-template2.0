@@ -1,0 +1,191 @@
+<div ng-controller="AdminMenuManagementCtrl">
+  <h1><i class="fa fa-bars"></i> <span translate="MENUMANAGEMENT"></span></h1>
+  
+  <script type="text/ng-template" id="menuTree">    
+    <i ng-if="!menu.children || menu.children.length < 1" class="fa-li fa fa-angle-right"></i>
+	<a ng-click="selectMenu(menu);"><i class="fa {{menu.icon_class}}"></i>  {{menu.label}} <span ng-if="menu.isUpdated">*</span></a>
+    <ul ng-if="menu.children.length > 0" class="fa-ul">
+		<i class="fa-li fa fa-angle-down"></i>
+      	<li ng-repeat="menu in menu.children track by $index" ng-include="'menuTree'" onload="menu.key = randomKey();menu.level = $parent.menu.level + 1;menu.levelDesc = $parent.menu.levelDesc + ' > ' + menu.label"></li>
+    </ul>
+  </script>
+    
+  <div class="row">
+    
+    <div class="col-md-5">
+      <div class="panel panel-default">
+        <div class="panel-heading">      
+          <span class="fa-stack" style="font-size: x-small;">
+            <i class="fa fa-circle-thin fa-stack-2x"></i>
+            <i class="fa fa-bars fa-stack-1x"></i>
+          </span>
+          
+          <span class="tm1-ui-indent" translate="USERMENUS"></span>
+          <span ng-if="isSaveNeeded"><strong>(*<span translate="SAVEREQUIRED"></span>)</strong></span>
+        </div>
+        <div class="panel-body">
+          <tm1-ui-progress>
+            <tm1-ui-progress-pending>
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>            
+                </div>
+              </div>
+            </tm1-ui-progress-pending>
+            <tm1-ui-progress-ready>
+              <ul ng-if="userMenus.length > 0" class="fa-ul">
+                  <i class="fa-li fa fa-angle-down"></i>
+                  <li ng-repeat="menu in userMenus track by $index" ng-include="'menuTree'" onload="menu.key = randomKey();menu.level = 1;menu.levelDesc = menu.label"></li> 
+              </ul>
+              
+              <div class="row" ng-if="userMenus.length < 1">
+                <div class="col-md-12">
+                  <div class="alert alert-info" role="alert" translate="MESSAGENOUSERMENU"></div>
+                </div>
+              </div>
+            </tm1-ui-progress-ready>
+          </tm1-ui-progress>
+        </div>
+        <div class="panel-footer clearfix">
+          <div class="pull-right">
+            <button type="button" class="btn btn-info" ng-click="reloadMenu()">
+              <i class="fa fa-repeat"></i>
+              <span class="tm1-ui-indent" translate="RELOAD"></span>
+            </button>
+            <button type="button" class="btn btn-default" ng-click="addPage()">
+              <i class="fa fa-plus"></i>
+              <span class="tm1-ui-indent" translate="ADDPAGE"></span>
+            </button>
+            <button type="button" ng-disabled="!isSaveNeeded" class="btn btn-primary" ng-click="saveUserMenu()">
+              <i class="fa fa-save"></i>
+              <span class="tm1-ui-indent" translate="SAVE"></span>
+            </button>
+          </div>  
+        </div>                        
+      </div>    
+    </div>
+    
+    <div class="col-md-7"> 
+      
+      <div class="panel panel-info" ng-if="menuSelected.label">
+        <div class="panel-heading">      
+          <i class="fa fa-wrench"></i>    
+          <span class="tm1-ui-indent">{{menuSelected.label}}</span>      
+        </div>
+        <div class="panel-body">
+          <form>
+            <div class="form-group">
+              <label class="col-sm-4 control-label" translate="NAME"></label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="{{'MENUNAME' | translate}}" ng-model="menuSelected.label" ng-change="onMenuUpdate(menuSelected)">
+              </div>            
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label"><span translate="ICON"></span><span ng-if="menuSelected.icon_class.length > 0"> - <i class="fa {{menuSelected.icon_class}}"></i></span></label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="{{'MENUICONCLASS' | translate}}" ng-model="menuSelected.icon_class" ng-change="onMenuUpdate(menuSelected)">
+              </div>            
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label" translate="STATE"></label>
+              <div class="col-sm-8">
+                <input type="text" ng-disabled="true" class="form-control" placeholder="{{'MENUSTATE' | translate}}" ng-model="menuSelected.data.page">
+              </div>            
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label" translate="STATEURL"></label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="{{'MENUPAGEURL' | translate}}" ng-model="userStates[menuSelected.data.page].url" ng-change="onMenuUpdate(menuSelected)">
+              </div>            
+            </div>
+            <div class="form-group" ng-class="{'has-error':menuSelected.isInvalidUrl}">
+              <label class="col-sm-4 control-label" translate="PAGE"></label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="{{'MENUPAGELOCATION' | translate}}" ng-model="userStates[menuSelected.data.page].templateUrl" ng-change="onMenuTemplateUrlUpdate(menuSelected)">
+              </div>            
+            </div>
+            <div class="form-group" ng-if="menuSelected.children.length > 0">
+              <label class="col-sm-4 control-label" translate="MENUEXPANDOPTION"></label>
+              <div class="col-sm-8">
+                <input type="checkbox" value="" ng-model="menuSelected.expanded" ng-change="onMenuUpdate(menuSelected)">
+              </div>            
+            </div>
+            
+            <div class="form-group" ng-show="menuErrorMessage.length > 0">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-8">
+                <br />
+                <span class="alert alert-danger">{{menuErrorMessage}}</span>
+              </div>
+            </div>
+          
+          </form>
+          
+        </div>
+                
+        <div class="panel-footer">
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addToModal" ng-click="updateFlattenedUserMenus(menuSelected);updateAddModal(menuSelected)">
+            <i class="fa fa-arrows-v"></i>
+            <span class="tm1-ui-indent" translate="MOVEMENU"></span>
+          </button>
+          <button type="button" class="btn btn-danger" ng-click="deleteMenu(menuSelected)">
+            <i class="fa fa-trash-o"></i>
+            <span class="tm1-ui-indent" translate="DELETE"></span>
+          </button>
+        </div>
+        
+      </div>
+  
+    </div>
+  </div>
+  
+  <!-- Add To Page Modal -->
+  <div class="modal fade" id="addToModal" tabindex="-1" role="dialog" aria-labelledby="addToPageModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">          
+          <button type="button" class="close" data-dismiss="modal" aria-label="{{'CLOSE' | translate}}"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="addToPageModalLabel" translate="MOVEMENU"></h4>
+        </div>
+        
+        <div class="modal-body">  
+        
+          <form class="form-horizontal">          
+            <div class="form-group">
+              <label class="col-sm-4 control-label" translate="PARENTPAGEFROM"></label>
+              <div class="col-sm-8">
+                <input type="text" ng-disabled="true" ng-model="menuSelected.levelDesc" class="form-control">
+              </div>            
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label" translate="PARENTPAGETO"></label>
+              <div class="col-sm-8">
+                <select class="form-control" ng-model="menuSelected.targetPage"
+                  ng-options="menu.levelDesc disable when menu.key == menuSelected.key for menu in userMenusFlat track by menu.key"
+                ></select>
+              </div>            
+            </div> 
+            <div class="form-group">
+                <label class="col-sm-4 control-label" translate="PAGECOPYONLY"></label>
+                <div class="col-sm-8">
+                  <input type="checkbox" ng-model="menuSelected.copyOnly">
+                </div>  
+            </div>             
+            <div class="form-group" ng-if="menuSelected.copyOnly ">
+                <label class="col-sm-4 control-label" translate="PAGECOPYINCLUDECHILDREN"></label>
+                <div class="col-sm-8">
+                  <input type="checkbox" ng-model="menuSelected.includeChildren">
+                </div>
+            </div>  
+          </form>                                
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" ng-click="moveMenu(menuSelected)" class="btn btn-primary">{{menuSelected.copyOnly ? 'COPY' : 'MOVE' | translate}}</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>

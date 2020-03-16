@@ -1,0 +1,70 @@
+<h1><code ng:non-bindable="">tm1-ui-chart</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Generate charts utilizing tm1-ui-chart-dbr as datasources.</p>
+<p>Note that for &#39;lineWithFocus&#39; chart types, there should be at least 2 data points at focus for the view finder to appear and to work correctly. This is as per the underlying chart&#39;s behaviour.</p>
+<p>tm1-order-no will be auto-populated if it is not declared as an attribute. But if you need a specific order, this is still available for utilization.</p>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-chart
+       tm1-chart-type="{line|lineWithFocus|discreteBar|multiBar|multiBarHorizontal|pie}"
+       [tm1-height="{string}"]
+       [tm1-show-values="{boolean}"]
+       [tm1-data-decimal="{string}"]
+       [tm1-format-percentage="{boolean}"]
+       [tm1-margin="{object}"]
+       [tm1-min-y="{string}"]
+       [tm1-max-y="{string}"]
+       [tm1-state="{string}"]
+       [tm1-axis-label-x="{string}"]
+       [tm1-axis-label-y="{string}"]
+       [tm1-duration="{string}"]
+       [tm1-hide-controls="{boolean}"]
+       [tm1-hide-label="{boolean}"]
+       [tm1-legend="{string|none}"]
+       [tm1-ui-class="{string}"]
+       [tm1-color-scheme="{Array}"]
+       [tm1-rotate-label="{string}"]
+       [tm1-options-override="{object}"]
+       [tm1-accounting-settings-override="{object}"]
+       [tm1-on-chart-element-select="{function}"]
+       [ng-model="{object}"]&gt;
+&lt;/tm1-ui-chart&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-chart-type</td><td><a href="" class="label type-hint type-hint-line">line</a><a href="" class="label type-hint type-hint-linewithfocus">lineWithFocus</a><a href="" class="label type-hint type-hint-discretebar">discreteBar</a><a href="" class="label type-hint type-hint-multibar">multiBar</a><a href="" class="label type-hint type-hint-multibarhorizontal">multiBarHorizontal</a><a href="" class="label type-hint type-hint-pie">pie</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Determines the chart type to display. <span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-height <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Sets the height used by the chart.</p>
+</div> <p><em>(default: "300")</em></p></td></tr><tr><td>tm1-show-values <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Determines whether to show values on top of bars for example.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-data-decimal <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Sets the decimal places of the display value.</p>
+</div></td></tr><tr><td>tm1-format-percentage <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Determines whether to show numbers for display with percentage.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-margin <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Overrides the default margin for the chart.</p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>top <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Override for the top margin used by the chart.</p>
+</div> <p><em>(default: "100")</em></p></td></tr><tr><td>right <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Override for the right margin used by the chart.</p>
+</div> <p><em>(default: "100")</em></p></td></tr><tr><td>bottom <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Override for the bottom margin used by the chart.</p>
+</div> <p><em>(default: "100")</em></p></td></tr><tr><td>left <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Override for the left margin used by the chart.</p>
+</div> <p><em>(default: "100")</em></p></td></tr></tbody></table></td></tr><tr><td>tm1-min-y <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Preferred minimum value visible in the chart (applicable to line chart at least)</p>
+</div> <p><em>(default: "0")</em></p></td></tr><tr><td>tm1-max-y <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Preferred maximum value visible in the chart (applicable to line chart at least)</p>
+</div> <p><em>(default: "100")</em></p></td></tr><tr><td>tm1-state <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>This is to refer to the current state of the chart data. Changing this to something else, will reset the chart data.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-axis-label-x <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Override for X-Axis label in the chart.</p>
+</div> <p><em>(default: "X-Axis")</em></p></td></tr><tr><td>tm1-axis-label-y <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Override for Y-Axis label in the chart.</p>
+</div> <p><em>(default: "Y-Axis")</em></p></td></tr><tr><td>tm1-duration <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Override for chart duration animation, in milliseconds (applicable to multi bar at least).</p>
+</div> <p><em>(default: "500")</em></p></td></tr><tr><td>tm1-hide-controls <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Determines whether to show the chart controls on a multibar or other applicable charts.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-hide-label <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Determines whether to show the chart labels on a pie chart or other applicable charts.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-legend <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-none">none</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>If undefined, this will display legends for multi bar by default. &#39;none&#39; will hide all legends.</p>
+</div></td></tr><tr><td>tm1-ui-class <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Add other custom classes into this directive.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "tm1-ui-chart")</em></p></td></tr><tr><td>tm1-color-scheme <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>An array of string of colors (rgb, hex or css color) that will be used in rendering the chart.</p>
+</div></td></tr><tr><td>tm1-rotate-label <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>A degree value that defines how the labels in the x-axis are displayed. <span class="alert alert-warning" role="alert">Applicable to discreteBar and multiBar only.</span></p>
+</div> <p><em>(default: "0")</em></p></td></tr><tr><td>tm1-options-override <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>For overriding the chart options used by the chart object. More details can be found <a href="http://krispo.github.io/angular-nvd3/#/quickstart" target="_blank">here</a> and look for the &#39;Options&#39; section.</p>
+</div></td></tr><tr><td>tm1-accounting-settings-override <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>JSON object for overriding the global &#39;accounting.settings&#39;. See <a href="http://openexchangerates.github.io/accounting.js/#documentation" target="_blank">here</a> for further reference.</p>
+</div></td></tr><tr><td>tm1-on-chart-element-select <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>A function that will be called after a chart element has been selected. The signature of the function
+that you can add should have &#39;chartElement&#39; as one of the parameters.</p>
+<p>For example, if you have a function named checkSelection, it should be written as &#39;tm1-on-chart-element-select=&quot;checkSelection(chartElement)&quot;&#39;.</p>
+<p><span class="alert alert-warning" role="alert">Note: Applicable to discreteBar, pie, donut, line, lineArea, multiBar, multiBarHorizontal and lineWithFocus. You can still enable it through the options override if it is not on this list.</span></p>
+</div></td></tr><tr><td>ng-model <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-page"><p>Angular JSON object where the chart values are stored, for usage in other parts of the page.</p>
+</div></td></tr></tbody></table></div>
+</div>

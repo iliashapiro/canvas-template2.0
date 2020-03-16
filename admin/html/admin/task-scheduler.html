@@ -1,0 +1,122 @@
+<style>  
+  .element-fade-on-hover{        
+    color: rgba(0, 0, 0, 0.3);
+  }
+  
+  .element-fade-on-hover:hover{
+    color: rgba(0, 0, 0, 1);
+  }
+  
+</style>
+
+<div ng-controller="AdminTaskManagerCtrl">
+  
+  <h1><i class="fa fa-list-alt"></i> <span translate="MENUTASKMANAGER"></span></h1>
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="pull-right">
+            <a ng-click="createNewTask()" uib-tooltip-html="values.messages.TASKMANAGERADDTASK">
+              <i class="fa fa-fw fa-plus-circle fa-lg"></i>
+            </a>
+            <a class="tm1-ui-indent" ng-click="refreshTasks()" uib-tooltip-html="values.messages.TASKMANAGERREFRESHTASK">
+              <i class="fa fa-fw fa-refresh fa-lg"></i>
+            </a>
+            <a class="tm1-ui-indent" ng-click="values.filterOpen = !values.filterOpen" uib-tooltip-html="values.messages.TASKMANAGERSHOWFILTERS">
+              <i class="fa fa-fw fa-filter fa-lg"></i>
+            </a>
+          </div>
+          
+          <i class="fa fa-tasks fa-lg"></i>
+          <span class="h4 tm1-ui-indent" translate="MENUTASKMANAGERTITLE"></span>          
+        </div>
+        <div class="panel-body">
+          <uib-accordion>
+            <div uib-accordion-group class="panel-default" is-open="values.filterOpen">
+              <!-- Accordion Header -->
+              <uib-accordion-heading>
+                <i class="fa fa-filter fa-lg"></i>
+                <span class="tm1-ui-indent h4" translate="FILTER"></span>            
+              </uib-accordion-heading>
+              
+              <!-- Sort by Status -->
+              <div class="form-group">
+                <label class="col-md-2 control-label" translate="FILTERSTATUS"></label>
+                <div class="col-md-10">
+                  <label class="radio-inline">
+                    <input type="radio" name="inline-radio-sort-status1" value="true" ng-model="values.sortStatus"> {{'ACTIVE' | translate}}
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="inline-radio-sort-status2" value="false" ng-model="values.sortStatus"> {{'INACTIVE' | translate}}
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="inline-radio-sort-status3" value="" ng-model="values.sortStatus"> {{'ALL' | translate}}
+                  </label>
+                </div>
+              </div>
+              
+            </div>
+          </uib-accordion>
+          
+          <div class="table-responsive">  
+            <table class="table table-bordered table-striped table-hover">
+              <thead>                
+                <tr>
+                  <th class="text-center h5 clickable" ng-class="{'info':values.sortValue.length > 0}" ng-click="values.sortValue = values.sortValue == '-name' ? 'name' : '-name'">
+                    <label class="clickable" translate="NAME"></label>
+                    <span class="element-fade-on-hover pull-right">
+                      <i class="fa" ng-class="{'fa-sort':values.sortValue.indexOf('name') == -1, 'fa-sort-asc': values.sortValue=='name', 'fa-sort-desc':values.sortValue=='-name'}"></i>
+                    </span> 
+                  </th>
+                  <th class="text-center h5">
+                    <label translate="SCHEDULE"></label>
+                  </th>
+                  <th class="text-center h5">
+                    <label>{{'TASK' | translate}} {{'ITEMS' | translate}}</label>
+                  </th>
+                  <th class="text-center h5">
+                    <label translate="ACTIONS"></label>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="task in lists.tasks | orderBy:values.sortValue | filter:{active:values.sortStatus}">
+                  <td class="h5">                    
+                    <a class="btn btn-link" ng-click="gotoTaskEditor(task)">{{task.name}}</a>
+                  </td>
+                  <td class="h5">
+                    <span ng-if="task.triggers.length > 1" translate="MULTIPLESCHEDULESFOUND"></span>
+                    <span ng-if="task.triggers.length == 1">{{task.triggers[0].name}}</span>
+                    <span ng-if="!(task.triggers.length >= 1)" translate="NONE"></span>
+                  </td>
+                  
+                  <td class="h5">
+                    <ul class="fa-ul">
+                      <li ng-repeat="taskItem in task.tasks" class="h5">                      
+                        <i class="fa-li fa" ng-class="{'fa-gear':taskItem.type == 'process', 'fa-cogs':taskItem.type == 'chore', 'fa-hourglass-3':taskItem.type == 'action', 'fa-send-o':taskItem.type == 'report'}"></i>
+                        <span ng-if="taskItem.active">{{getTaskName(taskItem)}}</span>
+                        <s ng-if="!taskItem.active">{{getTaskName(taskItem)}}</s>
+                      </li>
+                    </ul>
+                  </td>
+                  
+                  <td class="text-center" style="min-width: 300px;">
+                    <a ng-click="activateTask(task);" class="btn btn-link" uib-tooltip-html="task.active ? values.messages.DEACTIVATE : values.messages.ACTIVATE"><i class="fa fa-fw fa-lg" ng-class="{'fa-toggle-on text-success':task.active, 'fa-toggle-off text-muted':!task.active}"></i></a>
+                    <a ng-click="gotoTaskEditor(task)" class="btn btn-link" uib-tooltip-html="values.messages.EDIT"><i class="fa fa-edit fa-fw fa-lg"></i></a>
+                    <a ng-disabled="task.isRunning" class="btn btn-link text-info" uib-tooltip-html="values.messages.EXECUTE" ng-click="runTask(task)">
+                      <i class="fa fa-flash fa-fw fa-lg" ng-if="!task.isRunning"></i>
+                      <i class="fa fa-spinner fa-pulse fa-fw fa-lg" ng-if="task.isRunning"></i>
+                    </a>
+                    <a ng-click="deleteTask(task)" class="btn btn-link" uib-tooltip-html="values.messages.DELETE"><i class="fa fa-trash-o fa-fw fa-lg text-danger"></i></a>           
+                  </td>
+                </tr>
+              </tbody>
+            </table>          
+          </div><!--// <div class="table-responsive"> -->
+        </div><!--// <div class="panel-body">  -->
+      </div>
+    </div>
+  </div>
+</div>

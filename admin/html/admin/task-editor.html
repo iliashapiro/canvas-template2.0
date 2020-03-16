@@ -1,0 +1,406 @@
+<style>
+  .fa-fix-height{
+    height: 1.28571429em;
+  }
+</style>
+<div ng-controller="AdminTaskEditorCtrl" id="task-editor">
+
+    <h1>
+      <i class="fa fa-retweet"></i>
+      {{'MENUTASKEDITOR' | translate}} - {{values.taskDetail.name}}
+    </h1>
+  
+    <div class="row">
+      <div class="col-md-4 col-md-offset-8" style="padding:12px;">
+        <div class="pull-right">          
+          <button class="btn btn-primary" ng-disabled="!values.isTaskUpdated" type="button" ng-click="saveTaskDetail()" >
+            <i class="fa fa-save"></i> {{'SAVE' | translate}} {{values.isTaskUpdated ? '*' : '&nbsp;'}}
+          </button>
+          <button class="btn btn-default"
+              type="button" ng-click="runTaskDetail()" ng-disabled="(values.taskRunStatus != 0) || values.isTaskDetailNew || values.isTaskUpdated">
+            <i class="fa fa-flash" ng-class="{'fa-spinner fa-pulse':values.taskRunStatus == 1, 'fa-flash':values.taskRunStatus != 1}"></i> 
+              <span ng-if="values.taskRunStatus == 0" translate="EXECUTE"></span>
+              <span ng-if="values.taskRunStatus == 1" translate="RUNNINGMESSAGE"></span>
+              <span ng-if="values.taskRunStatus == 2" translate="FINISHED"></span>
+          </button>
+          <button class="btn btn-default" type="button" ng-click="resetTask()">
+            <span class="text-muted"><i class="fa fa-repeat"></i> {{'RESET' | translate}}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-7">
+        <!-- Task Details -->
+        <div class="panel panel-default">
+          <div class="panel-heading">            
+            <i class="fa fa-info"></i>
+            <span class="tm1-ui-indent">{{'DETAIL' | translate}}</span>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th class="text-center" translate="NAME"></th>
+                    <th class="text-center" translate="STATUS"></th>
+                  </tr>  
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="form-group" tm1-admin-validator-empty="{{values.taskDetail.name}}" tm1-error-class="has-error">
+                      <input name="job-name" class="form-control" type="text" placeholder="{{'NAME' | translate}}" ng-model="values.taskDetail.name">
+                    </td>
+                    <td class="text-center">
+                      <a class="btn btn-link" uib-tooltip-html="values.taskDetail.active ? values.messages.DEACTIVATE : values.messages.ACTIVATE" ng-click="values.taskDetail.active = !values.taskDetail.active">
+                        <i class="fa fa-lg" ng-class="{'fa-toggle-on text-success':values.taskDetail.active, 'fa-toggle-off text-muted':!values.taskDetail.active}"></i>
+                      </a>                      
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>          
+          </div>
+        </div>
+        
+        <!-- Instance -->
+        <div class="panel panel-default">
+          <div class="panel-heading">            
+            <div class="pull-right">
+              <a ng-click="addCredential()" uib-tooltip-html="values.messages.TASKEDITORADDNEWINSTANCE" tooltip-placement="auto left">
+                <i class="fa fa-plus-circle fa-lg"></i>
+              </a>              
+            </div>
+            
+            <i class="fa fa-cubes"></i>
+            <span class="tm1-ui-indent">{{'INSTANCES' | translate}}</span>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th class="text-center" translate="INSTANCE" style="min-width: 100px;"></th>
+                    <th class="text-center" translate="USERNAME" style="min-width: 100px;"></th>
+                    <th class="text-center" translate="PASSWORD"></th>
+                    <th class="text-center" translate="USECAM" style="min-width: 100px;"></th>
+                    <th class="text-center" translate="CAMNAMESPACE" style="min-width: 150px;"></th>
+                    <th></th>
+                  </tr>               
+                </thead>
+                <tbody>
+                  <tr ng-repeat="credential in values.taskDetail.credentials track by $index">
+                    <td class="form-group" tm1-admin-validator-empty="{{credential.instance}}" tm1-error-class="has-error">
+                      <select class="form-control" ng-options="instance for instance in list.instances" ng-model="credential.instance"></select>
+                    </td>
+                    <td class="form-group" tm1-admin-validator-empty="{{credential.userName}}" tm1-error-class="has-error">
+                      <input class="form-control" type="text" placeholder="{{'USERNAME' | translate}}" ng-model="credential.userName">
+                    </td>
+                    <td>
+                      <input class="form-control" type="password" placeholder="{{'PASSWORD' | translate}}" ng-model="credential.password">
+                    </td>
+                    <td class="text-center">
+                      <input type="checkbox" ng-model="credential.useCAM">
+                    </td>
+                    <td>
+                      <input ng-disabled="!credential.useCAM" class="form-control" type="text" placeholder="{{'CAMNAMESPACE' | translate}}" ng-model="credential.camNamespace">
+                    </td>
+                    <td class="text-center">
+                      <a ng-click="values.taskDetail.credentials.splice($index, 1)" uib-tooltip-html="values.messages.DELETE"><i class="fa fa-trash-o fa-fw fa-lg text-danger"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Schedules -->
+        <div class="panel panel-default">          
+          <div class="panel-heading">
+            <div class="pull-right">
+              <a ng-click="addTrigger()" uib-tooltip-html="values.messages.TASKEDITORADDNEWSCHEDULE" tooltip-placement="auto left">
+                <i class="fa fa-plus-circle fa-lg"></i>
+              </a>            
+            </div>
+            
+            <i class="fa fa-clock-o"></i>
+            <span class="tm1-ui-indent">{{'SCHEDULE' | translate}}</span>            
+          </div>
+          
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover">
+                <thead>
+                  <th class="text-center" translate="NAME"></th>
+                  <th class="text-center" translate="SCHEDULE"></th>
+                  <th></th>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="trigger in values.taskDetail.triggers track by $index">
+                    <td class="form-group" tm1-admin-validator-empty="{{trigger.name}}" tm1-error-class="has-warning">
+                      <input type="text" class="form-control" id="trigger-name" placeholder="{{'NAME' | translate}}" ng-model="trigger.name">
+                    </td>
+                    <td>
+                      <div class="input-group" tm1-admin-validator-empty="{{trigger.description}}" tm1-error-class="has-warning">
+                        <input type="text" class="form-control" id="trigger-description" placeholder="{{'DESCRIPTION' | translate}}" ng-model="trigger.description" ng-disabled="true">
+                        <div ng-click="setTrigger(trigger)" class="input-group-addon" style="cursor: pointer;" data-toggle="modal" data-target="#cronModal"><i class="fa fa-life-saver"></i></div>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <a ng-click="values.taskDetail.triggers.splice($index, 1)" uib-tooltip-html="values.messages.DELETE"><i class="fa fa-trash-o fa-fw fa-lg text-danger"></i></a>
+                    </td>                  
+                  </tr>
+                </tbody>
+              </table>
+            </div>                          
+          </div>
+          
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="panel panel-default" style="margin:0px;">
+          <div class="panel-heading">
+            <div class="dropdown pull-right">
+              <a data-toggle="dropdown" aria-expanded="false" uib-tooltip-html="values.messages.TASKEDITORADDNEWTASK" tooltip-placement="auto left">
+                <i class="fa fa-plus-circle fa-lg"></i> 
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li role="presentation"><a ng-click="addTask('process')"><i class="fa fa-gear"></i><span class="tm1-ui-indent" translate="PROCESS"></span></a></li>
+                <li role="presentation"><a ng-click="addTask('chore')"><i class="fa fa-cogs"></i><span class="tm1-ui-indent" translate="CHORE"></span></a></li>
+                <li role="presentation"><a ng-click="addTask('action')"><i class="fa fa-hourglass-3"></i><span class="tm1-ui-indent" translate="WAIT"></span></a></li>
+                <li role="presentation"><a ng-click="addTask('report')"><i class="fa fa-send-o"></i><span class="tm1-ui-indent" translate="REPORT"></span></a></li>                
+              </ul>
+            </div>
+            
+            <i class="fa fa-tasks"></i>
+            <span class="tm1-ui-indent">{{'ACTIONS' | translate}}</span>            
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th class="text-center" translate="NAME"></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="task in values.taskDetail.tasks track by $index">
+                    <td style="min-width: 200px;" class="h5">
+                      <a class="btn btn-link" ng-click="toggleModal(task.type, task)">
+                        <i class="fa fw hidden-xs hidden-sm" ng-class="{'fa-gear':task.type == 'process', 'fa-cogs':task.type == 'chore', 'fa-hourglass-3':task.type == 'action', 'fa-send-o':task.type == 'report'}"></i>
+                        <span ng-if="task.active" class="tm1-ui-indent">{{getTaskName(task)}}</span>
+                        <s ng-if="!task.active" class="tm1-ui-indent">{{getTaskName(task)}}</s>
+                      </a>                      
+                    </td>
+                    <td class="text-center" style="min-width: 270px;">
+                      <a class="btn btn-link" ng-disabled="$first" uib-tooltip-html="values.messages.TASKEDITORMOVEUP" ng-click="moveElement(values.taskDetail.tasks, $index, $index - 1)">
+                        <i class="fa fa-lg fa-angle-up text-muted"></i>
+                      </a>
+                      <a class="btn btn-link" ng-disabled="$last" uib-tooltip-html="values.messages.TASKEDITORMOVEDOWN" ng-click="moveElement(values.taskDetail.tasks, $index, $index + 1)">
+                        <i class="fa fa-lg fa-angle-down text-muted"></i>
+                      </a>  
+                      <a class="btn btn-link" ng-click="task.active = !task.active" uib-tooltip-html="task.active ? values.messages.DEACTIVATE : values.messages.ACTIVATE">
+                        <i class="fa fa-lg" ng-class="{'fa-toggle-on text-success':task.active, 'fa-toggle-off text-muted':!task.active}"></i>
+                      </a>                    
+                      <a class="btn btn-link" uib-tooltip-html="values.messages.EDIT" ng-click="toggleModal(task.type, task)">
+                        <i class="fa fa-lg fa-edit text-info"></i>
+                      </a>
+                      <a class="btn btn-link" uib-tooltip-html="values.messages.DELETE" ng-click="deleteTask($index)">
+                        <i class="fa fa-lg fa-trash-o text-danger"></i>
+                      </a>                      
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>                   
+          </div>
+        </div>
+      </div>      
+    </div>
+    
+    
+    <!-- Modal Sections -->
+    <!-- Model for the CRON Helper -->
+    <div class="modal fade" id="cronModal" tabindex="-1" role="dialog" aria-labelledby="cronHelperModal">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn btn-default pull-right" data-dismiss="modal">
+              <i class="fa fa-close"></i>
+              <span class="h5 tm1-ui-indent" translate="CANCEL"></span>
+            </button>
+            <h4 class="modal-title" id="cronHelperModal" translate="CRONHELPER"></h4>
+          </div>
+          <div class="modal-body">
+            <tm1-ui-cron 
+              ng-if="values.showTriggerModal"
+              tm1-apply-clipboard-modal-fix="true"
+              tm1-cron-selection-model="targetTrigger.cronHelperSelectionJson"            
+              tm1-cron-description-model="targetTrigger.description"
+              tm1-on-cron-apply="onCronHelperApply()"
+              ng-model="targetTrigger">
+            </tm1-ui-cron>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Chore -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="chore" ng-if="values.activeModal == 'chore'">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">{{'CHORE' | translate}} "{{values.modalObject.name}}"</h4>
+          </div>
+          <div class="modal-body">
+            <tm1-ui-configurator-chore
+                tm1-instance="{{values.modalObject.instance}}" 
+                tm1-instances="values.taskDetail.credentials"
+                tm1-chore="{{values.modalObject.name}}" 
+                tm1-on-apply="closeChoreModal()"
+                tm1-enable-execute="true"
+                tm1-update-button-text="{{values.messages.SAVE}}"
+                tm1-update-button-class="btn btn-primary"
+                ng-model="values.modalObject">
+            </tm1-ui-configurator-chore>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Action -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="action" ng-if="values.activeModal == 'action'">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" translate="ACTION"></h4>
+          </div>
+          <div class="modal-body">            
+            <div class="form-group" tm1-admin-validator-empty="{{values.modalObject.value}}">
+              <label class="control-label">{{'WAITINGTIME' | translate}}</label>
+              <input class="form-control" ng-model="values.modalObject.value">           
+            </div>            
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" type="button" ng-click="closeModal('action')">
+              <i class="fa fa-close"></i>
+              <span class="tm1-ui-indent" translate="CLOSE"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Process -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="process" ng-if="values.activeModal == 'process'">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">{{'PROCESS' | translate}} "{{values.modalObject.name}}"</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group" tm1-admin-validator-empty="{{values.modalObject.instance}}">
+              <label class="control-label">{{'INSTANCE' | translate}}</label>
+              <select class="form-control" ng-model="values.modalObject.instance" ng-change="updateProcessList(values.modalObject.instance, 'process')">
+                <option ng-repeat="credential in values.taskDetail.credentials" ng-value="credential.instance">{{credential.instance}}</option>
+              </select>              
+            </div>
+            
+            <div class="form-group tm1-ui-process-modal" tm1-admin-validator-empty="{{values.modalObject.name}}">
+              <label class="control-label" translate="NAME"></label>
+              <!--
+              <tm1-ui-select tm1-list="list.processes"
+                tm1-enable-search="true"
+                tm1-on-item-select="getProcessDetail(values.modalObject)"
+                ng-model="values.modalObject.name">
+              </tm1-ui-select>
+              -->
+            </div>
+            
+            <div class="table-responsive" ng-if="values.modalObject.parameters.length > 0">
+              <table class="table table-bordered table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th translate="PARAMETER"></th>
+                    <th translate="VALUE"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="parameter in values.modalObject.parameters track by $index">
+                    <td>{{parameter.name}}</td>
+                    <td>
+                      <input class="form-control" type="input" ng-model="parameter.value">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" type="button" ng-click="closeModal('process')">
+              <i class="fa fa-close"></i>
+              <span class="tm1-ui-indent" translate="CLOSE"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Report -->
+    <div class="modal fade" role="dialog" tabindex="-1" id="report" ng-if="values.activeModal == 'report'">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" translate="REPORT"></h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group" tm1-admin-validator-empty="{{values.modalObject.name}}">
+              <label class="control-label">{{'DESCRIPTION' | translate}}</label>
+              <input class="form-control" ng-model="values.modalObject.name">           
+            </div>
+            
+            <ul class="nav nav-tabs">
+              <li role="presentation" ng-class="{'active':values.activeReportTab == 1}"><a ng-click="values.activeReportTab = 1" translate="EMAIL"></a></li>
+              <li role="presentation" ng-class="{'active':values.activeReportTab == 2}"><a ng-click="values.activeReportTab = 2" translate="REPORT"></a></li>
+              <li role="presentation" ng-class="{'active':values.activeReportTab == 3}"><a ng-click="values.activeReportTab = 3" translate="BURST"></a></li>
+            </ul>
+            
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" ng-show="values.activeReportTab == 1">
+                <tm1-admin-task-report-email></tm1-admin-task-report-email>
+              </div>
+              <div role="tabpanel" class="tab-pane active" ng-show="values.activeReportTab == 2">
+                <tm1-admin-task-report-attachment></tm1-admin-task-report-attachment>
+              </div>
+              <div role="tabpanel" class="tab-pane active" ng-show="values.activeReportTab == 3">
+                <tm1-admin-task-report-burst></tm1-admin-task-report-burst>
+              </div>
+            </div>
+            
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" type="button" ng-click="closeModal('report')">
+              <i class="fa fa-close"></i>
+              <span class="tm1-ui-indent" translate="CLOSE"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

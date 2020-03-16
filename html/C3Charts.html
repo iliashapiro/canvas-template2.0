@@ -1,0 +1,42 @@
+<div ng-controller="C3ChartsCtrl"  
+ng-if=" $root.defaults.year && $root.defaults.region "
+ng-style="{'margin-top': $root.isPrinting ? '0px':(130)+'px'}"
+style=" "
+ng-click="$root.topOffSet = $root.defaultOffSet; $root.indexOver = '';" 
+ >
+ <style>
+ .c3-region-0 {
+  fill: red;
+}
+.c3-region.foo {
+  fill: green;
+}
+.content{
+	padding:0px; 
+	overflow:hidden; 
+	background-color:#fff; 
+	border-radius:10px; 
+	border-bottom-right-radius:0px;
+}
+ </style>
+ <div class="container" >
+		<div class="row">
+			<div class="col-md-12">
+				<h3 style="color:#fff;">MULTI BAR (STACKED GROUP) + LINE CHART</h3>
+			</div>
+		</div>
+		<div class="row">
+ 
+	 			
+					 <div class="col-md-12 content" >
+	<button class="btn btn-default pull-right" style="position:absolute; right:0px;z-index:9999;" ng-click="creatChart()"><i class="fa fa-refresh" ng-class="{'fa-spin':$root.isLoading}"></i></button>
+		 
+					<div id="c3chart"></div>
+			 
+	 
+  	</div>
+   </div>
+	</div> 
+ 
+
+</div>

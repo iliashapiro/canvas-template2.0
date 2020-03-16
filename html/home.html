@@ -1,0 +1,51 @@
+<div ng-controller="HomeCtrl"   
+ng-if=" $root.defaults.version  && $root.defaults.year && $root.defaults.region && $root.defaults.period && $root.defaults.account && $root.defaults.department "
+ng-style="{'pointer-events': $root.loading ? 'none':'auto' ,'margin-top': !$root.isPrinting ? '120px':(0)+'px'}"
+style="   background-color: transparent; padding-top:10px;  -webkit-transition:margin-top 1s; transition-property:margin-top; transition-duration: 1s;" 
+ng-click="$root.topOffSet = $root.defaultOffSet; $root.indexOver = '';" 
+	>
+	
+
+	<style>
+	.bullet { font: 10px sans-serif; }
+	.bullet .marker { stroke: #000; stroke-width: 2px; }
+	.bullet .tick line { stroke: #666; stroke-width: .5px; }
+	.bullet .range.s0 { fill: #eee; }
+	.bullet .range.s1 { fill: #ddd; }
+	.bullet .range.s2 { fill: #ccc; }
+	.bullet .measure.s0 { fill: steelblue; }
+	.bullet .measure.s1 { fill: steelblue; }
+	.bullet .title { font-size: 14px; font-weight: bold; }
+	.bullet .subtitle { fill: #999; }
+
+	</style>
+
+
+	<!-- <div style="width:100%; top:0px; left:0px; position:absolute; display:block; background-color:#ccc;" ng-style="{'height':$root.innerHeight + 'px'}">
+	<div style="position:absolute; width:100%; text-align:center; left:0px; bottom:150px;     " ng-click="speechActive = !speechActive">
+	<i ng-click="focusOnVoiceInput()"  ng-style="{'color': speechActive ? 'red':'green'}" class="fa fa-microphone fa-3x" aria-hidden="true"></i>
+	</div>
+	</div> -->
+	<div id="bulletChartContainer">  </div>
+	<div id="tooltip-bulletChartContainer"></div>
+	<my-bullet-chart    
+		mdx-id="AccountBullet"  
+		cube-name="General Ledger"  
+		mdx-param='{{mdxParam}}'
+		dimension-alias='{{$root.dimensionAlias}}'
+		title="This is a title"
+		driver="PnL" 
+		id-name="bulletChartContainer" 
+		column-header-array="Actual,Budget,Last Year"
+		color-array="steelblue,grey,red"
+		 
+		>
+	</my-bullet-chart>
+
+</div>
+   
+ 
+ 
+
+ 
+  

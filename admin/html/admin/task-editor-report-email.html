@@ -1,0 +1,67 @@
+<div>
+  <div class="form-group">
+    <label class="control-label" translate="ACTION"></label>
+    <p>
+      <label class="radio-inline">
+        <input type="radio" id="send-email-mode" ng-value="1" ng-model="values.modalObject.email.reportAction"><span translate="SENDEMAIL"></span>
+      </label>
+      <label class="radio-inline">
+        <input type="radio" id="save-to-disk-mode" ng-value="2" ng-model="values.modalObject.email.reportAction"><span translate="SAVETODISK"></span>
+      </label>
+    </p>  
+    <p ng-if="values.modalObject.email.reportAction == 2" class="help-block">Files will be saved relative to {{finalFilePath}}</p>  
+  </div>
+  
+  <!-- On Save To Disk -->
+  <div ng-if="values.modalObject.email.reportAction == 2" class="form-group">
+    <label class="control-label" for="save-to-disk-relative-dir" translate="PRINTRELATIVEDIR"></label>
+    <input type="text" class="form-control" id="save-to-disk-relative-dir" ng-model="values.modalObject.email.outputRelativeDir" ng-change="formatFilePath()">
+  </div>  
+  <div ng-if="values.modalObject.email.reportAction == 2" class="checkbox">
+    <label>
+      <input type="checkbox" ng-model="values.modalObject.email.appendTimestamp" ng-change="formatFilePath()"> {{'PRINTAPPENDTIMESTAMP' | translate}}
+    </label>
+  </div>
+  <div ng-if="values.modalObject.email.appendTimestamp && values.modalObject.email.reportAction == 2" class="form-group">
+    <label class="control-label" for="save-to-disk-dir-timestamp">
+      {{'PRINTTIMESTAMPFORMAT' | translate}}
+      <a class="tm1-ui-indent h6" href="https://docs.oracle.com/javase/1.5.0/docs/api/java/text/SimpleDateFormat.html" target="_blank"><i class="fa fa-external-link"></i></a>
+    </label>
+    <input type="text" class="form-control" id="save-to-disk-dir-timestamp" ng-model="values.modalObject.email.appendedTimeFormat" ng-change="formatFilePath()">
+  </div>
+  
+  <!-- On Email -->
+  <div ng-if="values.modalObject.email.reportAction == 1" class="form-group" ng-class="{'has-error': values.modalObject.email.burstSend && !(values.modalObject.burstTypes.length > 0)}">
+    <label class="control-label" translate="SEND"></label>
+    <p>
+      <label class="radio-inline">
+        <input type="radio" id="email-send-mode-1" ng-value="false" ng-model="values.modalObject.email.burstSend"><span translate="EMAILBURSTMODE1"></span>
+      </label>
+      <label class="radio-inline">
+        <input type="radio" id="email-send-mode-2" ng-value="true" ng-model="values.modalObject.email.burstSend"><span translate="EMAILBURSTMODE2"></span>
+        <div uib-alert ng-if="values.modalObject.email.burstSend && !(values.modalObject.burstTypes.length > 0)" class="alert-danger">{{'EMAILBURSTMODE2WARNINGMESSAGE' | translate}}</div>
+      </label>
+    </p>
+    <div ng-if="!(values.appSettings.smtpServer.length > 0)" class="alert alert-danger" role="alert" translate="SMTPSERVERERROR"></div>
+  </div>  
+  <div ng-if="values.modalObject.email.reportAction == 1" class="form-group" tm1-admin-validator-empty="{{values.modalObject.email.subject}}">
+    <label class="control-label" for="email-subject" translate="EMAILSUBJECT"></label>
+    <input type="text" class="form-control" id="email-subject" ng-model="values.modalObject.email.subject">
+  </div>
+  <div ng-if="values.modalObject.email.reportAction == 1" class="form-group" tm1-admin-validator-empty="{{values.modalObject.email.to}}">
+    <label class="control-label" for="email-to" translate="EMAILTO"></label>
+    <input type="text" class="form-control" id="email-to" ng-model="values.modalObject.email.to">
+  </div>
+  <div ng-if="values.modalObject.email.reportAction == 1" class="form-group">
+    <label class="control-label" for="email-cc" translate="EMAILCC"></label>
+    <input type="text" class="form-control" id="email-cc" ng-model="values.modalObject.email.cc">
+  </div>
+  <div ng-if="values.modalObject.email.reportAction == 1" class="form-group">
+    <label class="control-label" for="email-bcc" translate="EMAILBCC"></label>
+    <input type="text" class="form-control" id="email-bcc" ng-model="values.modalObject.email.bcc">
+  </div>
+  <div ng-if="values.modalObject.email.reportAction == 1" class="form-group" tm1-admin-validator-empty="{{values.modalObject.email.body}}">
+    <label class="control-label" for="email-body" translate="EMAILBODY"></label>
+    <div id="email-body" text-angular ng-model="values.modalObject.email.body"></div>
+  </div>
+</div>

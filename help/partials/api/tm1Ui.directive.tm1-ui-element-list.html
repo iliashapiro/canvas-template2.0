@@ -1,0 +1,41 @@
+<h1><code ng:non-bindable="">tm1-ui-element-list</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-element-list-page"><p>Used for populating a ng-model with elements from a dimension. Returned data is an array, with key, level and alias|attributes properties.</p>
+<p><p class="lead">Directive Level APIs</p></p>
+<dl>
+    <dt>refreshData()</dt>
+    <dd>For refreshing the list of elements</dd>
+</dl>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-element-list
+       tm1-instance="{string}"
+       tm1-dimension="{string}"
+       [tm1-subset="{string}"]
+       [tm1-attributes="{string}"]
+       [tm1-mdx="{string}"]
+       [tm1-calculate-top-level="{boolean}"]
+       [tm1-api="{object}"]
+       [tm1-options="{object}"]
+       [ng-model="{object}"]&gt;
+&lt;/tm1-ui-element-list&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-element-list-page"><p>Instance name for this directive to connect to. <span class="alert alert-danger" role="alert">REQUIRED</span></p>
+</div></td></tr><tr><td>tm1-dimension</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-element-list-page"><p>Dimension name to query. <span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-subset <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-element-list-page"><p>Subset name to query. <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-attributes <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-element-list-page"><p>Comma separated attributes to retrieve. If combined with a subset, this will be prioritized over the aliases set on it. <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-mdx <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-element-list-page"><p>MDX to execute against the dimension (note: this only works if the dimension has an attribute). <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-calculate-top-level <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-element-list-page"><p>To determine whether to calculate the correct level, via topLevel property. Set this to &quot;true&quot; when you need to use the topLevel property (i.g. for indentation).</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-api <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-element-list-page"><p>Object where directive level APIs are attached to and be called from (see description for further details on the APIs).</p>
+</div></td></tr><tr><td>tm1-options <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-element-list-page"><p>JSON object for customization of this directive.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>asObject <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-element-list-page"><p>Output the elements in object format instead of array. The elements can be accessed via their principal names or aliases (if used on Subset). <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: false)</em></p></td></tr></tbody></table></td></tr><tr><td>ng-model <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-element-list-page"><p>Angular JSON object where the actual values are stored, for usage in other parts of the page.</p>
+</div></td></tr></tbody></table></div>
+</div>

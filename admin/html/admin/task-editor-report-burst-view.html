@@ -1,0 +1,76 @@
+<div class="panel panel-default" 
+    tm1-admin-validator-empty="{{burstType.instance}},{{burstType.cube}},{{burstType.view}}" 
+    tm1-error-class="panel-danger">
+  <div class="panel-heading">
+      
+    <table style="width: 100%;">
+      <tbody>
+        <tr>
+          <td>
+            <span class="panel-title">{{'VIEW' | translate}}</span>
+          </td>
+          <td class="text-right">
+            <div ng-include="'burst-button-group.tpl'"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+  <div class="panel-body" ng-init="p = initBurstItem(burstType);">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group" tm1-admin-validator-empty="{{burstType.instance}}">
+          <label class="control-label" translate="INSTANCE"></label>
+          <select class="form-control" ng-model="burstType.instance" ng-change="updateCubeList(burstType.instance)">
+            <option ng-repeat="credential in values.taskDetail.credentials" ng-value="credential.instance">{{credential.instance}}</option>
+          </select>
+        </div>        
+      </div>
+      <div class="col-md-6">
+        <div class="form-group" tm1-admin-validator-empty="{{burstType.cube}}">
+          <label class="control-label" translate="CUBE"></label>
+          <select class="form-control" ng-model="burstType.cube" ng-change="updateCubeViewList(burstType.instance, burstType.cube)">
+            <option ng-repeat="cube in cubes" ng-value="cube.Name">{{cube.Name}}</option>
+          </select>
+        </div>        
+      </div>  
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group" tm1-admin-validator-empty="{{burstType.view}}">
+          <label class="control-label" translate="VIEW"></label>
+          <select class="form-control" ng-model="burstType.view" ng-change="updatePlaceholderList(burstType.instance, burstType.cube, burstType.view)">
+            <option ng-repeat="view in views" ng-value="view.Name">{{view.Name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6" ng-init="dataSize = 10">
+        <div class="btn-group pull-right" role="group">
+          <button type="button" class="btn btn-primary" 
+            ng-click="dataSize = dataSize == 10 ? 999999999 : 10">Show {{dataSize == 10 ? 'All' : '10'}}</button>
+          <button type="button" class="btn btn-default" ng-click="updatePlaceholderList(burstType.instance, burstType.cube, burstType.view)" translate="PREVIEW"></button>
+        </div> 
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered" ng-init="updatePlaceholderList(burstType.instance, burstType.cube, burstType.view)">
+          <thead>
+            <tr>
+              <th ng-repeat="(key, value) in burstType.viewRowData[0]">{{key}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="rowData in burstType.viewRowData | limitTo: dataSize">
+              <td ng-repeat="(key, value) in rowData">{{value}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+        
+  </div>
+</div>

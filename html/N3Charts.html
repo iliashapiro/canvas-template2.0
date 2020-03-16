@@ -1,0 +1,52 @@
+<div ng-controller="N3ChartsCtrl" 
+	ng-if=" $root.defaults.version && $root.defaults.year && $root.defaults.period
+            && $root.defaults.week && $root.defaults.day && $root.defaults.legal && 
+            $root.defaults.business && $root.defaults.product && $root.defaults.type
+			&& $root.defaults.metric && $root.defaults.measure" 
+	ng-style="{'margin-top': (160)+'px' }"
+	style="   background-color: #f8f8f8; padding-top:10px;  -webkit-transition:margin-top 1s; transition-property:margin-top; transition-duration: 1s; background-color:transparent" 
+	ng-click="$root.topOffSet = $root.defaultOffSet; $root.indexOver = '';" 
+		>
+		   
+	<!-- <div id="chartContainer" style="height: 300px; width: 100%;"></div>-->
+	<div ng-init="loadN3Chart()"> </div> 
+	<style>
+			 .container {
+				overflow: visible;
+				 display:inline-block;
+				 position:relative;
+			width: 100%;
+			height: 300px;
+		}
+		
+		/* Axis */
+		.chart .axis > path, 
+		/* Axis Ticks */
+		.chart .axis > .tick line {
+			stroke: rgba(0, 0, 0, 0.5);
+		}
+		
+		/* Axis Tick Labels */
+		.chart .axis > .tick text {
+			font-family: 'Open Sans', sans-serif;
+			font-weight: 300;
+		}
+		
+		/* Legend */
+		.chart-legend .item,
+		/* Tooltip */
+		.chart-tooltip {
+			font-family: 'Open Sans', sans-serif;
+		}
+		
+	</style>
+	<div class="container" >
+			<linechart data="data" options="options"></linechart>
+	</div>
+</div>
+		 
+		
+		
+		
+		
+		

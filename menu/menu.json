@@ -1,0 +1,19 @@
+[ {
+    "label": "Directive",
+    "icon_class": "fa-black-tie",
+    "children":[
+        {
+        "label": "C3 Chart",
+        "icon_class": "fa-black-tie",
+        "data": {
+          "page": "c3directive/c3charts"
+        },
+        "expanded": false
+      }
+    ],
+    "data": {
+      "page": "c3directive"
+    },
+    "expanded": false
+  }
+]

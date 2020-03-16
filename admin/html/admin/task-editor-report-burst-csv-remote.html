@@ -1,0 +1,80 @@
+<div class="panel panel-default">
+  <div class="panel-heading">  
+  
+    <table style="width: 100%;">
+      <tbody>
+        <tr>
+          <td>
+            <span class="panel-title">{{'CSVREMOTE' | translate}}</span>
+          </td>
+          <td class="text-right">
+            <div ng-include="'burst-button-group.tpl'"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+  <div class="panel-body">
+      
+    <div class="row">
+      <div class="col-md-3">      
+        <div class="form-group" tm1-admin-validator-empty="{{burstType.instance}}">
+          <label for="csv-remote-instance" translate="INSTANCE"></label>
+          <select id="csv-remote-instance" class="form-control" ng-model="burstType.instance">
+            <option ng-repeat="credential in values.taskDetail.credentials" ng-value="credential.instance">{{credential.instance}}</option>
+          </select>
+        </div>        
+      </div>
+      <div class="col-md-2">      
+        <div class="form-group">
+          <label class="control-label" translate="CSVFIELDSEPARATOR"></label>
+          <input class="form-control" style="text-align: center;" type="text" ng-model="burstType.csvFieldSeparator">
+        </div>
+      </div>
+      <div class="col-md-7">      
+        <div class="form-group" tm1-admin-validator-empty="{{burstType.csvPath}}">
+          <label class="control-label" translate="CSVREMOTEDESCRIPTION"></label>
+          <input class="form-control" type="text" ng-model="burstType.csvPath">
+        </div>        
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="burstType.overwriteExistingFile"> {{values.messages.TASKEDITOROVERRIDEEXISTINGFILE}}              
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">      
+        <tm1-ui-upload ng-if="burstType.instance.length > 0" 
+          tm1-display-name="Select / Upload a CSV File" 
+          tm1-after-upload="onAfterFileUpload(file, burstType)"
+          tm1-retain-name="burstType.overwriteExistingFile"
+          tm1-instance="{{burstType.instance}}">
+        </tm1-ui-upload>
+      </div>
+    </div>
+    
+    <div class="row">      
+      <div class="col-md-12">
+        <button type="button" class="btn btn-info pull-right" ng-click="getTextFile(burstType, burstType.csvPath)">
+          <i class="fa fa-file-powerpoint-o"></i>
+          <span class="h5" translate="PREVIEW"></span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12 burst-csv-remote-data">
+        <table class="table table-bordered">
+        </table>
+      </div>
+    </div>
+    
+  </div>
+</div>

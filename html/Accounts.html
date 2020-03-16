@@ -1,0 +1,133 @@
+<div ng-controller="AccountsCtrl" 
+ng-style="{'margin-top': (160)+'px', 'background-color':$root.applicationActivePageColor}"
+style="   background-color: #f8f8f8; padding-top:10px;  -webkit-transition:margin-top 1s; transition-property:margin-top; transition-duration: 1s;" 
+ng-click="$root.topOffSet = $root.defaultOffSet; $root.indexOver = '';" 
+ >
+ <div   style="position:fixed; top:91px; z-index :1; left:0px; float:left; background-color: #fff; width:100%; height:45px; background-color:#fff;" > 
+		<div class="col-md-12 col-xs-12" style="border-bottom:1px solid #333;">
+			<h4><strong>{{$root.defaults.legal}} </strong>
+				<strong>
+					<span class="pull-right">
+						<small>	{{$root.defaults.year}} | {{$root.defaults.period}} | {{$root.defaults.week}} </small>
+					
+				
+					</span>
+				</strong> 
+			</h4>
+		</div>
+	</div>
+	<style>
+		.modebar-group{
+			display:none !important; 
+		}
+		.nav > li {
+				padding-left: 0px;
+				margin-left: 0px;
+		}
+		.navbar-nav {
+				margin: 0px 0px;
+		}
+		.navbar-collapse-boot {
+		padding-right: 0px; 
+	 padding-left: 0px; 
+	overflow-x: visible;
+	-webkit-overflow-scrolling: touch;
+	border-top: 1px solid transparent;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+	}
+	</style>
+	<div class="row" ng-if="$root.showFilter">  
+			<div class="col-md-12 col-xs-12" ng-if="$root.filtersJson "> 
+					<div style="display:inline-block; float:left; padding-right:10px; width:auto; padding-top:5px; color:#333;" 
+					ng-repeat="item in $root.filtersJson track by $index"  ng-show=" ((item.onlyShow).split(',')).indexOf($root.pageTitle) > -1">
+						<small  ng-if="item.alias "  style="color:#333;   ">
+							<tm1-ui-dbra  ng-show="false"
+								tm1-read-only="true" 
+								tm1-instance="{{$root.defaults.settingsInstance}}" 
+								tm1-dimension="{{item.dimensionName}}" 
+								tm1-element="{{$root.defaults[item.name]}}" 
+								tm1-attribute="{{item.alias}}" 
+								tm1-hide-reference="true"
+								ng-model="filterSelections[item.name]"
+								>
+							</tm1-ui-dbra> &nbsp; {{filterSelections[item.name] !='' && filterSelections[item.name] ? filterSelections[item.name] : $root.defaults[item.name]}}  
+							 
+							<span style="display:inline-block; " ng-show="$root.defaults[item.name] != item.defaultElement">
+									&nbsp; | &nbsp; <i class="fa fa-close" 
+								ng-click='$root.updateSettings($root.values, $root.defaults, $root.selections, item.name, {"tm1Dimension":item.dimensionName,  "value":item.defaultElement}, item.defaultElement)'></i>
+							</span>
+							&nbsp; / &nbsp;
+							
+						</small>
+
+						<small ng-if="!item.alias" style="color:#333;  ">
+							<span  style="color:#333;;">
+								{{$root.defaults[item.name]}} 
+								<span style="display:inline-block; " ng-show="$root.defaults[item.name] != item.defaultElement">
+										&nbsp; | &nbsp;<i class="fa fa-close" 
+									ng-click='$root.updateSettings($root.values, $root.defaults, $root.selections, item.name, {"tm1Dimension":item.dimensionName,  "value":item.defaultElement}, item.defaultElement)'></i>
+								</span>
+								&nbsp; / &nbsp;
+							
+							</span>
+						</small>
+				
+					</div> 
+			</div>
+		</div>
+		<div class="row" > 
+			<div class="col-md-12 col-xs-12">  
+				<div id="graphDiv"></div>
+			</div>
+		</div>
+	 <div class="row" > 
+			<div class="col-md-12 col-xs-12">  
+					
+				<nav class="navbar navbar-default">
+						<div class=" ">
+							<div class="navbar-header">
+									<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse-boot">
+									
+											<i class="fa  fa-ellipsis-v"></i>
+										</button>
+										<span class="navbar-brand" >
+												Account:{{$root.selections.searchInput}}
+										</span>
+							</div>
+							<div class="navbar-collapse-boot collapse  ">
+								<ul class="nav navbar-nav  ">
+									<li ><a href="" >Details</a></li>
+									<li><a href="">Edit</a></li>
+									<li><a href="">Contact</a></li>
+									  <li class="dropdown pull-left" >
+										<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a href="">Action</a></li>
+											<li><a href="">Another action</a></li>
+											<li><a href="">Something else here</a></li>
+											<li role="separator" class="divider"></li>
+											<li class="dropdown-header">Nav header</li>
+											<li><a href="">Separated link</a></li>
+											<li><a href="">One more separated link</a></li>
+										</ul>
+									</li>  
+								</ul>
+							</div><!--/.nav-collapse -->
+						</div>
+					</nav>
+			</div>
+		 
+			 
+			 
+	</div>
+	 
+	 
+ 
+ 
+</div>
+ 
+
+
+
+

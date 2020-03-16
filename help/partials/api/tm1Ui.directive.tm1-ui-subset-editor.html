@@ -1,0 +1,57 @@
+<h1><code ng:non-bindable="">tm1-ui-subset-editor</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>This directive helps you to manage subsets of dimensions.</p>
+
+<p><p class="lead">Directive Level APIs</p></p>
+<dl>
+    <dt>refreshData()</dt>
+    <dd>For refreshing the list of data on this directive</dd>
+</dl>
+
+<dl>
+    <dt>getModelData()</dt>
+    <dd>For retrieving the data object of this directive.</dd>
+</dl></div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-subset-editor
+       tm1-instance="{string}"
+       tm1-dimension="{string}"
+       tm1-hierarchy="{string}"
+       tm1-subset="{string}"
+       tm1-mdx="{string}"
+       tm1-elements="{string}"
+       [tm1-options="{object}"]
+       [tm1-api="{object}"]
+       [tm1-ui-class="{string}"]
+       [ng-model="{object}"]&gt;
+&lt;/tm1-ui-subset-editor&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Instance name for this directive to connect to. <span class="alert alert-danger" role="alert">REQUIRED</span></p>
+</div></td></tr><tr><td>tm1-dimension</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Dimension name to query. <span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-hierarchy</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Hierarchy name to query. <span class="alert alert-warning" role="alert">OPTIONAL</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-subset</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Name of the subset to initialize this directive with. <span class="alert alert-warning" role="alert">OPTIONAL</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-mdx</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>MDX to initialize this directive with. <span class="alert alert-warning" role="alert">OPTIONAL</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-elements</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Comma separated list of elements to initialize this directive with. <span class="alert alert-warning" role="alert">OPTIONAL</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-options <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Options to further affect this directive. <span class="alert alert-warning" role="alert">OPTIONAL</span><span class="alert alert-info" role="alert">WATCHED</span>.</p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>hideSaveButton <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Flag to hide the Save button. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>mdxPreferredAlias <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Preferred alias used with MDX expression or elements provided. <span class="alert alert-warning" role="alert">OPTIONAL</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "")</em></p></td></tr><tr><td>hideButtonGroupSubset <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Flag to hide the group of buttons related to Subset. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>hideButtonGroupAlias <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Flag to hide the group of buttons related to Alias. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>hideButtonGroupFilter <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Flag to hide the group of buttons related to Filters. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>hideButtonGroupSort <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Flag to hide the group of buttons related to Sort. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>hideButtonGroupSearch <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Flag to hide the group of buttons related to Search. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>hideButtonAttributeToggle <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Flag to hide the group of buttons related to Toggling of Attributes. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>hideButtonMDX <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Flag to hide the MDX button. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>hideButtonRefresh <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Flag to hide Refresh button. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "false")</em></p></td></tr></tbody></table></td></tr><tr><td>tm1-api <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Object where directive level APIs are attached to and be called from (see description for further details on the APIs).</p>
+</div></td></tr><tr><td>tm1-ui-class <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Add other custom classes into this directive. <span class="alert alert-warning" role="alert">OPTIONAL</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "tm1-ui-subset-editor")</em></p></td></tr><tr><td>ng-model <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subset-editor-page"><p>Angular JSON object where the actual values are stored, for usage in other parts of the page.</p>
+</div></td></tr></tbody></table></div>
+</div>

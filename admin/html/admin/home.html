@@ -1,0 +1,7 @@
+<div ng-controller="AdminHomeCtrl">
+	<span class="pull-right" ng-show="$state.current.name != 'admin' && $state.current.name != 'admin.login-admin'">
+		<span><span translate="HI"></span> {{page.currentUser}},</span>
+		<button type="button" class="btn btn-link" ng-click="logoutAdminConsole()" translate="LOGOUT"></button>
+	</span>
+	<section ui-view></section>
+</div>

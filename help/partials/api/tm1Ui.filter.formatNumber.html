@@ -1,0 +1,24 @@
+<h1><code ng:non-bindable="">formatNumber</code>
+<div><span class="hint">filter in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-filter-page tm1ui-filter-formatnumber-page"><p>This filter allows you to format your numbers on your HTML page through the accounting.js library. See below for a simple sample usage:</p>
+<pre class="prettyprint linenums">
+&lt;div&gt; {{100 | formatNumber}} &lt;!-- returns '100.00' --&gt; &lt;/div&gt;
+&lt;div&gt; {{100 | formatNumber:5}} &lt;!-- returns '100.00000' --&gt; &lt;/div&gt;
+</pre>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage"><h3 id="usage_in-html-template-binding">In HTML Template Binding</h3>
+<div class="in-html-template-binding"><code ng:non-bindable=""><span>{{</span> formatNumber_expression | formatNumber:decimal <span>}}</span></code>
+</div>
+<h3 id="usage_in-javascript">In JavaScript</h3>
+<div class="in-javascript"><code ng:non-bindable="">$filter('formatNumber')(value, decimal)</code>
+</div>
+<h4 id="usage_in-javascript_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>value</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="tm1ui-filter-page tm1ui-filter-formatnumber-page"><p>The value to be formatted.</p>
+</div></td></tr><tr><td>decimal</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="tm1ui-filter-page tm1ui-filter-formatnumber-page"><p>Number of decimal places to apply to the output number.</p>
+</div></td></tr></tbody></table><h4 id="usage_in-javascript_returns">Returns</h4><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-filter-page tm1ui-filter-formatnumber-page"><p>The formatted number.</p>
+</div></td></tr></table></div>
+</div>

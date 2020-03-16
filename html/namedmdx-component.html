@@ -1,0 +1,1148 @@
+<style>
+        .dropdown-panel{
+            cursor:pointer; 
+            position: absolute; 
+            top:0px;   
+            right:5px;  
+            width:200px;
+            height:calc(100% - '50px'); 
+            padding:0px; 
+            
+            box-shadow:-5px 6px 10px 0px rgba(0,0,0,0.5)
+        }
+        .list-group-item {
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+            margin-left:0px;
+            margin-bottom: -1px;
+            background-color: #fff;
+            border:0px solid #fff;
+            border-top: 1px solid #333;
+            border-radius:0px !important;
+            
+        }
+        .table{
+            margin-bottom:0px;
+                
+        }
+        .tm1-ui-export{
+            color:#fff;
+        }
+        .tm1-ui-element-consol{
+             background-color: rgba(0,0,0,0.04) ;
+        }
+        .tm1-ui-export  a,.tm1-ui-export a:hover{
+                        
+                        
+                        color:#333;
+                            padding: 8px;
+                            
+                            vertical-align: middle;
+                        }
+                        .tm1-ui-export  a:before{
+                        margin-right:5px;
+                        margin-left:0px;
+                        content: "\f265" !important;
+                        font-family: FontAwesome !important;
+        
+                    
+                        }
+                        .tm1-ui-export  a:last-child{
+                            
+                            display:none;
+                            
+                        }
+                        .progress{
+                height:10px;
+                margin-bottom:0px;
+            }
+            .table > tbody > tr > td, .table > tfoot > tr > td {
+        padding: 0px;
+        line-height: 1.42857143;
+        vertical-align: middle;
+        border-top: 0px solid #ddd;
+    }
+    
+    input.break {
+        word-wrap: break-word;
+        word-break: break-word;
+        height: 44px;
+        width:100%;
+    }
+      
+        </style>
+     
+     <div ng-if="!sliderMode && !filterMode && dataset && !justifyList  && !columnList "  id="table{{chartTargetId}}" class="{{className}}" style="padding:0px;   " >
+     <div class="col-md-12 col-xs-12" style="z-index:98; left:0px;   padding:0px; position:absolute; margin:0px;"> 
+        <span ng-show="false" class="badge"  ng-click="flipCard();" ><i class="fa fa-info"></i>
+        </span>  
+                    
+        <div class="dropdown-panel" style="z-index:1; margin-top:40px; "
+        ng-style="{'top': getComponentHeight('compHeader'+chartTargetId)+'px'}"
+        ng-show="optionsOpen[chartTargetId]">
+                <ul class="list-group no-padding " style="margin:0px; ">
+                    <!--  -->
+                     
+                     <li class="list-group-item" ng-show="!hideChart" ng-click="toogleChart = !toogleChart; toogleChart ? reorderBy(toogleChart):'' ">
+                        <i class="fa " ng-class="{'fa-toggle-on':toogleChart, 'fa-toggle-off':!toogleChart}"></i> Show Chart
+                    </li>
+                    <li class="list-group-item" ng-show="hideChart || !toogleChart"   ng-click="showColor = !showColor; ">
+                        <i class="fa "  ng-class="{'fa-toggle-on':showColor, 'fa-toggle-off':!showColor}"></i> Show Row Color
+                    </li>
+                    <li class="list-group-item" ng-show="hideChart || !toogleChart" ng-click="showTotalColumn = !showTotalColumn;  ">
+                            <i class="fa " ng-class="{'fa-toggle-on':showTotalColumn, 'fa-toggle-off':!showTotalColumn}"></i> Show Row Total
+                        </li>
+                    <li class="list-group-item">  
+                            <tm1-ui-export tm1-target-id="tableExport{{chartTargetId}}" 
+                            tm1-output-name="Export-{{$root.default.week}}-{{(heading).split(' ').join('-')}}"
+                                >
+                                </tm1-ui-export> 
+                    </li>
+                    
+                    
+                </ul>
+        </div>
+     
+       
+     </div>
+     
+     <div 
+     ng-style="{'height': componentHeight === 'auto' ? 'auto':(((componentHeight | number:0)+50) | number:0)+'px'}"  
+     style="overflow:auto; border-radius: 10px; border-bottom-right-radius:0px; border-bottom-left-radius:0px;  padding:0px;">
+        <div id="compHeader{{chartTargetId}}" class="col-xs-12 col-md-12" ng-style="{'border':$root.applicationComponentBorder, 'border-bottom':'1px solid #333' }"
+            style=" background-color:#fff; border-radius: 10px; border-bottom-right-radius:0px; border-bottom-left-radius:0px; border-bottom:1px solid #333; overflow:visible;  ">
+                                    
+            <span class="pull-left" style="padding-top:10px; text-align:left; height:40px;" > 
+                <i class="fa fa-info-circle"  
+                uib-popover-html="seeParam(mdxParam)"
+                    popover-trigger="'mouseenter'" popover-placement="right-top" ></i>  
+                <span style=" font-size:1.5hmax; font-weight:400; "> {{heading}}   </span>
+            </span>
+            <div class="pull-right" ng-show=" drillEnabled === 'true'" ng-click="showDrillDropDown = !showDrillDropDown" 
+            style=" padding:8px; right:90px; top:2px; cursor:pointer; padding-left: 0px;padding-right: 0px;font-size: 1.0em;border-radius: 0px 0px 0px 0px; position:absolute;" >
+              <i uib-popover="Drill Dimension:{{drillDimension}} "
+                    popover-trigger="'mouseenter'" popover-placement="left-top" 
+                style=" transition: all 0.5s;"  class="fa fa-fast-forward" ng-style="{'transform': !showDrillDropDown ? 'rotate(90deg)':'rotate(-90deg)'}" area-hidden="true"></i>
+            </div>
+            <div class="pull-right" ng-show=" drillEnabled === 'true'" ng-click="showDrillSubsetDropDown = !showDrillSubsetDropDown" 
+            style=" padding:8px; right:50px; top:2px; cursor:pointer; padding-left: 0px;padding-right: 0px;font-size: 1.0em;border-radius: 0px 0px 0px 0px; position:absolute;" >
+              <i uib-popover="Drill Dimension Subset:{{drillDimensionSubset}} "
+                    popover-trigger="'mouseenter'" popover-placement="left-top" 
+                style=" transition: all 0.5s;"  class="fa fa-bars"  area-hidden="true"></i>
+            </div>
+            <div class="pull-right"  
+            ng-click="optionsOpen[chartTargetId] = !optionsOpen[chartTargetId]"  class="text-right " ng-style="{'background-color': optionsOpen[chartTargetId] ? 'lightgrey':'transparent'}"
+            style="cursor: pointer;  right: 0px;margin: 0px;top: 0px;color: rgb(51, 51, 51); padding:8px;  padding-left: 20px;padding-right: 20px;font-size: 1.3em;border-radius: 0px 0px 0px 0px; position:absolute;">
+            
+            
+                
+                        <i uib-popover="Component Settings "
+                        popover-trigger="'mouseenter'" popover-placement="left-top" class="fa fa-ellipsis-v"></i>
+        
+                
+                
+            </div>  
+             
+        </div>       
+     
+        <div ng-show="showDrillDropDown" style="position:absolute; z-index:99; background-color:#fff; width:200px; right:5px; top:43px;">
+            
+            <div class="col-xs-12 col-md-12 text-right" style="cursor:pointer;overflow:hidden; padding-top:5px; padding-bottom:5px;"  
+            ng-style="{'background-color': filtereedDimensionListArray[$index] === drillDimension ? $root.applicationActivePageColor:'#fff', 'color': filtereedDimensionListArray[$index] === drillDimension ? $root.applicationActiveTextColor:'#333'}"
+            ng-click="  setDrillDimension(filtereedDimensionListArray[$index]); " 
+             ng-repeat="row in filtereedDimensionListArray track by $index">
+                <span class="text-right"  > 
+                            {{filtereedDimensionListArray[$index]}}
+                </span>
+            </div>
+                 
+        </div>
+    
+        <div ng-show="showDrillSubsetDropDown" 
+        style="position:absolute; z-index:99; background-color:#fff;   font-size:0.9em;width:200px;  max-width:200px;  right:5px; top:43px;">
+         
+                    <div class="col-xs-12 col-md-12 text-right" 
+                    ng-click="setDrillDimensionSubset(row.Name);   " 
+                    style="cursor:pointer;overflow:hidden; padding-top:5px; padding-bottom:5px;" 
+                    ng-repeat="row in filtereedDimensionSubsetListArray track by $index"  
+                    ng-style="{'background-color': row.Name === drillDimensionSubset ? $root.applicationActivePageColor:'#fff', 'color': row.Name === drillDimensionSubset ? $root.applicationActiveTextColor:'#333'}">
+                        <span class="text-right"  
+                        > 
+                            {{row.Name}}
+                        </span>
+                    </div>
+                 
+        </div>
+    
+    
+        <div  ng-if="chartPosition === 'outside' && (showChart === 'true' || toogleChart)"  
+        style="overflow:auto;   background-color:#fff; border-radius: 10px; border-top-right-radius:0px; border-top-left-radius:0px; width:100%;  height:300px; margin-bottom:0px">       
+                <button class="  pull-right" ng-show="!$root.isPrinting && toogleChart" 
+                style="padding:8px;border:none ;  position:absolute; background-color:#fff; border-radius:20px; right:20px; margin-top:5px ; z-index:9;" 
+                ng-click="openChartType = !openChartType">
+                    <i class="fa fa-cog  " ></i>
+                </button>
+                <div class="container"   style="padding:0px;height:auto; width:100%; padding-right:0px; ">
+                        <div class="dropdown-panel" style="position:absolute; right:25px; z-index:9; top :88px;  width: 130px; "
+                        
+                        ng-show="openChartType === true">
+                        <ul class="list-group no-padding " style="margin:0px;  font-size:1.3em; cursor:pointer">
+                                <!--  -->
+                            <li  class="list-group-item"  >
+                                    <span class=" pull-right" >
+                                         <div ng-click="setLedgends()  " > Show Legend<i class="fa " ng-class="{'fa-toggle-on': chartLedgendsShow, 'fa-toggle-off':!chartLedgendsShow }"></i></div>
+                                        </span>
+                            </li>
+                            <li ng-if="toogleChart" class="list-group-item" ng-click="groupSelected();" style="display:flow-root">
+                                    <span class=" pull-right" > <i class="fa fa-th-list"></i> Group Tooltip <i class="fa " ng-class="{'fa-toggle-on': groupSelect, 'fa-toggle-off':!groupSelect }"></i>
+                                    </span>
+     
+                            </li>
+                            <!-- <li class="list-group-item"  >
+                                    Current Chart Type: <span class="pull-right">{{chartType}}</span>
+                                 </li> -->
+                            <li class="list-group-item" style="display:flow-root"  ng-repeat="type in typeOptions track by $index">
+                               <span class="col-md-12 pull-right" ng-click="  setChartType(type);  " >{{type}}</span>
+                            </li>
+                           
+                               
+                                
+                            </ul>
+                        </div>         
+                    <div  ng-if="chartType != 'waterfall'" id="c3chart{{chartTargetId}}"></div>
+                    <div ng-if="chartType === 'waterfall'" id="c3_waterfall_chart{{chartTargetId}}"></div>
+                     
+            </div>
+        </div>                                       
+            
+     <div id="tableScroll{{chartTargetId}}" 
+            style="overflow:auto;  background-color:#fff; border-radius: 10px; border-top-right-radius:0px; border-top-left-radius:0px; width:100%;   margin-bottom:0px" 
+            ng-style="{'height': componentHeight === 'auto' ? 'auto':( ((componentHeight  | number:0)) | number:0 ) +'px', 'border':$root.applicationComponentBorder}">
+             
+        
+        <div ng-if="!$root.isPrinting"
+            style="position:absolute; padding-top:0px; padding:0px;  height:auto; min-height:35px; background-color:#fff; overflow:hidden;"  
+            ng-style="{'width':    ((getDivByIdWidth('tableScroll'+chartTargetId))- ($root.innerWidth < 614 ? 5:( (getDivByIdHeight('body'+chartTargetId) + (getDivByIdHeight('mainHeader'+chartTargetId)) ) > getDivByIdHeight('tableScroll'+chartTargetId) ? ($root.scrollBarWidth) : (5)  )) ) + 'px', 'height':   getDivByIdHeight('mainHeader'+chartTargetId) + 'px'}" 
+            ng-show="  !toogleChart">
+            <div id="fixedHeader{{chartTargetId}}" style="position:absolute; left:0px; top:0px; height:auto;  overflow:visible; box-shadow: inset 10px -10px 20px rgba(0,0,0,0.1);" 
+                ng-style="{'width':    'auto',  'height':   getDivByIdHeight('mainHeader'+chartTargetId) + 'px'}"> 
+                <table class="table table-hover" style="margin:0px; padding:0px;"    >
+                    <thead > 
+                        <tr ng-repeat="row in dataset.headers">
+                            <th ng-style=" {'width':dimensionColumnWidth + 'px','min-width':dimensionColumnWidth + 'px','max-width':dimensionColumnWidth + 'px' } " 
+                                ng-show="!toogleChart  " 
+                                ng-repeat="col in row.rows" ng-if="col.visible" colspan="{{col.colspan}}" rowspan="{{col.rowspan}}" class="text-center" >
+                                {{col.dimension}}
+                            </th> 
+                           
+                            <th ng-show="!toogleChart  " 
+                                ng-repeat="col in row.columns" ng-if="col.visible" 
+                                style="border-left:1px solid #bebebe; "
+                                ng-style="{'min-width': getDivByIdWidth('tableColumnWidth'+chartTargetId+'_'+$index) + 'px','width': getDivByIdWidth('tableColumnWidth'+chartTargetId+'_'+$index) + 'px','background-color': chartColumnDriverDimensionName === $root.timeDriver &&  $root.defaults[chartColumnDriverDimensionName] === col.element.attributes[$root.dimensionAlias['alias'][col.dimension]] || $root.defaults[chartColumnDriverDimensionName] === col.name ? $root.applicationActivePageColor:'transparent', 'color': chartColumnDriverDimensionName === $root.timeDriver && $root.defaults[chartColumnDriverDimensionName] === col.element.attributes[$root.dimensionAlias['alias'][col.dimension]] || $root.defaults[chartColumnDriverDimensionName] === col.name ? $root.applicationActiveTextColor:'#333'}"
+                                colspan="{{col.colspan}}" rowspan="{{col.rowspan}}" class="text-center" >
+                                    <span style="cursor:pointer; "   ng-click="  setColumnElement(col.key)"> 
+                                    {{col.element.attributes[$root.dimensionAlias['alias'][col.dimension]] || col.name || col.key}}  
+                                </span>
+                                <span class="pull-right" ng-if=" $root.defaults[chartColumnDriverDimensionName] === col.element.attributes[$root.dimensionAlias['alias'][col.dimension]] || $root.defaults[chartColumnDriverDimensionName] === col.name  " 
+                                    style="cursor:pointer; "  ng-click="sortBy(col.key)"> 
+                                    <i class="fa "   ng-class="{'fa-sort-amount-desc':!sortBol, 'fa-sort-amount-asc':sortBol}"  aria-hidden="true"></i> 
+                                </span>
+                            </th>
+                             <th class="text-right" 
+                             ng-style="{'background-color': 'transparent', 'color':  '#333'}"
+                             style="font-weight:bold; font-size:1.0em; border-left:1px solid #ccc; width:150px !important; min-width:150px !important; max-width:150px !important;" 
+                             ng-if=" showTotalColumn && !toogleChart" >
+                                   Total
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div  style="position:absolute; padding-top:0px; padding:0px;    background-color:transparent; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); z-index:9;"
+         ng-show="!$root.isPrinting && !toogleChart || (toogleChart && chartLedgendsShow === true) || chartPosition === 'outside'"
+         ng-style="{ 'overflow': !toogleChart || chartPosition === 'outside' ? 'hidden':'auto','width': !toogleChart || chartPosition === 'outside' ?((dataset.headers[0].rows.length) * dimensionColumnWidth)+'px' : ((dataset.headers[0].rows.length) * dimensionColumnWidth)+(15)+'px', 'height': componentHeight === 'auto' ?  'auto':$root.innerWidth < 614 ? ((((componentHeight | number:0)) | number:0)-getDivByIdHeight('mainHeader'+chartTargetId))+'px':((((componentHeight | number:0)) | number:0)-getDivByIdHeight('mainHeader'+chartTargetId)-$root.scrollBarHeight)+'px', 'margin-top':getDivByIdHeight('mainHeader'+chartTargetId) + 'px'}">
+            <div id="sidePanel{{chartTargetId}}" style="width:100%; height:auto; padding-top:0px;margin:0px; "  >
+                <table class="table table-hover"     > 
+                    <tbody >
+                        <tr   
+                    ng-repeat="row in tableOrdered track by $index"  	
+                   >
+                           
+                       <td 
+                       
+                       ng-repeat="el in row.elements track by $index" 
+                           style="    visibility: hidden; padding:0px; border: 0px solid #fff !important;"
+                           ng-if="el.visible || $parent.$index == 0" 
+                           colspan="{{el.colspan}}" 
+                           rowspan="{{el.rowspan}}" 
+                           ng-show="chartLedgendsShow || !toogleChart || chartPosition === 'outside'" 
+                           ng-class="{'tm1-ui-element-consol': el.element.type == 'C' || el.element.type == 'R'}"  
+                       >
+                    
+                   </td>
+                        </tr>
+                        <tr   class="sideRow{{chartTargetId}}" 
+                                ng-show="(!searchField[chartTargetId] || searchField[chartTargetId] === '') || (searchField[chartTargetId] != '' && searchField[chartTargetId] &&  ((row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]]).toLowerCase()).indexOf((searchField[chartTargetId]).toLowerCase()) > -1  || ((row.elements[0].name).toLowerCase()).indexOf((searchField[chartTargetId]).toLowerCase()) > -1) "
+                                ng-repeat-start="row in tableOrdered track by $index"   >
+                                        
+                            <td ng-repeat="el in row.elements track by $index" 
+                                ng-if="el.visible || $parent.$index == 0" 
+                                colspan="{{el.colspan}}" 
+                                rowspan="{{el.rowspan}}"  
+                                ng-show="chartLedgendsShow || !toogleChart || chartPosition === 'outside'"
+                                ng-mouseover="mouseOverRowElement(row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]]+'^' +  row.elements[row.elements.length-1].element.attributes['Description'])"
+                                ng-mouseout="mouseOutRowElement(row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]]+'^' +  row.elements[row.elements.length-1].element.attributes['Description'])"
+                                ng-click=" mouseClickRowElement( row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]] +'^' +  row.elements[row.elements.length-1].element.attributes['Description'])"
+                                
+                                ng-class="{'tm1-ui-element-consol': el.element.type == 'C' || el.element.type == 'R' ||  row.elements[0].element.type == 'C'  || row.elements[row.elements.length-1].element.type == 'C' }"  
+                                ng-style="{'background-color':  el.element.type == 'C' && (!chartLedgendsShow)  ? 'rgba(221,221,221,1)': 'rgba(255,255,255,1)', 'width':dimensionColumnWidth + 'px','min-width':dimensionColumnWidth + 'px','min-height': getDivByIdHeight('tableRowHeight'+chartTargetId+'_'+row.index+'_'+$index) + 'px', 'height':getDivByIdHeight('tableRowHeight'+chartTargetId+'_'+row.index+'_'+$index) + 'px',
+                                'border-bottom': toogleChart  || showColor ? '2px solid '+ hashCode((row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]] || row.elements[0].name).split(' ').join('')) :'#333', 'color':  toogleChart  || showColor ? '#333' :'#333',  'text-decoration':row.elements[0]['element']['level'] != 0 ? 'underline':'' , 'cursor':row.elements[0]['element']['level'] != 0 ? 'pointer':'default' }">
+                                
+                                <!-- <span ng-if="$index === 0 &&  $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] ===  el.name" ng-init="mouseDblClickRowElement($index,row, row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]])"></span> -->
+                                 
+                                        
+                                    <span ng-show="  $index === 0 &&  row.elements[0]['element']['level'] != 0 && el.element.type == 'C'   &&  (el.name != $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] || el.key != $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] ) " 
+                                        class="pull-left" style="margin-right:10px;" ng-click="mouseDblClickRowElement($index,row, row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]])" >
+                                        <i class="fa fa-plus-square"></i>
+                                    </span> 
+                                    {{el.element.attributes['Description'] || el.name}}  
+                                    <span ng-show="  $index === 0 && row.elements[0]['element']['level'] != 0  &&  (el.name === $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] || el.key === $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] ) " 
+                                    ng-click=" getParentFromUniqueName(row, el.element.attributes['Description'], el.name, el.uniqueName)" class="pull-left" style="margin-right:5px;" >
+                                        <i class="fa fa-close"></i>
+                                    </span>
+     
+                                    <div ng-click="setDrill(row.index, el.name ,drillDimension, drillDimensionSubset)" 
+                                    ng-show=" $index === 0  && drillEnabled === 'true' " 
+                                    style="cursor:pointer; padding-left:5px; padding-right:5px; z-index:2;" class="pull-right">
+                                    <i  
+                                    style=" transition: all 0.5s;" ng-style="{'transform': drillElement[row.index] === true ? 'rotate(-90deg)':'rotate(90deg)'}"  class="fa fa-fast-forward"></i>
+                                </div>
+                                 
+                            </td>
+                        </tr>
+                        <tr ng-show="drillElement[row.index] === true" ng-repeat-end ="" 
+                            ng-repeat="drilledrow in drillTable[row.index].data() track by $index" >
+                             <td class="text-right"  colspan="{{ tableOrdered[0].elements.length}}"
+                             ng-mouseover="mouseOverRowElement(row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]] + '^' + el.element.attributes['Description'])"
+                             ng-mouseout="mouseOutRowElement(row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]] + '^' + el.element.attributes['Description'])"
+                             ng-click=" mouseClickRowElement( row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]] + '^' + el.element.attributes['Description'])"
+                             ng-class="{'tm1-ui-element-consol':  el.element.type == 'R' || drilledrow.elements[0].element.type == 'R' || el.element.type == 'C' || drilledrow.elements[0].element.type == 'C'  }"
+                             ng-repeat="el in drilledrow.elements track by $index" 
+                             ng-style="{'background-color':el.element.type == 'R' || drilledrow.elements[0].element.type == 'R' || el.element.type == 'C' || drilledrow.elements[0].element.type == 'C' ? '#fff' :'#fff', 'width':dimensionColumnWidth + 'px','min-width':dimensionColumnWidth + 'px', 'border-bottom':  toogleChart  || showColor ? '2px solid '+ hashCode((drilledrow.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]] || drilledrow.elements[0].name).split(' ').join('')) :'#333', 'color': toogleChart  || showColor ? ''+ hashCode((drilledrow.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]] || drilledrow.elements[0].name).split(' ').join('')) :'#333','text-decoration':drilledrow.elements[0]['element']['level'] != 0 ? 'underline':'' , 'cursor':drilledrow.elements[0]['element']['level'] != 0 ? 'pointer':'default' }"
+                                > 
+                               <!-- <span class="pull-left"> {{row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]] || row.elements[0].name }} </span>  -->
+                               <span class="pull-right">{{el.element.attributes['Description'] || el.name}}   </span>
+                                                
+                              </td>
+                             
+                             
+                           </tr>
+                    </tbody>
+                </table>
+            </div>   
+        </div>
+                    
+        <div  style="position:absolute; padding-top:0px; padding:0px;  overflow:hidden;  background-color: #fff;  " 
+        ng-show="!toogleChart || chartPosition === 'outside'" 
+        ng-style="{'height':getDivByIdHeight('mainHeader'+chartTargetId) + 'px', 'width': !toogleChart || chartPosition === 'outside' ?((dataset.headers[0].rows.length) * dimensionColumnWidth)+'px' : ((dataset.headers[0].rows.length) * dimensionColumnWidth)+(15)+'px'}"   >
+            
+            <div  ng-repeat="col in dataset.headers[0].rows track by $index" style="  display:inline-block; height:auto; padding-top:0px;margin:0px; background: linear-gradient(1800deg, rgba(0,0,0,0.1) 0%, rgba(255,255,255,0) 60%, rgba(255,255,255,0) 100%); "  
+            ng-style="{'width':dimensionColumnWidth + 'px','min-width':dimensionColumnWidth + 'px','height':getDivByIdHeight('mainHeader'+chartTargetId) + 'px'}" >  
+              <span ng-show="$index === 0">
+                    <input 
+                     class="form-control" 
+                      
+                     style="font-family:Arial, FontAwesome;  font-size:0.8em; background-color:transparent; border:none; width:100%;"  
+                     placeholder="&#xF002; Search..."
+                     ng-model="searchField[chartTargetId]"/> 
+                     
+            
+              </span>
+              <span ng-show="$index != 0" style="font-size:0.7em; font-weight:bold; ">
+                {{col.dimension}}  
+              </span>
+                    
+            </div>
+        </div>
+        <button ng-show="!$root.isPrinting && toogleChart" class=" pull-right" 
+        style="padding:8px;   border:none !important; position:absolute; right:20px;  background-color:#fff; border-radius:20px; margin-top:0px; z-index:9;" 
+        ng-click="openChartType = !openChartType">
+            <i class="fa fa-cog " ></i>
+        </button>
+       
+            <table class="table" id="table{{chartTargetId}} " ng-init="setUpScroll()"  >
+            
+            <thead ng-style="{'visibility': !$root.isPrinting ? 'hidden' : 'visible'}"  >
+                     
+                    <tr ng-repeat="row in dataset.headers" >
+                    <th id="mainHeader{{chartTargetId}}" ng-style="{'width':dimensionColumnWidth + 'px','min-width':dimensionColumnWidth + 'px'}" ng-show="!toogleChart || chartPosition === 'outside' " 
+                    ng-repeat="col in row.rows" ng-if="col.visible" colspan="{{col.colspan}}" rowspan="{{col.rowspan}}" class="text-center" >
+                        {{col.dimension}}
+                    </th>   
+                   
+                    <th ng-show="!toogleChart  || chartPosition === 'outside'" 
+                    ng-repeat="col in row.columns" ng-if="col.visible" 
+                    style="border-left:1px solid #bebebe"
+                    ng-style="{'background-color':$root.defaults[chartColumnDriverDimensionName] === col.element.attributes[$root.dimensionAlias['alias'][col.dimension]] || $root.defaults[chartColumnDriverDimensionName] === col.name ? $root.applicationActivePageColor:'transparent', 'color': $root.defaults[chartColumnDriverDimensionName] === col.element.attributes[$root.dimensionAlias['alias'][col.dimension]] || $root.defaults[chartColumnDriverDimensionName] === col.name ?  $root.applicationActiveTextColor:'#333'}"
+                    colspan="{{col.colspan}}" rowspan="{{col.rowspan}}" class="text-center" >
+                    <span style="cursor:pointer;  "   ng-click="setColumnElement(col.key)"> 
+                        {{col.element.attributes[$root.dimensionAlias['alias'][col.dimension]] || col.name}}  </span>
+                    <span class="pull-right" ng-if=" $root.defaults[chartColumnDriverDimensionName] === col.element.attributes[$root.dimensionAlias['alias'][col.dimension]] || $root.defaults[chartColumnDriverDimensionName] === col.name  " 
+                        style="cursor:pointer; "  ng-click="sortBy(col.key)"> 
+                        <i class="fa "
+                        ng-class="{'fa-sort-amount-desc':!sortBol, 'fa-sort-amount-asc':sortBol}"
+                        aria-hidden="true"></i> </span>
+                    </th>
+                 <th class="text-right"  
+                 ng-style="{'background-color': 'transparent', 'color':  '#333'}"
+                 style="width:150px !important; min-width:150px !important; max-width:150px !important;" 
+                 ng-show="showTotalColumn && ( !toogleChart)"  >
+                            Total
+                    </th>
+                    </tr>
+                </thead>
+            <tbody id="body{{chartTargetId}}" ng-click="optionsOpen[chartTargetId] =  false ; openChartType = false "  >
+                <tr   
+                    ng-repeat="row in tableOrdered track by $index"  	
+                   >
+                           
+                       <td 
+                       
+                       ng-repeat="el in row.elements track by $index" 
+                           style="    visibility: hidden; padding:0px; border: 0px solid #fff !important;"
+                           ng-if="el.visible || $parent.$index == 0" 
+                           colspan="{{el.colspan}}" 
+                           rowspan="{{el.rowspan}}" 
+                           ng-show="!toogleChart || chartPosition === 'outside'" 
+                           ng-class="{'tm1-ui-element-consol': el.element.type == 'C' || el.element.type == 'R'}"  
+                       >
+     
+                   </td>
+     
+                   <td 
+                   id="tableColumnWidth{{chartTargetId}}_{{$index}}"
+                   ng-show="(!hideTable) && chartPosition === 'outside' || !toogleChart   " 
+                   style="    visibility: hidden; padding:0px;border: 0px solid #fff !important;"
+                   ng-class="{'tm1-ui-element-consol': el.element.type == 'R' || row.elements[0].element.type == 'R' || el.element.type == 'C' || row.elements[0].element.type == 'C' || cell.dataset.headers[0].columns[$index].element.type == 'C' || cell.dataset.headers[cell.dataset.headers.length-1].columns[$index].element.type == 'C' }"
+                   ng-repeat="cell in row.cells" class="text-right" >
+                   
+                   
+                   </td>
+               
+               
+                   </tr>
+                <tr  
+                 ng-show="(!searchField[chartTargetId] || searchField[chartTargetId] === '') || (searchField[chartTargetId] != '' && searchField[chartTargetId] &&  ((row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]]).toLowerCase()).indexOf((searchField[chartTargetId]).toLowerCase()) > -1 || ((row.elements[0].name).toLowerCase()).indexOf((searchField[chartTargetId]).toLowerCase()) > -1) "
+                     ng-repeat-start="row in tableOrdered track by $index"  	
+                    >
+                            
+                        <td 
+                        id="tableRowHeight{{chartTargetId}}_{{row.index}}_{{$index}}"
+                        ng-repeat="el in row.elements track by $index" 
+                            style="    visibility: hidden;"
+                            ng-if="el.visible || $parent.$index == 0" 
+                            colspan="{{el.colspan}}" 
+                            rowspan="{{el.rowspan}}" 
+                            ng-show="(chartLedgendPosition != 'absolute' && chartLedgendsShow) || !toogleChart || chartPosition === 'outside'"
+                            ng-mouseover="mouseOverRowElement(row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]])"
+                            ng-mouseout="mouseOutRowElement(row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]])"
+                            ng-click=" mouseClickRowElement( row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]])"
+     
+                            ng-class="{'tm1-ui-element-consol': el.element.type == 'C' || el.element.type == 'R'}"  
+                            ng-style="{'width':dimensionColumnWidth + 'px','min-width':dimensionColumnWidth + 'px','border-bottom':  toogleChart  || showColor ? '2px solid '+ hashCode((row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]] || row.elements[0].name).split(' ').join('')) :'#333', 'color': toogleChart  || showColor ? ''+ hashCode((row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]] || row.elements[0].name).split(' ').join('')) :'#333', 'text-decoration':row.elements[0]['element']['level'] != 0 ? 'underline':'' , 'cursor':row.elements[0]['element']['level'] != 0 ? 'pointer':'default' }">
+                            
+                            <div class="rowElement{{chartTargetId}}" ></div>
+                            
+                            
+                            <span ng-show="  $index === 0 &&  row.elements[0]['element']['level'] != 0 && el.element.type == 'C'   &&  (el.name != $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] || el.key != $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] ) " 
+                            class="pull-left" style="margin-right:10px;" ng-click="mouseDblClickRowElement($index,row, row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]])" >
+                            <i class="fa fa-plus-square"></i>
+                        </span> 
+                        {{el.element.attributes['Description'] || el.name}}  
+                        <span ng-show="  $index === 0 && row.elements[0]['element']['level'] != 0  &&  (el.name === $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] || el.key === $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] ) " 
+                        ng-click=" getParentFromUniqueName(row, el.element.attributes['Description'], el.name, el.uniqueName)" class="pull-left" style="margin-right:5px;" >
+                            <i class="fa fa-close"></i>
+                        </span>
+    
+                        <div ng-click="setDrill(row.index, el.name ,drillDimension, drillDimensionSubset)" 
+                        ng-show=" $index === 0  && drillEnabled === 'true' " 
+                        style="cursor:pointer; padding-left:5px; padding-right:5px; z-index:2;" class="pull-right">
+                        <i  
+                        style=" transition: all 0.5s;" ng-style="{'transform': drillElement[row.index] === true ? 'rotate(-90deg)':'rotate(90deg)'}"  class="fa fa-fast-forward"></i>
+                    </div>
+                         
+                    </td>
+                    
+                    <td  ng-init="rightClickedElementRef = cell.reference(); cell.format = findRowFormat(row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]], row.elements[0].element.name, cell.dataset.headers[0].columns[$index].element.attributes['Description'], cell.dataset.headers[0].columns[$index].element.name)"
+                    ng-right-click="$root.clickedCellRef = rightClickedElementRef; $root.openRefModel(cell.reference(), cubeName); "
+                    ng-show="(!hideTable) && chartPosition === 'outside' || !toogleChart   " 
+                    ng-mouseover="mouseOverRowElement(row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]])"
+                    ng-mouseout="mouseOutRowElement(row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]])"
+                    ng-click="mouseClickRowElement(row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]])"
+                    ng-class="{'tm1-ui-element-consol': cell.isReadOnly || el.element.type == 'R' || row.elements[0].element.type == 'R' || el.element.type == 'C' || row.elements[0].element.type == 'C' || cell.dataset.headers[0].columns[$index].element.type == 'C' || cell.dataset.headers[cell.dataset.headers.length-1].columns[$index].element.type == 'C' }"
+                    ng-repeat="cell in row.cells" class="text-right cell" 
+                    ng-style="{'border-bottom': $root.clickedCellRef  === rightClickedElementRef  ? '2px solid steelblue':'1px solid #ccc'}">
+                    
+                    <span ng-if="cell['HasPicklist']">
+                    <tm1-ui-dbr 
+                       tm1-instance="{{$root.defaults.settingsInstance}}"
+                       tm1-cube="{{cubename}}"
+                       tm1-elements='{{(rightClickedElementRef).toString()}}'
+                       
+                       >
+                    </tm1-ui-dbr>
+                 </span>
+    
+                    <input  autocomplete="off"  style="padding:0px; padding-top:4px; padding-bottom:4px; padding-left:4px; padding-right:0px;"
+                        cellref="{{(cell.reference()).toString()}}"
+                        contenteditable='true' 
+                        id="{{'input-'+chartTargetId+'-'+$parent.$parent.$index+'-'+$index}}"
+                        ng-if="   !cell['HasPicklist'] && !cell.isReadOnly && !row.cells[$index].isNumeric"
+                        type="text" 
+                        class="form-control break text-left" 
+                        ng-attr-tabindex="{{row.index}}" 
+                        ng-model="cell.value "
+                        ng-paste="handlePasteText($event)" 
+                        ng-value="cell.value" 
+                        ng-focus="getFocus($event);  cell.value =  ( cell.value === '-' || !cell.value || cell.value === 0  ? '' : cell.value )" 
+                        ng-blur="lostFocus($event);  cell.value =  ( cell.value === '' || !cell.value || cell.value === 0  ? '' : cell.value ); cell.value != cell.lastValue ? saveValue(cell.value, cell.lastValue):'';    " />
+     
+                    <input  autocomplete="off"  style="padding:0px; padding-top:4px; padding-bottom:4px; padding-left:0px; padding-right:4px;"
+                        cellref="{{(cell.reference()).toString()}}"
+                        contenteditable='true' 
+                        id="{{'input-'+chartTargetId+'-'+$parent.$parent.$index+'-'+$index}}"
+                        ng-if="   !cell['HasPicklist'] && !cell.isReadOnly && row.cells[$index].isNumeric"
+                        type="text" 
+                        class="form-control text-right" 
+                        ng-attr-tabindex="{{row.index}}" 
+                        ng-model="cell.value "
+                        ng-paste="handlePasteText($event)" 
+                        ng-value="focusObj === 'input-'+chartTargetId+'-'+$parent.$parent.$index+'-'+$index ? ((cell.value) | formatNumber: ($root.defaults.decimalPlace > 0 ? $root.defaults.decimalPlace : cell.format)) : (cell.value | formatNumber: ($root.defaults.decimalPlace > 0 ? $root.defaults.decimalPlace : cell.format))"
+                        ng-focus="getFocus($event);  cell.value =  ( cell.value === '-' || !cell.value || cell.value === 0  ? '' : cell.value)" 
+                        ng-blur="lostFocus($event);  cell.value =  ( cell.value === '' || !cell.value || cell.value === 0  ? '' : cell.value ); cell.value != cell.lastValue ? saveValue(cell.value, cell.lastValue):'';    " />
+     
+                        <span class="text-left"  style="padding:0px; padding-top:4px; padding-bottom:4px; padding-left:0px; padding-right:4px;"
+                            ng-if="cell.isReadOnly && !row.cells[$index].isNumeric"  >
+                            {{isNaN(cell.value) ? cell.value  : ((cell.format > 0 || $root.defaults.decimalPlace > 0 ? (cell.value * 100) : (cell.value)) | formatNumber: ($root.defaults.decimalPlace > 0 ? $root.defaults.decimalPlace : cell.format))}}
+                         </span>
+                         <span class="text-right" style="padding:0px; padding-top:4px; padding-bottom:4px; padding-left:0px; padding-right:4px;"
+                            ng-if="cell.isReadOnly && row.cells[$index].isNumeric" >
+                            {{isNaN(cell.value) ? cell.value  : ((cell.format > 0  || $root.defaults.decimalPlace > 0 ? (cell.value * 100) : (cell.value)) | formatNumber: ($root.defaults.decimalPlace > 0 ? $root.defaults.decimalPlace : cell.format) ) }}
+                         </span>
+                    
+                    </td>
+                    <td class="tm1-ui-element-consol text-right"  style="width:150px !important; min-width:150px !important; max-width:150px !important;"  
+                    ng-if="showTotalColumn && (hideChart || !toogleChart)" >
+                        {{    ( consolidatedRowValue(row.cells) | formatNumber:$root.defaults.decimalPlace)   }}
+                    </td>
+                    <td style="padding:0px; vertical-align: top;"  
+                     ng-if="chartPosition === 'inside' && toogleChart && toogleChart != '' && $index === 0   " 
+                        rowspan="{{tableOrdered.length}}" colspan="{{dataset.headers[0].columns.length+1}}">
+     
+                       
+                        <div class="dropdown-panel" style="position:absolute; right:25px; z-index:9; top :55px;  padding-top:0px; background:#fff; width: 130px; " 
+                        ng-show="openChartType === true">
+                        <div class="col-md-12" style="padding-right:5px;">
+                            <h4 style="padding-right:0px; margin-right:0px;font-size:1em; font-weight:bold;">Settings <span class="pull-right" style="font-size:1.2em;"> <i class="fa fa-close "></i></span></h4>
+                        </div>
+     
+                                <ul class="list-group no-padding " style="margin:0px; cursor:pointer; font-size:1.3em;">
+                                    <!--  -->
+                                     <li  class="list-group-item"  style="display:flow-root">
+                                            <span class="pull-right" >  <div ng-click="setLedgends()  " > Legend <i class="fa " ng-class="{'fa-toggle-on': chartLedgendsShow, 'fa-toggle-off':!chartLedgendsShow }"></i></div>
+                                            </span>
+                                    </li>
+                                    <li ng-if="toogleChart" class="list-group-item" ng-click="groupSelected();" style="display:flow-root">
+                                            <span class="  pull-right" >
+                                        <i class="fa fa-th-list"></i> Tooltip <i class="fa " ng-class="{'fa-toggle-on': groupSelect, 'fa-toggle-off':!groupSelect }"></i>
+                                        </span>
+                                    </li>
+     
+                                    <!-- <li class="list-group-item"  >
+                                            Current Chart Type: <span class="pull-right">{{chartType}}</span>
+                                         </li> -->
+                                    <li class="list-group-item" ng-style="{'background-color': chartType === type ? $root.applicationActivePageColor:'#fff', 'color': chartType === type ?  $root.applicationActiveTextColor:'#333' }" style="display:flow-root" ng-repeat="type in typeOptions track by $index">
+                                       <span class="pull-right" ng-click="  setChartType(type);  " >{{type}}</span>
+                                    </li>
+                                   
+                                    
+                                </ul>
+                        </div>
+                            <div class="container"  ng-click=" removeLegends()"   style="padding:0px;height:auto; width:100%; padding-right:0px; ">
+                                 
+                                <div ng-if="chartType != 'waterfall'" id="c3chart{{chartTargetId}}"></div>
+                                <div ng-if="chartType === 'waterfall'" id="c3_waterfall_chart{{chartTargetId}}"></div>
+                            </div>
+                    </td>
+                
+                    </tr>
+                    <tr ng-show="drillElement[row.index] === true && !toogleChart " ng-repeat-end ="" ng-repeat="drilledrow in drillTable[row.index].data() track by $index" >
+                          <td class="text-right" style="visibility:hidden"  
+                           ng-repeat="el in drilledrow.elements track by $index" 
+                           
+                           >
+                           
+                                
+     
+                                       {{el.element.attributes['Description'] || el.name}}   
+                                            
+                                      
+                          
+                           </td>
+                           <td ng-repeat="cell in drilledrow.cells track by $index"    
+                           class="text-right cell" 
+                           ng-init="rightClickedElementRef =  cell.reference(); format = findRowFormat(drilledrow.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]],drilledrow.elements[0].element.name, cell.dataset.headers[0].columns[$index].element.attributes['Description'],  cell.dataset.headers[0].columns[$index].element.name)"
+                           ng-class="{'tm1-ui-element-consol': cell.isReadOnly || el.element.type == 'R' || drilledrow.elements[0].element.type == 'R' || el.element.type == 'C' || drilledrow.elements[0].element.type == 'C' || cell.dataset.headers[0].columns[$index].element.type == 'C' || cell.dataset.headers[cell.dataset.headers.length-1].columns[$index].element.type == 'C' }"
+                           ng-right-click="$root.clickedCellRef = rightClickedElementRef; $root.openRefModel(cell.reference(), cubeName); "  
+                           ng-style="{'border-bottom': '1px solid #ccc'}"  >
+                           <span ng-if="cell['HasPicklist']">
+                                <tm1-ui-dbr 
+                                   tm1-instance="{{$root.defaults.settingsInstance}}"
+                                   tm1-cube="{{cubename}}"
+                                   tm1-elements='{{(rightClickedElementRef).toString()}}'
+                                   
+                                   >
+                                </tm1-ui-dbr>
+                             </span>
+                           <input  autocomplete="off"  style="padding:0px; padding-top:0px; padding-bottom:0px; padding-left:5px; padding-right:4px;"
+                           cellref="{{(cell.reference()).toString()}}"
+                           contenteditable='true' 
+                           id="{{'input-'+chartTargetId+'-'+$parent.$parent.$index+'-'+$index}}"
+                           ng-if="   !cell['HasPicklist'] && !cell.isReadOnly && !drilledrow.cells[$index].isNumeric"
+                           type="text" 
+                           class="form-control break text-left" 
+                           ng-attr-tabindex="{{row.index}}" 
+                           ng-model="cell.value "
+                           ng-paste="handlePasteText($event)" 
+                           ng-value="cell.value" 
+                           ng-focus="getFocus($event);  cell.value =  ( cell.value === '-' || !cell.value || cell.value === 0  ? '' : cell.value )" 
+                           ng-blur="lostFocus($event);  cell.value =  ( cell.value === '' || !cell.value || cell.value === 0  ? '' : cell.value ); cell.value != cell.lastValue ? saveValue(cell.value, cell.lastValue):'';    " />
+          
+                           <input autocomplete="off"  style="padding:0px; padding-top:0px; padding-bottom:0px; padding-left:0px; padding-right:4px;"
+                           cellref="{{(cell.reference()).toString()}}"
+                           contenteditable='true' 
+                           id="{{'drillinput-'+chartTargetId+'-'+$parent.$parent.$index+'-'+$index}}"
+                           ng-if="   !cell['HasPicklist'] && !cell.isReadOnly && drilledrow.cells[$index].isNumeric"
+                           type="text" 
+                           class="form-control text-right" 
+                           ng-attr-tabindex="{{drilledrow.index}}" 
+                           ng-model="cell.value "
+                           ng-paste="handlePasteDrillText($event)" 
+                           ng-value="focusObj === 'drillinput-'+chartTargetId+'-'+$parent.$parent.$index+'-'+$index ? ((cell.value) | formatNumber: ($root.defaults.decimalPlace > 0 ? $root.defaults.decimalPlace : cell.format)) : (cell.value | formatNumber: ($root.defaults.decimalPlace > 0 ? $root.defaults.decimalPlace : cell.format))"
+                           ng-focus="getFocus($event);  cell.value =  ( cell.value === '-' || !cell.value || cell.value === 0  ? '' : cell.value)" 
+                           ng-blur="lostFocus($event);  cell.value =  ( cell.value === '' || !cell.value || cell.value === 0  ? '' : cell.value ); cell.value != cell.lastValue ? saveDrillValue(cell.value, cell.lastValue):'';    " />
+        
+                           <span class="text-left"  style="padding:0px; padding-top:0px; padding-bottom:0px; padding-left:0px; padding-right:4px;"
+                           ng-if="cell.isReadOnly && !drilledrow.cells[$index].isNumeric"  >
+                           {{isNaN(cell.value) ? cell.value  : ((cell.format > 0 || $root.defaults.decimalPlace > 0 ? (cell.value * 100) : (cell.value)) | formatNumber: ($root.defaults.decimalPlace > 0 ? $root.defaults.decimalPlace : cell.format)) }}
+                        </span>
+                        <span class="text-right" style="padding:0px; padding-top:0px; padding-bottom:0px; padding-left:0px; padding-right:4px;"
+                           ng-if="cell.isReadOnly && drilledrow.cells[$index].isNumeric" >
+                           {{isNaN(cell.value) ? cell.value  : ((cell.format > 0 || $root.defaults.decimalPlace > 0 ? (cell.value * 100) : (cell.value)) | formatNumber: ($root.defaults.decimalPlace > 0 ? $root.defaults.decimalPlace : cell.format)) }}
+                        </span>
+                         
+                           </td>
+                           <td class="tm1-ui-element-consol text-right"  style="width:150px !important; min-width:150px !important; max-width:150px !important;"  
+                           ng-if="showTotalColumn && (hideChart || !toogleChart)" >
+                            
+                           {{    (consolidatedRowValue(drilledrow.cells)  | formatNumber:$root.defaults.decimalPlace)   }} 
+                           </td>
+                          
+                        </tr>
+                </tbody>
+            </table> 
+            <table class="table" ng-show="false" id="tableExport{{chartTargetId}}" >
+            
+                <thead>
+                
+                    <tr ng-repeat="row in dataset.headers">
+                        <th   ng-repeat="col in row.rows"   class="text-center" >
+                            {{col.dimension}}
+                        </th> 
+                        <th  ng-repeat="col in row.columns"    class="text-center" >
+                            {{col.element.attributes[$root.dimensionAlias['alias'][col.dimension]] || col.name}}
+                        </th>
+                    
+                    </tr>
+                </thead>
+                <tbody   >
+                    <tr ng-repeat-start="row in table.data() track by $index"   >
+                          <td class="text-left"   ng-repeat="el in row.elements track by $index" >
+                             
+                                
+                                
+                                     
+     
+                                            {{el.element.attributes['Description'] || el.name}}   
+                                            
+                                   
+                                     
+                              
+                           </td>
+                           <td   
+                
+                    ng-repeat="cell in row.cells" class="text-right" >
+                        
+                        <span   >{{isNaN(cell.value) ? cell.value  : (cell.value | formatNumber:$root.defaults.decimalPlace) }}</span>
+                    </td>
+                    
+                          
+                        </tr>
+                        <tr ng-if="drillElement[row.index] === true" ng-repeat-end ="" ng-repeat="drilledrow in drillTable[row.index].data() track by $index" >
+                            <td class="text-right"  ng-repeat="el in drilledrow.elements track by $index" >
+                             
+                                  
+       
+                                         {{el.element.attributes['Description'] || el.name}}   
+                                              
+                                        
+                            
+                             </td>
+                             <td ng-repeat="cell in drilledrow.cells"   
+                                >
+                             
+                           
+                             {{isNaN(cell.value) ? cell.value  : (cell.value | formatNumber:$root.defaults.decimalPlace) }}
+                          
+                           
+                             </td>
+                              
+                            
+                          </tr>
+     
+                     
+                    </tr>
+                </tbody>
+            </table>  
+            
+        </div>
+     </div>  
+     
+     
+     
+     </div>
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     <div ng-if="!sliderMode && filterMode && dataset && !justifyList  && !columnList" id="table{{chartTargetId}}" class="{{className}}"  style="padding:0px; background-color:transparent;  width:100%;  " >
+     <div style="width:100%; height:auto " ng-mouseleave="openSubnm = openSubnm ? !openSubnm: false;"   >
+     <div  style="position:relative; padding-top:0px; padding:0px;   overflow:hidden;  background-color: transparent; width:100%;  "   >
+     
+        <div class="col-md-12 col-xs-12" ng-style="{'border-bottom-left-radius': !openSubnm ? '10px':'0px', 'border':$root.applicationComponentBorder}"  
+          style="  display:inline-block; height:auto; padding:0px;margin:0px; background: linear-gradient(1800deg, rgba(0,0,0,0.1) 0%, rgba(255,255,255,0) 60%, rgba(255,255,255,0) 100%); border-radius:10px; overflow:hidden;   border-bottom-right-radius:0px; "  >  
+             
+            <div class="col-md-12 col-xs-12" style="padding:0px; cursor:pointer; background-color:#fff;"    ng-click="openSubnm = !openSubnm"  >
+                <div style="padding:8px;"  > 
+                    <small style="font-size:0.8em;">{{chartRowDriverDimensionName}}: </small>{{rowDimensionElementSelected}}
+                    <tm1-ui-dbra ng-show="false"
+                   tm1-read-only="true"
+                    tm1-instance="{{$root.defaults.settingsInstance}}"
+                      tm1-dimension="{{chartRowDriverDimensionName}}"
+                      tm1-element='{{$root.defaults[chartRowDriver]}}'
+                      tm1-attribute="{{rowDimensionAttribute}}"
+                      ng-model="rowDimensionElementSelected" 
+                      >
+                   </tm1-ui-dbra> 
+     
+                </div>
+                <div  
+                    style="position:absolute; right:0px; top:0px; padding:8px; cursor:pointer; padding-left:10px;   padding-right:10px;  " 
+                    ng-style="{'background-color': $root.applicationActivePageColor, 'color':$root.applicationActiveTextColor}">
+                    <i class="fa fa-caret-down"  ng-class="{'fa-caret-up':openSubnm, 'fa-caret-down':!openSubnm}" area-hidden="true"></i>
+                </div>
+            </div>
+     
+        </div>
+     </div>
+     <div class="col-md-12 col-xs-12" ng-show="openSubnm "  
+     style="padding:0px; position:absolute; top:39px; left:0px; background-color:#fff;    box-shadow: 0px 10px 10px rgba(0,0,0,0.2);" ng-style="{ 'border':$root.applicationComponentBorder}"  >
+        <input  
+                class="form-control"  
+                style="font-family:Arial, FontAwesome;  font-size:0.8em; background-color:transparent; border:none; width:100%;"  
+                placeholder="&#xF002; Search..."
+                
+                ng-model="searchField[chartTargetId]"/> 
+            </div>
+     <div ng-show="openSubnm " id="tableScroll{{chartTargetId}}"    
+     style="position:absolute;  box-shadow: inset -10px -10px 30px rgba(0,0,0,0.2); top:72px; left:0px; background-color:#fff; color:#333; height:auto; max-height:400px; width:100%; overflow:auto;">
+         
+        <table class="table"   ng-init="setUpScroll()"  > 
+            <tbody > 
+                <tr  
+                ng-show="(!searchField[chartTargetId] || searchField[chartTargetId] === '') || (searchField[chartTargetId] != '' && searchField[chartTargetId] &&  ((row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]]).toLowerCase()).indexOf((searchField[chartTargetId]).toLowerCase()) > -1 || ((row.elements[0].name).toLowerCase()).indexOf((searchField[chartTargetId]).toLowerCase()) > -1) "
+                        ng-repeat="row in table.data() track by $index"  	  >
+                            
+                    <td 
+                    
+                        ng-repeat="el in row.elements track by $index" 
+                        ng-if="el.visible || $parent.$index == 0" 
+                        colspan="{{el.colspan}}" 
+                        rowspan="{{el.rowspan}}" 
+                        ng-show="(chartLedgendPosition != 'absolute' && chartLedgendsShow) || !toogleChart || chartPosition === 'outside'"
+                        ng-mouseover="mouseOverRowElement(row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]])"
+                        ng-mouseout="mouseOutRowElement(row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]])"
+                        style="cursor:pointer; min-width:70% !important; width:70% !important; height:auto;"
+     
+                        ng-class="{'tm1-ui-element-consol': el.element.type == 'C' || el.element.type == 'R'}"  
+                        ng-style="{ 'background-color': $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === el.name   ?  $root.applicationActivePageColor :'transparent','color': $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === el.element.attributes['Description'] || $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === el.name ? $root.applicationActiveTextColor :'#333'}">
+                        <div class="rowElement{{chartTargetId}}" ></div>  
+                        <span ng-show="!searchField[chartTargetId] || searchField[chartTargetId] === ''" class="tm1-ui-indent" ng-repeat="item in el.element.indent"></span>
+                        <span   ng-show="!searchField[chartTargetId] || searchField[chartTargetId] === ''" ng-if="el.element.type != 'C'" style="margin-right:20px;"></span>
+                        <i  ng-show="!searchField[chartTargetId] || searchField[chartTargetId] === ''"  ng-if="el.element.type == 'C' && !el.element.collapsed && $index == 0" ng-click="el.element.toggle(); table.refresh();" class="fa fa-caret-down fa-fw" style="margin-right:5px; cursor: pointer;" ></i>
+                        <i  ng-show="!searchField[chartTargetId] || searchField[chartTargetId] === ''"  ng-if="el.element.type == 'C' && el.element.collapsed && $index == 0" ng-click="el.element.toggle(); table.refresh();" class="fa fa-caret-right fa-fw" style="margin-right:5px; cursor: pointer;" ></i>
+                        <i  ng-show="!searchField[chartTargetId] || searchField[chartTargetId] === ''"  
+                        ng-if="el.element.type == 'C' && $index > 0" class="fa fa-angle-down fa-fw" style="margin-right:5px;" ></i>
+                        
+                        
+                            <span  ng-click="$root.defaults[(chartRowDriverDimensionName).split(' ').join('_')]  = el.name">{{el.element.attributes['Description'] || el.name}}   </span>
+                            
+                    </td>  
+                    <td   ng-right-click="$root.openRefModel(row.cells[0].reference(), cubeName); "
+                       ng-style="{ 'background-color': $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === row.elements[0].name   ?  $root.applicationActivePageColor :'transparent','color': $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === el.element.attributes['Description'] || $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === row.elements[0].name  ? $root.applicationActiveTextColor:'#333'}"  
+                    class="text-right" 
+                    ng-show="filterShowCells" 
+                    >
+                        {{consolidatedRowValue(row.cells) | formatNumber:$root.defaults.decimalPlace}}
+                    </td>
+                </tr>
+     
+            </tbody>
+        </table> 
+        </div>
+     </div>
+     
+     
+     </div>
+     
+     <!--- SLIDER DIRECTIVE-->
+     <div ng-if=" sliderMode && dataset " id="table{{chartTargetId}}" class="{{className}}" 
+     ng-init="$root.sliderDataTable = table.data(); setUpScroll()"   
+     style="padding:0px; background-color:transparent;  height:auto; padding-bottom:0px; padding-right:10px;" >
+     
+     <div class="col-md-12 col-xs-12" style="z-index:98; left:0px;   padding:0px; position:absolute; margin:0px;"> 
+        <span ng-show="false" class="badge"  ng-click="flipCard();" ><i class="fa fa-info"></i>
+        </span>  
+                    
+        <div class="dropdown-panel" style="z-index:1; margin-top:40px; "
+        ng-style="{'top': getComponentHeight('compHeader'+chartTargetId)+'px'}"
+        ng-show="optionsOpen[chartTargetId]">
+                <ul class="list-group no-padding " style="margin:0px; ">
+                    <!--  -->
+                     
+                     <li class="list-group-item" ng-show="!hideChart" ng-click="toogleChart = !toogleChart; toogleChart ? reorderBy(toogleChart):'' ">
+                        <i class="fa " ng-class="{'fa-toggle-on':toogleChart, 'fa-toggle-off':!toogleChart}"></i> Show Chart
+                    </li>
+                    <li class="list-group-item" ng-show="hideChart || !toogleChart"  ng-click="showColor = !showColor; ">
+                        <i class="fa " ng-class="{'fa-toggle-on':showColor, 'fa-toggle-off':!showColor}"></i> Show Row Color
+                    </li>
+                    <li class="list-group-item">  
+                            <tm1-ui-export tm1-target-id="tableExport{{chartTargetId}}" 
+                            tm1-output-name="Export-{{$root.default[chartColumnDriverDimensionName]}}-{{$root.default[chartRowDriver]}}-{{(heading).split(' ').join('-')}}"
+                                >
+                                </tm1-ui-export> 
+                    </li>
+                    
+                    
+                </ul>
+        </div>
+     
+       
+     </div>
+     
+        <div  class="col-md-12 col-xs-12"
+       id="compHeader{{chartTargetId}}" ng-style="{'border':$root.applicationComponentBorder, 'border-bottom':'1px solid #333' }"
+        style=" height:auto; background-color:#fff; border-radius: 10px; border-bottom-right-radius:0px; border-bottom-left-radius:0px;   overflow:visible; " > 
+         
+                                
+        <span class="pull-left" style="padding-top:10px; text-align:left; height:40px;" > 
+            <i class="fa fa-info-circle"  
+            uib-popover-html="seeParam(mdxParam)"
+                popover-trigger="'mouseenter'" popover-placement="right-top" ></i>  
+            <span style=" font-size:1.5hmax; font-weight:400; "> {{heading}}   </span>
+        </span>
+        <div class="pull-right" 
+        ng-click="optionsOpen[chartTargetId] = !optionsOpen[chartTargetId]"  class="text-right " ng-style="{'background-color': optionsOpen[chartTargetId] ? 'lightgrey':'transparent'}"
+        style="cursor: pointer;  right: 0px;margin: 0px;top: 0px;color: rgb(51, 51, 51); padding:8px;  padding-left: 20px;padding-right: 20px;font-size: 1.3em;border-radius: 0px 0px 0px 0px; position:absolute;">
+        
+            <span >
+                    <i class="fa fa-ellipsis-v"></i>
+            </span>
+            
+            
+        </div>  
+        </div>
+     
+     
+            
+            <div ng-style="{'border':$root.applicationComponentBorder, 'padding-bottom': $root.defaults[chartColumnDriverDimensionName] === showSliderIfNot && $root.innerWidth < 614 ? '0px':'40px'  }" 
+            style="overflow:auto;   padding-right:0px;  background-color:#fff; border-radius: 10px; border-top-right-radius:0px; border-top-left-radius:0px; width:100%;   margin-bottom:0px">      
+            
+                
+                <div ng-show="showChart && toogleChart"  
+                id="c3chart{{chartTargetId}}">
+                
+                </div>
+            
+                <div ng-show="$root.defaults[chartColumnDriverDimensionName] != showSliderIfNot" 
+                 ng-style="{'padding-left':toogleChart && $root.innerWidth > 614  ? '100px':'0px', 'padding-right':toogleChart  && $root.innerWidth > 614 ? '40px':'0px'}"   
+                 class="col-md-12 col-xs-12" ng-controller="sliderController as vm"   > 
+                    
+                    <rzslider  
+                    rz-slider-model="$root.minValue"   
+                    rz-slider-options="vm.slider_toggle.options" ></rzslider>
+     
+                     
+                </div>
+                <table class="table" ng-show="false"  id="tableExport{{chartTargetId}}" style="color:#333">
+                    
+                    <tbody   >
+                        <tr ng-repeat="row in table.data() track by $index"  	
+                        >  
+                            <td ng-repeat="el in row.elements track by $index"  
+                                style="cursor:pointer; text-decoration:underline;  " 
+                                ng-class="{'tm1-ui-element-consol': el.element.type == 'C'}"  
+                                ng-style="{'background-color': colorArray[$parent.$parent.$index]  }">
+                                  {{el.element.attributes['Description'] || el.name}}
+                        </td>
+     
+                        <td   
+                    
+                        ng-repeat="cell in row.cells" class="text-right" >
+                            
+                            <span   >{{isNaN(cell.value) ? cell.value  : (cell.value | formatNumber:$root.defaults.decimalPlace) }}</span>
+                        </td>
+                        
+                        </tr>
+                    </tbody>
+                </table> 
+                <div ng-if="$root.defaults[chartColumnDriverDimensionName] === showSliderIfNot" ng-init=" $root.minValue = 1;  $root.maxValue =  dataset.headers[0].columns.length;">
+     
+                </div>
+     
+            </div>
+        </div>
+     
+     
+     
+     <!--    INLINE JUSTIFIED BUTTONS-->
+     <div ng-if="!sliderMode && !filterMode && dataset && justifyList === 'true' && !columnList " ng-mouseover="overComponent = true"  ng-mouseleave="overComponent = false" id="table{{chartTargetId}}" class="{{className}}"   style="padding:0px; background-color:transparent;  width:100%; " >
+     
+     
+     <div class="col-md-12 col-xs-12 " style="padding:0px;" ng-init="sortDesc = true;">
+        
+        <div class="panel panel-default " style="margin:0px;  overflow:hidden;  overflow-x:auto; width:100%; height:auto; border-radius:10px; border-bottom-right-radius:0px; " 
+        ng-style="{'border':$root.applicationComponentBorder}">
+           
+              
+                  <!-- ng-repeat="item in $root.lists.products | orderBy:'cellValue':true track by $index" -->
+                <div style="width:auto;  display:block;" ng-style="{'min-width': (tableOrdered.length *150)+'px'}">
+                 <div class="btn-group" ng-style="{'width': $root.innerWidth < 614 ? '150px':(100/tableOrdered.length)+'%'}"   
+                 style=" border-left:1px solid #ccc; margin:0px auto; display:inline-block;  float:left; left:0px;" 
+                 ng-init="row.cellValue = consolidatedRowValue(row.cells) ; "
+                 ng-repeat="row in tableOrdered | orderBy:'cellValue':sortDesc"   > 
+                       
+   
+                    <button type="button"  
+                    ng-click="$root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] = row.elements[0].name   " 
+                    class="btn "   
+                    style="   border:0px solid #fff;  border-bottom: 1px solid #333;    width:100%; border-radius: 0px; min-width:100px !important;"   
+                    ng-style="{ 'background-color': $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === row.elements[0].name     ?  $root.applicationActivePageColor :'transparent','color': $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === row.elements[0].name  ? $root.applicationActiveTextColor :'#333'}"> 
+                        {{row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]] || row.elements[0].name }} <br>
+                        <span   class="text-center" ng-show="filterShowCells" ng-repeat="cell in row.cells track by $index">
+                            {{consolidatedRowValue(row.cells) | formatNumber:$root.defaults.decimalPlace}}
+                        </span>
+                 
+                    </button>
+                     
+                 </div>
+                </div>
+                <div ng-show="overComponent === true" style=" border-radius:0px; border-bottom-right-radius:10px; border-top-left-radius:10px; position:absolute; cursor:pointer; left:0px; top:0px; padding:5px; background-color:#fff; z-index:2;    box-shadow:-5px 6px 10px 0px rgba(0,0,0,0.5)" 
+                ng-click="sortDesc = !sortDesc">
+                      <i class="fa " style="transform: rotate(-90deg)" ng-class="{'fa-sort-amount-desc':sortDesc , 'fa-sort-amount-asc':!sortDesc}"></i>
+                </div>
+              </div>
+             
+           
+        </div> 
+     </div>
+    
+    
+    <!--      LIST BUTTONS-->
+    <div ng-if="!sliderMode && !filterMode && dataset && columnList === 'true' && columnListLeafOnly === 'true'" 
+    ng-mouseover="overComponent = true"  ng-mouseleave="overComponent = false" 
+    id="table{{chartTargetId}}" class="{{className}}"     
+    style="padding:0px; background-color:transparent;  width:100%; " >
+     
+     
+        <div  style="padding:0px; display:block; height:auto; width:100%;" ng-init="sortDesc = true; ">
+           
+           <div class="panel panel-default "  id="tableScroll{{chartTargetId}}"  ng-init="setUpScroll()"  
+           ng-style="{'border':$root.applicationComponentBorder, 'overflow': $root.isPrinting ? 'visible':'auto', 'height': !$root.isPrinting ? componentHeight+'px' : 'auto' }"
+    style="margin:0px; padding:0px;  overflow-x:hidden;  width:100%;  border-radius:10px; border-bottom-right-radius:0px; " 
+           >
+              
+                 
+                     <!-- ng-repeat="item in $root.lists.products | orderBy:'cellValue':true track by $index" -->
+                   
+                 
+                   
+                     <div class="rowElement{{chartTargetId}}"   ng-if="row.index === 1  "  
+                          style="  position: relative; display: inline-block; vertical-align: middle; border-bottom:1px solid #ccc; padding:0px; margin:0px auto; width:100%; display:block; min-height:41px; float:left; left:0px;" 
+                          ng-init="row.cellValue = consolidatedRowValue(row.cells) ; "
+                          ng-repeat="row in tableOrdered | orderBy:'cellValue':sortDesc"   > 
+                                
+                            
+                             <button 
+                             ng-click="$root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] = row.elements[0].name   " 
+                             
+                             style=" width:100%; border:none; border-radius: 0px; min-height:41px; padding:0px; padding-top:5px; padding-bottom:5px; height:auto; "   
+                             ng-style="{ 'background-color': $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === row.elements[0].name     ?  $root.applicationActivePageColor :'transparent','color': $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === row.elements[0].name  ? $root.applicationActiveTextColor :'#333'}"> 
+                            
+                             <span class="pull-left" style="padding-left:10px; padding-top:0.5em; text-align: left; margin-left:0px;display:bock; position:absolute;  height:41px;top:0px; left:0px;">
+                                  
+                                {{row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]] || row.elements[0].name }} 
+                             </span>
+                                 <span style="padding-right:10px; padding-top:0.5em; text-align: left; margin-left:0px;display:bock; position:absolute;  height:41px;top:0px; right:0px;"  class="pull-right" ng-show="filterShowCells" 
+                                   ng-repeat="cell in row.cells track by $index">
+                                     {{consolidatedRowValue(row.cells) | formatNumber:$root.defaults.decimalPlace}}
+                                 </span>
+                                 
+                             </button>
+                              
+                          </div>
+                     <div class="rowElement{{chartTargetId}}"   
+                     ng-if="(columnListLeafOnly && row.elements[0].element.type == 'N' && row.index != 1) || (!columnListLeafOnly && row.index != 1 && row.elements[0].element.type == 'C') "  
+                    style="  position: relative; display: inline-block; vertical-align: middle;   padding:0px; margin:0px auto; width:100%; display:block; min-height:41px; float:left; left:0px;" 
+                    ng-init="row.cellValue = consolidatedRowValue(row.cells) ; "
+                    ng-style="{'border-bottom': '2px solid '+ hashCode( (row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]]).split(' ').join('') )  }"
+                    ng-repeat="row in tableOrdered | orderBy:'cellValue':sortDesc"   > 
+                          
+                      
+                       <button 
+                       ng-click="$root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] = row.elements[0].name   " 
+                       
+                       style=" width:100%; border:none; border-radius: 0px; min-height:41px; padding:0px; padding-top:5px; padding-bottom:5px; height:auto; "   
+                       ng-style="{ 'background-color': $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === row.elements[0].name     ?  $root.applicationActivePageColor :'transparent','color': $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === row.elements[0].name  ? $root.applicationActiveTextColor :'#333'}"> 
+                       <span ng-if="columnListShowProgressBar && $index === 0" 
+                          ng-init="progressTotalBarVal= consolidatedRowValue(row.cells)">
+                       </span>
+                       <span ng-if="columnListShowProgressBar && $index > 0 && row.elements[0].element.type == 'N' " 
+                          ng-init="progressBarVal= consolidatedRowValue(row.cells)">
+                         
+                            <div class="progress"  ng-style="{'float':consolidatedRowValue(row.cells) < 0 ? 'right':'left'}" 
+                            style=" padding:0px; height:0px; margin-bottom:5px; margin-top:5px;" >
+                               <div class="progress-bar" 
+                               style="position:absolute; bottom:0px; height:10px; " 
+                               role="progressbar" 
+                               aria-valuenow="{{consolidatedRowValue(row.cells)}}" 
+                               aria-valuemin="0" 
+                               aria-valuemax="100" 
+                               ng-style="{'background-color':$root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === row.elements[0].name  ? $root.applicationActiveTextColor  :    hashCode((row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]]).split(' ').join('') )   ,'width': (( (((consolidatedRowValue(row.cells))) /  ((consolidatedRowValue(tableOrdered[0].cells)) ))*100 )  +'%').split('-').join(''), 'margin-left': consolidatedRowValue(row.cells) < 0 ? ('-'+  ( (((consolidatedRowValue(row.cells)) ) /  ((consolidatedRowValue(tableOrdered[0].cells)) ))*100 )  +'%'):'0px' }">
+                               <span class="sr-only">{{ ( (consolidatedRowValue(row.cells)) / (consolidatedRowValue(tableOrdered[0].cells))*100 ) }}% Complete</span>
+                            </div>
+                             </div>
+                      </span>     
+                       <span class="pull-left" style="padding-left:10px; padding-top:0.5em; text-align: left; margin-left:0px;display:bock; position:absolute;  height:41px;top:0px; left:0px;">
+                            
+                          {{row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]] || row.elements[0].name }} 
+                       </span>
+                           <span style="padding-right:10px; padding-top:0.5em; text-align: left; margin-left:0px;display:bock; position:absolute;  height:41px;top:0px; right:0px;"  class="pull-right" ng-show="filterShowCells" 
+                             ng-repeat="cell in row.cells track by $index">
+                               {{consolidatedRowValue(row.cells) | formatNumber:$root.defaults.decimalPlace}}
+                           </span>
+                           
+                       </button>
+                        
+                    </div>
+                
+                   <div ng-show="overComponent === true && columnListLeafOnly " style=" border-radius:0px; border-bottom-right-radius:10px; border-top-left-radius:10px; position:absolute; cursor:pointer; left:0px; top:0px; padding:5px; background-color:#fff; z-index:2;  box-shadow:-5px 6px 10px 0px rgba(0,0,0,0.5)" 
+                   ng-click="sortDesc = !sortDesc; lookForRowElements()">
+                         <i class="fa " style="transform: rotate(0deg)" ng-class="{'fa-sort-amount-desc':sortDesc , 'fa-sort-amount-asc':!sortDesc}"></i>
+                   </div>
+                 </div>
+                
+              
+           </div> 
+        </div>
+  
+  
+  
+  
+        <div ng-if="!sliderMode && !filterMode && dataset && columnList === 'true' && !columnListLeafOnly" 
+    ng-mouseover="overComponent = true"  ng-mouseleave="overComponent = false" 
+    id="table{{chartTargetId}}" class="{{className}}"     
+    style="padding:0px; background-color:transparent;  width:100%; " >
+     
+     
+        <div  style="padding:0px; display:block; height:auto; width:100%;" ng-init="sortDesc = true; ">
+           
+           <div class="panel panel-default "  id="tableScroll{{chartTargetId}}"  ng-init="setUpScroll()"  
+           ng-style="{'border':$root.applicationComponentBorder, 'overflow': $root.isPrinting ? 'visible':'auto', 'height': !$root.isPrinting ? componentHeight+'px' : 'auto' }"
+    style="margin:0px; padding:0px;  overflow-x:hidden;  width:100%;  border-radius:10px; border-bottom-right-radius:0px; " 
+           >
+              
+           <table class="table"   ng-init="setUpScroll()"  > 
+                 <tbody > 
+                     <tr  
+                     ng-show="(!searchField[chartTargetId] || searchField[chartTargetId] === '') || (searchField[chartTargetId] != '' && searchField[chartTargetId] &&  ((row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]]).toLowerCase()).indexOf((searchField[chartTargetId]).toLowerCase()) > -1 || ((row.elements[0].name).toLowerCase()).indexOf((searchField[chartTargetId]).toLowerCase()) > -1) "
+                             ng-repeat="row in table.data() track by $index"  	  >
+                                 
+                         <td 
+                         
+                             ng-repeat="el in row.elements track by $index" 
+                             ng-if="el.visible || $parent.$index == 0" 
+                             colspan="{{el.colspan}}" 
+                             rowspan="{{el.rowspan}}" 
+                             ng-show="(chartLedgendPosition != 'absolute' && chartLedgendsShow) || !toogleChart || chartPosition === 'outside'"
+                             ng-mouseover="mouseOverRowElement(row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]])"
+                             ng-mouseout="mouseOutRowElement(row.elements[0].element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]])"
+                             style="cursor:pointer; min-width:70% !important; width:70% !important; height:auto;"
+          
+                             ng-class="{'tm1-ui-element-consol': el.element.type == 'C' || el.element.type == 'R'}"  
+                             ng-style="{ 'background-color': $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === el.name   ?  $root.applicationActivePageColor :'transparent','color': $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === el.element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]] || $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === el.name ? $root.applicationActiveTextColor :'#333'}">
+                             <div class="rowElement{{chartTargetId}}" ></div>  
+                             <span ng-show="!searchField[chartTargetId] || searchField[chartTargetId] === ''" class="tm1-ui-indent" ng-repeat="item in el.element.indent"></span>
+                             <span   ng-show="!searchField[chartTargetId] || searchField[chartTargetId] === ''" ng-if="el.element.type != 'C'" style="margin-right:20px;"></span>
+                             <i  ng-show="!searchField[chartTargetId] || searchField[chartTargetId] === ''"  ng-if="el.element.type == 'C' && !el.element.collapsed && $index == 0" ng-click="el.element.toggle(); table.refresh();" class="fa fa-caret-down fa-fw" style="margin-right:5px; cursor: pointer;" ></i>
+                             <i  ng-show="!searchField[chartTargetId] || searchField[chartTargetId] === ''"  ng-if="el.element.type == 'C' && el.element.collapsed && $index == 0" ng-click="el.element.toggle(); table.refresh();" class="fa fa-caret-right fa-fw" style="margin-right:5px; cursor: pointer;" ></i>
+                             <i  ng-show="!searchField[chartTargetId] || searchField[chartTargetId] === ''"  
+                             ng-if="el.element.type == 'C' && $index > 0" class="fa fa-angle-down fa-fw" style="margin-right:5px;" ></i>
+                             
+                             
+                                 <span  ng-click="$root.defaults[(chartRowDriverDimensionName).split(' ').join('_')]  = el.name">{{el.element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]] || el.name}}   </span>
+                                 
+                         </td>  
+                         <td   ng-right-click="$root.openRefModel(row.cells[0].reference(), cubeName); "
+                            ng-style="{ 'background-color': $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === row.elements[0].name   ?  $root.applicationActivePageColor :'transparent','color': $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === el.element.attributes[$root.dimensionAlias['alias'][row.elements[0].dimension]] || $root.defaults[(chartRowDriverDimensionName).split(' ').join('_')] === row.elements[0].name  ? $root.applicationActiveTextColor:'#333'}"  
+                         class="text-right" 
+                         ng-show="filterShowCells" 
+                         >
+                             {{consolidatedRowValue(row.cells) | formatNumber:$root.defaults.decimalPlace}}
+                         </td>
+                     </tr>
+          
+                 </tbody>
+             </table> 
+                     
+                    
+                
+                  
+                 </div>
+                
+              
+           </div> 
+        </div>
+    
+    
+     </div>

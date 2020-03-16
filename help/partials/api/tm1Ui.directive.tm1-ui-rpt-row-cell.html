@@ -1,0 +1,27 @@
+<h1><code ng:non-bindable="">tm1-ui-rpt-row-cell</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-rpt-row-cell-page"><p>Use this to retrieve the cell object that was retrieved, for performance consideration. This directive is used in the tbody section of your table element with the active form. Use as part of <a href="api/tm1Ui.directive:tm1-ui-rpt-view">tm1-ui-rpt-view</a>.</p>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-rpt-row-cell
+       tm1-row-data="{object}"
+       tm1-column-no="{string}"
+       tm1-column-elements="{string}"
+       [tm1-picklist-disable-search="{boolean}"]
+       [tm1-ui-class="{string}"]&gt;
+&lt;/tm1-ui-rpt-row-cell&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-row-data</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-rpt-row-cell-page"><p>The row property of the object defined on the parent <a href="api/tm1Ui.directive:tm1-ui-rpt-view">tm1-ui-rpt-view</a>. <span class="alert alert-danger" role="alert">REQUIRED</span></p>
+</div></td></tr><tr><td>tm1-column-no</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-rpt-row-cell-page"><p>A reference to the column number defining the cell on the current row, as per result of the active form query. <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-column-elements</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-rpt-row-cell-page"><p>A reference to the elements in the column defining the cell on the current row, as per result of the active form query. <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-picklist-disable-search <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-rpt-row-cell-page"><p>For enabling/disabling the search text functionality on Cells with Picklist.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-ui-class <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-rpt-row-cell-page"><p>Add other custom classes into this directive.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "tm1-ui-rpt-row-cell")</em></p></td></tr></tbody></table></div>
+</div>

@@ -1,0 +1,83 @@
+<h1><code ng:non-bindable="">tm1-ui-cube-viewer</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>This directive helps you to slice and dice a cube, and also work with views and subsets.</p>
+
+<p><p class="lead">Dimension Configuration object properties (for use with tm1-options.rows|columns|titles)</p></p>
+<ul>
+    <li><strong>dimension</strong> - Dimension name</li>
+    <li><strong>hierarchy</strong> - Dimension hierarchy</li>
+    <li><strong>mdx</strong> - MDX statement that will be used if the Subset does not exist. This will be used to create the Subset.</li>
+    <li><strong>subset</strong> - Dimension subset to be used for the view. Preference will be given to this over the MDX. If not existing, this will be created, using the MDX on this configuration.</li>
+    <li><strong>alias</strong> - Dimension alias to be used for the dimension elements of this view. This will override the default defined on the subset for display only (will not override TM1).</li>
+    <li><strong>elements</strong> - A comma-separated list of element(s) or aliases to be used on the dimension of this view. This will override Subset and/or MDX if set. (will not override TM1).</li>
+    <li><strong>elementSelected</strong> - Dimension element to used for specifying an element to be selected on a dimension. Applicable for hierarchies in the TITLE axis only.</li>
+</ul>
+
+<p><p class="lead">Directive Level APIs</p></p>
+<dl>
+    <dt>refreshData()</dt>
+    <dd>For refreshing the list of data on this directive</dd>
+</dl>
+
+<dl>
+    <dt>getTableData()</dt>
+    <dd>For retrieving the data object of this directive which functions that allow you to control the pagination for example.</dd>
+</dl>
+
+<dl>
+    <dt>isBuiltinPaginationVisible()</dt>
+    <dd>To get the status of whether the pagination controls is visible or not.</dd>
+</dl>
+
+<dl>
+    <dt>toggleBuiltinPagination()</dt>
+    <dd>For toggling the visibility of the pagination controls.</dd>
+</dl>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-cube-viewer
+       tm1-instance="{string}"
+       tm1-cube="{string}"
+       [tm1-view="{string}"]
+       [tm1-options="{object}"]
+       [tm1-ui-class="{string}"]
+       [tm1-api="{object}"]&gt;
+&lt;/tm1-ui-cube-viewer&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Instance name for this directive to connect to. <span class="alert alert-danger" role="alert">REQUIRED</span></p>
+</div></td></tr><tr><td>tm1-cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>TM1 Cube name where this will connect to. <span class="alert alert-danger" role="alert">REQUIRED</span></p>
+</div></td></tr><tr><td>tm1-view <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>TM1 Cube View name of the default view on this directive. <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-options <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Options to further affect this directive. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>autoRecalculate <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Flag to indicate whether to automatically recalculate the Cube data on every action (i.e. $expand=Cells($select=Value)  ) <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>allowViewSave <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Flag to indicate whether to allow users to save a view. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "true")</em></p></td></tr><tr><td>allowSandboxOperation <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Flag to indicate whether to allow users to work with sandboxes. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "true")</em></p></td></tr><tr><td>allowSandboxPublishChanges <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Flag to indicate whether to allow users to publish changes made from their sandboxes. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "true")</em></p></td></tr><tr><td>allowSandboxCreateDelete <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Flag to indicate whether to allow users to create/delete sandboxes. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "true")</em></p></td></tr><tr><td>forceSandboxName <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>When set, user can only work on this sandbox. This will be created if it is not yet existing. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div></td></tr><tr><td>tableMode <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Mode to indicate the cube view&#39;s state for the table. Available values are &#39;1&#39; and &#39;2&#39;. &#39;1&#39; is Read-Only mode, and &#39;2&#39; is Editable mode. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div></td></tr><tr><td>hideHierarchies <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Flag to indicate whether to hide all the hierarchies so that the user will not be able to shift hierarchies. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>hideToolbar <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Flag to indicate whether to hide this directive&#39;s toobar. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>hideTitle <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Flag to indicate whether to hide this directive&#39;s title. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "true")</em></p></td></tr><tr><td>hideMdx <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Flag to indicate whether to hide this directive&#39;s MDX button which will allow the user to see the MDX representation of the view. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>expandHierarchyList <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Flag to indicate whether to expand the hierarchies under dimension on the hierarchy panel on load. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "true")</em></p></td></tr><tr><td>viewTypePriority <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-canvas">canvas</a><a href="" class="label type-hint type-hint-native">native</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>By default, when there is two views with the same name, this will determine the type that it will load first. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "canvas")</em></p></td></tr><tr><td>pageSize <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Total number of rows to show. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: 0)</em></p></td></tr><tr><td>pageSet <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Set the initial page of rows to show (when pageSize &gt; 0). <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: 1)</em></p></td></tr><tr><td>tableClass <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>The CSS class to apply into the table element. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: 'table')</em></p></td></tr><tr><td>tableId <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>The ID property to apply into the table element. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div></td></tr><tr><td>disableTableAnimation <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Flag to indicate whether to disable animation of table when hiding/showing. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tableAnimationText <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>The text to display when table is being processed. <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div> <p><em>(default: 'Please Wait...')</em></p></td></tr><tr><td>columns <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>An array of Dimension configurations defining the name, hierarchy, subset and the MDX of the elements on this axis. The definition of the object to pass is above under <u>Dimension Configuration</u> section.</p>
+</div></td></tr><tr><td>rows <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>An array of Dimension configurations defining the name, hierarchy, subset and the MDX of the elements on this axis. The definition of the object to pass is above under <u>Dimension Configuration</u> section.</p>
+</div></td></tr><tr><td>titles <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>An array of Dimension configurations defining the name, hierarchy, subset and the MDX of the elements on this axis. The definition of the object to pass is above under <u>Dimension Configuration</u> section.</p>
+</div></td></tr></tbody></table></td></tr><tr><td>tm1-ui-class <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Add other custom classes into this directive.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "tm1-ui-cube-viewer")</em></p></td></tr><tr><td>tm1-api <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-cube-viewer-page"><p>Object where directive level APIs are attached to and be called from (see description for further details on the APIs).</p>
+</div></td></tr></tbody></table></div>
+</div>

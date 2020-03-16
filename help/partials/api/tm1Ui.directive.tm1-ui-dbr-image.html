@@ -1,0 +1,35 @@
+<h1><code ng:non-bindable="">tm1-ui-dbr-image</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-image-page"><p>A DBR-like implementation for retrieving cube data containing paths to images uploaded via <a href="api/tm1Ui.directive:tm1-ui-upload">tm1-ui-upload</a> from TM1</p>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-dbr-image
+       tm1-instance="{string}"
+       tm1-cube="{string}"
+       tm1-elements="{string}"
+       [tm1-refresh-group="{string}"]
+       [tm1-sandbox="{string}"]
+       [tm1-sandbox-class="{string}"]
+       [tm1-ui-class="{string}"]
+       [tm1-alt="{string}"]
+       [ng-model="{object}"]&gt;
+&lt;/tm1-ui-dbr-image&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-image-page"><p>Instance name for this directive to connect to. <span class="alert alert-danger" role="alert">REQUIRED</span></p>
+</div></td></tr><tr><td>tm1-cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-image-page"><p>TM1 Cube name where this will connect to. <span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-elements</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-image-page"><p>comma separated element names that identifies the cube&#39;s data point to get. Element names can be an ALIAS. <span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-refresh-group <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-image-page"><p>An ID that will allow DBRs belonging to the same group to be refreshed only. Editing a DBR on this group refreshes only those having the same group as this.</p>
+</div></td></tr><tr><td>tm1-sandbox <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-image-page"><p>Name of the sandbox that this DBR will be associated with.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-sandbox-class <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-image-page"><p>CSS class used when value on the sandbox differs from the base.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-ui-class <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-image-page"><p>Add other custom classes into this directive.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "tm1-ui-dbr-image")</em></p></td></tr><tr><td>tm1-alt <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-image-page"><p>The alternative text displayed when image is not found.</p>
+</div> <p><em>(default: "Image Not Found")</em></p></td></tr><tr><td>ng-model <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-image-page"><p>Angular JSON object where the actual values are stored, for usage in other parts of the page.</p>
+</div></td></tr></tbody></table></div>
+</div>

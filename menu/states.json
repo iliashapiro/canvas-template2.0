@@ -1,0 +1,18 @@
+{
+  "c3directive/c3charts": {
+    "url": "/c3directive/c3charts",
+    "templateUrl": "html/C3Charts.html"
+  },
+  "c3directive": {
+    "url": "/c3directive",
+    "templateUrl": "html/C3Directive.html"
+  },
+  "c3directive/c3waterfall": {
+    "url": "/c3directive/c3waterfall",
+    "templateUrl": "html/C3Waterfall.html"
+  },
+  "multi-select": {
+    "url": "/multi-select",
+    "templateUrl": "html/Multi Select.html"
+  }
+}

@@ -1,0 +1,177 @@
+ <div class="row" ng-controller="LoginCtrl"  >
+   <style>
+   
+      .tm1-ui-login {
+            zoom:100%;
+         margin-top: 35%;
+         z-index: 99999;
+         border-radius: 10px;
+         border-bottom-right-radius: 0px;
+         overflow: hidden;
+         background-color: transparent;
+
+      }
+
+      .panel-default > .panel-heading {
+            color: #333;
+            background-color: transparent;
+            border-color: #ddd;
+        }
+      .tm1-ui-login>.panel-default {
+         background-color: transparent;
+        border:none;
+         z-index: 99999;
+         color: #fff;
+
+
+      }
+      .tm1-login-modal .panel-default > .panel-heading {
+            color: rgb(255, 255, 255);
+            padding-top: 80px;
+            padding-bottom: 0px;
+            border:none;
+            background-color:transparent;
+        }
+
+      .panel-title {
+         margin-top: 0;
+         margin-bottom: 0;
+         font-size: 16px;
+         color: #fff;
+      }
+
+      .tm1-ui-login .panel-heading {
+         background-image: url('../images/cloud-white.svg');
+         background-position: center !important;
+         background-repeat: no-repeat;
+      }
+      .tm1-ui-login .panel-heading {
+    background-image: url(../images/logo.png);
+    background-color: #333;
+    background-position: center !important;
+    color: #fff;
+}
+.panel-body {
+    padding: 15px;
+    background: #333;
+}
+   </style>
+    
+   <div class="session-expired text-danger">
+        <h1 style="font-size: 4em;"><i class="fa fa-user-secret"></i></h1>
+        <h1 style="font-size: 3em;"><span translate="SESSIONEXPIRED"></span></h1>
+    </div>
+     
+    <div class="col-md-4 col-md-offset-4"  >
+          
+        <tm1-ui-login></tm1-ui-login>
+          
+    </div>
+    
+   
+</div>
+ 
+
+  <!-- <div 
+   style="position:fixed; background-color:steelblue; width:100%; height:100%; left:0px; top:0px;  background-image: url('images/1.png'); background-repeat: repeat-x; ">
+</div>
+<div class="row" ng-controller="LoginCtrl" style="z-index:99999999"  >
+   <style>
+      .tm1-ui-login {
+            zoom:100%;
+         margin-top: 35%;
+         z-index: 99999;
+         border-radius: 10px;
+         border-bottom-right-radius: 0px;
+         overflow: hidden;
+         background-color: transparent;
+
+      }
+
+      .panel-default > .panel-heading {
+            color: #333;
+            background-color: transparent;
+            border-color: #ddd;
+        }
+      .tm1-ui-login>.panel-default {
+         background-color: transparent;
+        border:none;
+         z-index: 99999;
+         color: #fff;
+
+
+      }
+      .tm1-login-modal .panel-default > .panel-heading {
+            color: rgb(255, 255, 255);
+            padding-top: 80px;
+            padding-bottom: 0px;
+            border:none;
+            background-color:transparent;
+        }
+
+      .panel-title {
+         margin-top: 0;
+         margin-bottom: 0;
+         font-size: 16px;
+         color: #fff;
+      }
+
+      .tm1-ui-login .panel-heading {
+         background-image: url('../images/cloud-white.svg');
+         background-position: center !important;
+         background-repeat: no-repeat;
+      }
+   </style>
+    
+
+   <div class="col-xs-12 col-md-4 col-md-offset-4">
+
+    
+      <div class="tm1-ui-login">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title ng-binding" ng-show="instances.length == 1">Sign In
+            
+            </h3>
+             
+         </div>
+         <div class="">
+            <form class="">
+               <fieldset >
+                   
+                  <div  class="form-group"><input
+                        id="tm1-login-user"
+                        class="form-control  "
+                        placeholder="User Name" type="text" autofocus=""
+                        ng-model="inputUser"  ></div>
+                  <div  class="form-group">
+                     <input
+                        id="tm1-login-pass"
+                        class="form-control  "
+                         placeholder="Password" type="password"
+                        ng-model="inputP"  >
+                
+                  </div>
+                  <span ng-if="errorMessage === 'Success'" id="errorMessageBlock" style="margin:0px; margin-bottom:10px; padding:10px;   border-radius:10px; border-bottom-right-radius:0px; background-color:green; color:#fff; " class="help-block ">
+                     Success</span> 
+                  <span ng-if="errorMessage.length > 0 && $root.tryLogInLimit > 0" id="errorMessageBlock" style="margin:0px; margin-bottom:10px; padding:10px;   border-radius:10px; border-bottom-right-radius:0px; background-color:orange; color:#fff; " class="help-block ">
+                     {{errorMessage}}</span>
+                    <span ng-if="$root.tryLogInLimit === 0" id="errorMessageBlock" style="color:#fff; padding:10px; background-color:red; border-radius:10px; border-bottom-right-radius:0px;  " class="help-block  "> No more login attempts left</span>
+                  <button id="tm1-login-button" ng-click="    logInApp(inputUser,inputP)" 
+                     class="btn btn-l  btn-primary" >LOGIN</button>
+               </fieldset>
+                
+            </form>
+         </div>
+        
+          </div>
+      </div>
+      
+
+      
+
+
+   </div>
+
+
+</div> -->

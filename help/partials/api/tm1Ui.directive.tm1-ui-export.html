@@ -1,0 +1,43 @@
+<h1><code ng:non-bindable="">tm1-ui-export</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-export-page"><p>Export data of properly formatted HTML tables such as:
+<pre class="prettyprint linenums">
+&lt;table&gt;
+ &lt;thead&gt;
+ 	&lt;tr&gt;
+ 		&lt;th&gt;header...&lt;/th&gt;
+ 	&lt;/tr&gt;
+	&lt;/thead&gt;
+ &lt;tbody&gt;
+ 	&lt;tr&gt;
+ 		&lt;td&gt;data...&lt;/td&gt;
+ 	&lt;/tr&gt;
+ &lt;/tbody&gt;
+ &lt;/table&gt;
+</pre>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-export
+       tm1-target-id="{string}"
+       [tm1-output-name="{string}"]
+       [tm1-field-separator="{string}"]
+       [tm1-field-qualifier="{string}"]
+       [tm1-locale="{string}"]
+       [tm1-ui-class="{string}"]&gt;
+&lt;/tm1-ui-export&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-target-id</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-export-page"><p>Table ID to export <span class="alert alert-danger" role="alert">REQUIRED</span></p>
+</div></td></tr><tr><td>tm1-output-name <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-export-page"><p>Output File Name <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "exported")</em></p></td></tr><tr><td>tm1-field-separator <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-export-page"><p>Field Separator (if exporting in CSV) <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: ",")</em></p></td></tr><tr><td>tm1-field-qualifier <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-export-page"><p>Field Qualifier <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: '"')</em></p></td></tr><tr><td>tm1-locale <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-export-page"><p>Locale used in converting the numeric text when exported as a spreadsheet. Check <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Locale.html" target="_blank">this</a> and <a href="https://docs.oracle.com/javase/tutorial/i18n/locale/create.html" target="_blank">this</a> article, for more information on what other locales can be supported. <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "en")</em></p></td></tr><tr><td>tm1-ui-class <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-export-page"><p>Add other custom classes into this directive.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "tm1-ui-export")</em></p></td></tr></tbody></table></div>
+</div>

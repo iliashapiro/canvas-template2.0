@@ -1,0 +1,26 @@
+<h1><code ng:non-bindable="">tm1-ui-login</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-login-page"><p>A component  that displays a login prompt, for connecting into TM1 instances as identified in instances.json file.</p>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-login
+       [tm1-after-login="{function}"]
+       [tm1-default-instance="{string}"]
+       [tm1-ui-class="{string}"]&gt;
+&lt;/tm1-ui-login&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-after-login <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-login-page"><p>A function that will be called after a successful login. The signature of the function
+that you can add should only have &#39;instance&#39; as the parameter.</p>
+<p>For example, if you have a function named checkData, it should be written as &#39;tm1-after-login=&quot;checkData(instance)&quot;&#39;. <mark>Take note too that utilizing
+this attribute means you will need to handle what happens after the user has logged in.</mark></p>
+</div></td></tr><tr><td>tm1-default-instance <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-login-page"><p>The default instance to set when showing the login prompt.</p>
+</div></td></tr><tr><td>tm1-ui-class <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-login-page"><p>Add other custom classes into this directive.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "tm1-ui-login")</em></p></td></tr></tbody></table></div>
+</div>

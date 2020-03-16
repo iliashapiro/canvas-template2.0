@@ -1,0 +1,81 @@
+<div ng-controller="MultiSelectCtrl"ng-if=" $root.defaults.year && $root.defaults.region && $root.defaults.period && $root.defaults.account && $root.defaults.department "
+ng-style="{'margin-top': !$root.isPrinting ? '120px':(0)+'px'}"
+style="   background-color: transparent; padding-top:10px;  -webkit-transition:margin-top 1s; transition-property:margin-top; transition-duration: 1s;" 
+ng-click="$root.topOffSet = $root.defaultOffSet; $root.indexOver = '';" 
+ > 
+  
+<style>
+	 
+	 
+	 .legend span {
+			 width: 33.333333%;
+			 display: inline-block;
+			 text-align: center;
+			 cursor: pointer;
+			 color: white;
+	 }
+	 .modal {
+  overflow: hidden;
+}
+.modal:focus {
+  outline: 0;
+}
+.modal {
+     
+    background-color: transparent !important;
+    background-position: center;
+}
+.modal {
+     pointer-events:none;
+	 background-color: transparent !important;
+	 background-position: center;
+ }
+
+</style>
+ <!-- <div class="row"    >
+ 	<div class="col-md-12">
+		<span class="pull-left" style="font-size:initial; font-weight:400; ">
+		 
+			<strong>{{$root.defaults.year}}  | {{$root.defaults.region}} </strong>
+		</span>
+	</div>
+</div>   -->
+
+<div class="col-md-12 col-xs-12" style="min-height:100px;">
+	 
+		  <namedmdx-component-multi-select
+					chart-target-id = "9"
+					component-height = "150"
+					dimension-column-width="150"
+					mdx-id="MesureByMonth"  
+					heading="{{$root.defaults.year}} Measure by Date "
+					cube-name="General Ledger"  
+					mdx-param='{{mdxParam}}'
+					dimension-alias="{{dimensionAlias}}"
+					class-name="col-md-12" 
+					show-chart="true" 
+					chart-type="bar" 
+					chart-ledgend-position="absolute"
+					chart-driver="period" 
+					chart-dimension-driver= "Period"
+					chart-row-driver="measure"
+					chart-row-driver-dimension-name="General Ledger Measure"
+					chart-row-dimension-driver= "Amount"
+					chart-dimension-colors = "{{dimensionColors}}"
+					chart-position="inside"
+					chart-ledgends-show=""
+					chart-rotate-axis="false"
+					decimal-format-val = "{{$root.defaults.decimalPlace}}"
+					slider-mode = "true" 
+					multi-slider="true"
+					hide-xaxis = "true"
+
+					>
+				</namedmdx-component-multi-select>    
+							
+	 
+</div>
+ 
+    
+
+</div>

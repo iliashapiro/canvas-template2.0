@@ -1,0 +1,29 @@
+<h1><code ng:non-bindable="">tm1-ui-dbr-hidden</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-hidden-page"><p>A DBR-like implementation for retrieving cube data from TM1 that is hidden and to be used with ng-model to retrieve numeric values</p>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-dbr-hidden
+       tm1-instance="{string}"
+       tm1-cube="{string}"
+       tm1-elements="{string}"
+       [tm1-refresh-group="{string}"]
+       [tm1-sandbox="{string}"]
+       [ng-model="{object}"]&gt;
+&lt;/tm1-ui-dbr-hidden&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-hidden-page"><p>Instance name for this directive to connect to. <span class="alert alert-danger" role="alert">REQUIRED</span></p>
+</div></td></tr><tr><td>tm1-cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-hidden-page"><p>TM1 Cube name where this will connect to. <span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-elements</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-hidden-page"><p>comma separated element names that identifies the cube&#39;s data point to get. Element names can be an ALIAS. <span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-refresh-group <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-hidden-page"><p>An ID that will allow DBRs belonging to the same group to be refreshed only. Editing a DBR on this group refreshes only those having the same group as this.</p>
+</div></td></tr><tr><td>tm1-sandbox <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-hidden-page"><p>Name of the sandbox that this DBR will be associated with.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>ng-model <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-hidden-page"><p>Angular JSON object where the actual values are stored, for usage in other parts of the page.</p>
+</div></td></tr></tbody></table></div>
+</div>

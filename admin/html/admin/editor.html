@@ -1,0 +1,50 @@
+<div ng-controller="EditorCtrl">
+  <style>
+    div.row {
+      margin-top: 0px;
+    }
+  </style>
+  
+  <h1><i class="fa fa-code"></i> <span translate="EDITOR"></span></h1>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading"> 
+      <div class="row">
+        <div class="col-md-4">
+          <select class="form-control" ng-model="page.fileName" ng-change="selected()">
+            <option ng-repeat="item in page.files">{{item}}</option>
+          </select>     
+        </div>
+        
+        <div class="col-md-8">
+          <button class="btn btn-primary" style="width: 130px;" ng-click="save();" ng-disabled="!page.file || saving">
+            <i class="fa fa-save"></i>
+            <span class="tm1-ui-indent" translate="SAVE"></span>
+          </button>
+          <a href="#/page-creator" class="btn btn-success" style="width: 130px;">
+            <i class="fa fa-plus-circle"></i>
+            <span class="tm1-ui-indent" translate="NEW"></span>
+          </a>
+          <span class="panel panel-success" ng-if="saved"><span class="panel-heading" translate="SAVED" ></span></span>
+          <span class="panel panel-danger" ng-if="message"><span class="panel-heading" >{{message}}</span></span>
+        </div>
+        
+      </div>
+      
+    </div>
+    <div class="panel-body"> 
+    
+      <div class="row">
+        <div class="col-md-12">
+          <pre ui-ace="{ onLoad : aceLoaded }" style="height: 600px; font-size: 1.1em;" ></pre>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  
+  
+  
+  
+</div>

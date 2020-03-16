@@ -1,0 +1,74 @@
+<div>  
+  <div class="panel panel-default">
+    <div class="panel-heading"><i class="fa fa-paperclip"></i>
+      <span class="tm1-ui-indent">{{'ATTACHMENTS' | translate}}</span>
+      <a ng-click="addAttachment(values.modalObject)" class="pull-right tm1-ui-indent" 
+          uib-tooltip-html="values.messages.TASKEDITORADDNEWATTACHMENT" tooltip-placement="left">
+        <i class="fa fa-plus-circle fa-lg"></i>
+      </a>
+    </div>
+    <div class="panel-body">
+      <div class="row" ng-repeat="attachment in values.modalObject.attachments track by $index">
+        <div class="col-md-12">        
+          <div class="row">            
+            <div class="col-md-3" tm1-admin-validator-empty="{{attachment.name}}">
+              <label for="report-name-{{$index}}">{{'NAME' | translate}}</label>
+              <input id="report-name-{{$index}}" class="form-control" placeholder="{{'NAME' | translate}}" ng-model="attachment.name">
+            </div>
+            <div class="col-md-3" tm1-admin-validator-empty="{{attachment.pageSize}}">
+              <label for="report-page-size-{{$index}}" translate="PAGESIZE"></label>
+              <select id="report-page-size-{{$index}}" class="form-control" ng-model="attachment.pageSize">            
+                <option value="LETTER">{{'LETTER' | translate}}</option>
+                <option value="LEGAL">{{'LEGAL' | translate}}</option>
+                <option value="TABLOID">{{'TABLOID' | translate}}</option>
+                <option value="A3">A3</option>
+                <option value="A4">A4</option>
+                <option value="A5">A5</option>
+              </select>
+            </div>
+            <div class="col-md-3" tm1-admin-validator-empty="{{attachment.orientation}}">
+              <label for="report-page-orientation-{{$index}}" translate="PAGEORIENTATION"></label>
+              <select id="report-page-orientation-{{$index}}" class="form-control" ng-model="attachment.orientation">            
+                <option value="PORTRAIT">{{'PORTRAIT' | translate}}</option>
+                <option value="LANDSCAPE">{{'LANDSCAPE' | translate}}</option>
+              </select>
+            </div>
+            <div class="col-md-2" tm1-admin-validator-empty="{{attachment.outputType}}">
+              <label for="report-page-output-{{$index}}" translate="PAGEOUTPUT"></label>
+              <select id="report-page-output-{{$index}}" class="form-control" ng-model="attachment.outputType">            
+                <option value="pdf">PDF</option>
+                <option value="png">PNG</option>
+                <option value="jpeg">JPEG</option>
+              </select>
+            </div>
+            <div class="col-md-1">
+              <label for="report-action-{{$index}}">&nbsp;</label>
+              <a ng-click="values.modalObject.attachments.splice($index, 1)">
+                <i class="fa fa-trash-o fa-fw fa-2x text-danger"></i>
+              </a>
+            </div>
+          </div>
+        
+          <div class="row">
+            <div class="col-md-3" tm1-admin-validator-empty="{{attachment.instance}}">
+              <label for="report-instance-{{$index}}" translate="INSTANCE"></label>
+              <select id="report-instance" class="form-control" ng-model="attachment.instance">
+                <option ng-repeat="credential in values.taskDetail.credentials" ng-value="credential.instance">{{credential.instance}}</option>
+              </select>
+            </div>
+            <div class="col-md-8">
+              <div class="form-group" tm1-admin-validator-empty="{{attachment.url}}">
+                <label for="report-url-{{$index}}">{{'URL' | translate}}</label>
+                <input id="report-url-{{$index}}" class="form-control" placeholder="{{'URL' | translate}}" ng-model="attachment.url">
+              </div>        
+            </div>     
+            <div class="col-md-1"></div>       
+          </div>
+          
+          <hr ng-if="!$last" />
+          
+        </div><!--/ <div class="col-md-12"> -->
+      </div><!--/ <div class="row"> -->
+    </div><!--/ <div class="panel-body"> -->
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div>
+  <script type="text/ng-template" id="burst-button-group.tpl">
+    <button class="btn btn-link" type="button" role="button" ng-disabled="$first" ng-click="moveElement(values.modalObject.burstTypes, $index, $index - 1)">
+      <i class="fa fa-angle-up fa-lg fa-fw"></i>
+    </button>
+    <button class="btn btn-link" type="button" role="button" ng-disabled="$last" ng-click="moveElement(values.modalObject.burstTypes, $index, $index + 1)">
+      <i class="fa fa-angle-down fa-lg fa-fw"></i>
+    </button>
+    <button class="btn btn-link" type="button" role="button" ng-click="deleteBurstConfig(values.modalObject, $index)">
+      <i class="fa fa-trash-o fa-lg fa-fw text-danger"></i>
+    </button>
+  </script>
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="dropdown pull-right">
+        <a data-toggle="dropdown" aria-expanded="false" uib-tooltip-html="values.messages.TASKEDITORADDNEWBURSTITEM" tooltip-placement="auto left">
+          <i class="fa fa-plus-circle fa-lg"></i> 
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li role="presentation"><a ng-click="addBurstConfig(values.modalObject, 'subset')" data-toggle="collapse">{{'DIMENSION' | translate}} {{'SUBSET' | translate}}</a></li>
+          <li role="presentation"><a ng-click="addBurstConfig(values.modalObject, 'mdx')">{{'DIMENSION' | translate}} {{'MDX' | translate}}</a></li>
+          <li role="presentation"><a ng-click="addBurstConfig(values.modalObject, 'view')">{{'CUBE' | translate}} {{'VIEW' | translate}}</a></li>
+          <li role="presentation"><a ng-click="addBurstConfig(values.modalObject, 'csv')" translate="CSV"></a></li>
+          <li role="presentation"><a ng-click="addBurstConfig(values.modalObject, 'csvRemote')" translate="CSVREMOTE"></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row" ng-repeat="burstType in values.modalObject.burstTypes track by $index">
+    <div class="col-md-12" ng-if="burstType.type == 'subset'">
+      <tm1-admin-task-report-burst-subset></tm1-admin-task-report-burst-subset>
+    </div>    
+    <div class="col-md-12" ng-if="burstType.type == 'mdx'">
+      <tm1-admin-task-report-burst-mdx></tm1-admin-task-report-burst-mdx>
+    </div>
+    <div class="col-md-12" ng-if="burstType.type == 'view'">
+      <tm1-admin-task-report-burst-view></tm1-admin-task-report-burst-view>
+    </div>
+    <div class="col-md-12" ng-if="burstType.type == 'csv'">
+      <tm1-admin-task-report-burst-csv></tm1-admin-task-report-burst-csv>
+    </div>
+    <div class="col-md-12" ng-if="burstType.type == 'csvRemote'">
+      <tm1-admin-task-report-burst-csv-remote></tm1-admin-task-report-burst-csv-remote>
+    </div>
+  </div>
+  
+</div>

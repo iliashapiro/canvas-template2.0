@@ -1,0 +1,465 @@
+[
+	{
+		"id": "P&L",
+		"mdx": [
+      "SELECT  {   {[Period].[Year].children}    } ON COLUMNS,",
+      " { [Account].[{{Account}}],[Account].[{{Account}}].children }  ON ROWS",
+      "FROM [General Ledger]",
+      "WHERE ([Year].[{{Year}}], [Version].[{{Version}}] , [Department].[{{Department}}],   [General Ledger Measure].[{{Measure}}],  [Region].[{{Region}}], [Currency].[Local])" 
+    ],
+		"description":"",
+		"mdxParams": [
+      { "name":"Version", "value":"Actual" },
+			{ "name":"Year", "value":"2012" },
+      { "name":"Region", "value":"3" },
+      { "name":"Period", "value":"Year" },
+      { "name":"Account", "value":"1" },
+      { "name":"Department", "value":"1" },
+      { "name":"Measure", "value":"Amount" }
+		]
+  },
+  {
+		"id": "AccountBullet",
+		"mdx": [
+      "SELECT  {  { [Version].[Version].[1], [Version].[Version].[2],[Version].[Version].[Last Year]  }    } ON COLUMNS,",
+      " { [Account].[{{Account}}],[Account].[{{Account}}].children }  ON ROWS",
+      "FROM [General Ledger]",
+      "WHERE ([Year].[{{Year}}],  [Period].[Period].[{{Period}}], [Department].[{{Department}}],   [General Ledger Measure].[{{Measure}}],  [Region].[{{Region}}], [Currency].[Local])" 
+    ],
+		"description":"",
+		"mdxParams": [
+      { "name":"Version", "value":"Actual" },
+			{ "name":"Year", "value":"2012" },
+      { "name":"Region", "value":"3" },
+      { "name":"Period", "value":"Year" },
+      { "name":"Account", "value":"1" },
+      { "name":"Department", "value":"1" },
+      { "name":"Measure", "value":"Amount" }
+		]
+  },
+  	{
+		"id": "MesureByMonth",
+		"mdx": [
+      "SELECT  {   {[Period].[Period].[Year].children}    } ON COLUMNS,",
+      " {  [General Ledger Measure].[General Ledger Measure].[{{Measure}}] }  ON ROWS",
+      "FROM [General Ledger]",
+      "WHERE ([Year].[Year].[{{Year}}], [Version].[{{Version}}] , [Account].[Account].[{{Account}}], [Department].[Department].[{{Department}}], [Region].[{{Region}}], [Currency].[Currency].[Local])" 
+    ],
+		"description":"",
+		"mdxParams": [
+      { "name":"Version", "value":"Actual" },
+			{ "name":"Year", "value":"2012" },
+      { "name":"Region", "value":"3" },
+      { "name":"Period", "value":"Year" },
+      { "name":"Account", "value":"1" },
+      { "name":"Department", "value":"1" },
+      { "name":"Measure", "value":"Amount" }
+		]
+  },
+  {
+		"id": "P&L SUBNM",
+		"mdx": [
+      "SELECT  {   {[Period].[{{Period}}]}    } ON COLUMNS,",
+      " { TM1SubsetToSet([Account], \"Net Income 1\") }  ON ROWS",
+      "FROM [General Ledger]",
+      "WHERE ([Year].[{{Year}}], [Version].[{{Version}}] , [Department].[{{Department}}],   [General Ledger Measure].[{{Measure}}], [Region].[{{Region}}], [Currency].[Local])" 
+    ],
+		"description":"",
+		"mdxParams": [
+      { "name":"Version", "value":"Actual" },
+			{ "name":"Year", "value":"2012" },
+      { "name":"Region", "value":"3" },
+      { "name":"Period", "value":"Year" },
+      { "name":"Account", "value":"1" },
+      { "name":"Department", "value":"1" },
+      { "name":"Measure", "value":"Amount" }
+		]
+	},{
+		"id": "P&L SUBNM Department",
+		"mdx": [
+      "SELECT  {   {[Period].[{{Period}}]}    } ON COLUMNS,",
+      " { TM1SubsetToSet([Department], \"Default\") }  ON ROWS",
+      "FROM [General Ledger]",
+      "WHERE ([Year].[{{Year}}], [Version].[{{Version}}] , [Account].[Account].[{{Account}}],  [General Ledger Measure].[{{Measure}}], [Region].[{{Region}}], [Currency].[Local])" 
+    ],
+		"description":"",
+		"mdxParams": [
+      { "name":"Version", "value":"Actual" },
+			{ "name":"Year", "value":"2012" },
+      { "name":"Region", "value":"3" },
+      { "name":"Period", "value":"Year" },
+      { "name":"Account", "value":"1" },
+      { "name":"Department", "value":"1" },
+      { "name":"Measure", "value":"Amount" }
+		]
+	},{
+		"id": "P&L SUBNM Region",
+		"mdx": [
+      "SELECT  {   {[Period].[{{Period}}]}    } ON COLUMNS,",
+      "NON EMPTY { TM1SubsetToSet([Region], \"Default\") }  ON ROWS",
+      "FROM [General Ledger]",
+      "WHERE ([Year].[{{Year}}], [Version].[{{Version}}] , [Department].[Department].[{{Department}}],[Account].[Account].[{{Account}}],  [General Ledger Measure].[{{Measure}}], [Region].[{{Region}}], [Currency].[Local])" 
+    ],
+		"description":"",
+		"mdxParams": [
+      { "name":"Version", "value":"Actual" },
+			{ "name":"Year", "value":"2012" },
+      { "name":"Region", "value":"3" },
+      { "name":"Period", "value":"Year" },
+      { "name":"Account", "value":"1" },
+      { "name":"Department", "value":"1" },
+      { "name":"Measure", "value":"Amount" }
+		]
+	},{
+		"id": "P&L 2",
+		"mdx": [
+      "SELECT  {  {[Year].[{{Year}}]} * {[Period].[Year].children}   } ON COLUMNS,",
+      "NON EMPTY {  {   [Region].[{{Region}}], [Region].[{{Region}}].children} * {[Department].[{{Department}}],[Department].[{{Department}}].children} }  ON ROWS",
+      "FROM [General Ledger]",
+      "WHERE ([Year].[{{Year}}],[Version].[{{Version}}] ,[Account].[{{Account}}], [General Ledger Measure].[{{Measure}}],  [Currency].[Local])" 
+    ],
+		"description":"",
+		"mdxParams": [
+      { "name":"Version", "value":"Actual" },
+      { "name":"Year", "value":"2012" },
+      { "name":"Region", "value":"3" },
+      { "name":"Period", "value":"Year" },
+      { "name":"Account", "value":"1" },
+      { "name":"Department", "value":"1" },
+      { "name":"Measure", "value":"Amount" }
+		]
+   }
+   ,{
+		"id": "drillRequest",
+		"mdx": [
+      "SELECT  {  {[Period].[Year].children}  } ON COLUMNS,",
+      " {  {TM1SubsetToSet([{{drillDimension}}], \"Default\")}  }  ON ROWS",
+      "FROM [General Ledger]",
+      "WHERE ( [Year].[{{Year}}], [Version].[{{Version}}], [Region].[{{Region}}],[Department].[{{Department}}], [Account].[Account].[{{SelectedRow}}], [General Ledger Measure].[Amount],   [Currency].[Local]   )" 
+    ],
+		"description":"",
+		"mdxParams": [
+      { "name":"Version", "value":"Actual" },
+         { "name":"Measure", "value":"Amount" },
+         { "name":"Year", "value":"2019" },
+         { "name":"Department", "value":"1" },
+         { "name":"SelectedRow", "value":"1" },
+         { "name":"Account", "value":"1" }, 
+         { "name":"Region", "value":"1" },
+         { "name":"drillDimension", "value":"Region" }
+     
+		]
+	},{
+		"id": "P&L 3",
+		"mdx": [
+      "SELECT  {   {[Period].[Year].children}    } ON COLUMNS,",
+      "NON EMPTY {  TM1DRILLDOWNMEMBER( {[Region].[{{Region}}]}, ALL, RECURSIVE )  }  ON ROWS",
+      "FROM [General Ledger]",
+      "WHERE ([Year].[{{Year}}],[Version].[{{Version}}], [Department].[{{Department}}],  [Account].[{{Account}}], [General Ledger Measure].[{{Measure}}],   [Currency].[Local])" 
+    ],
+		"description":"",
+		"mdxParams": [
+      { "name":"Version", "value":"Actual" },
+			{ "name":"Year", "value":"2012" },
+      { "name":"Region", "value":"3" },
+      { "name":"Period", "value":"Year" },
+      { "name":"Account", "value":"1" },
+      { "name":"Department", "value":"1" },
+      { "name":"Measure", "value":"Amount" }
+		]
+	},
+	{
+    "id": "Data Entry",
+    "mdx": [
+      "SELECT {[Period].[Year], [Period].[Jan], [Period].[Feb], [Period].[Mar], [Period].[Apr], [Period].[May], [Period].[Jun], [Period].[Jul], [Period].[Aug], [Period].[Sep], [Period].[Oct], [Period].[Nov], [Period].[Dec]} ON COLUMNS,",
+      "{   TM1DRILLDOWNMEMBER( {[Account].[Net Income]}, ALL, RECURSIVE ) } ON ROWS",
+      "FROM [General Ledger]",
+      "WHERE ([Year].&[{{Year}}], [Region].&[{{Region}}], [General Ledger Measure].&[Amount], [Currency].&[Local], [Version].&[Budget], [Department].&[{{Department}}])" 
+    ],
+    "description":"",
+    "mdxParams": [
+      { "name":"Year", "value":"2012" },
+      { "name":"Region", "value":"3" },
+      { "name":"Department", "value":"2" }
+    ]
+  }, 
+  {
+    "id": "Region By Departments",
+    "mdx": [
+      "SELECT {[Period].[Year].children } ON COLUMNS,",
+      " { ORDER({TM1DRILLDOWNMEMBER( {[Department].[All Category]}, ALL, RECURSIVE )  }, [Employee Measure].[Full Time Base Salary], BDESC ) } ON ROWS",
+      "FROM [Employee]",
+      "where ( [Version].[Budget], [Year].&[{{Year}}] , [Currency].[Local], [Region].&[{{Region}}], [Employee].[All Employees],[Employee Measure].[Full Time Base Salary] )" 
+    ],
+    "description":"",
+    "mdxParams": [
+      { "name":"Year", "value":"2015" },
+      { "name":"Region", "value":"1" },
+      { "name":"Department", "value":"1" }
+    ]
+  },
+  {
+    "id": "Department By Regions",
+    "mdx": [
+      "SELECT {[Period].[Year].children } ON COLUMNS,",
+      " {   ORDER({ TM1DRILLDOWNMEMBER( {[Region].[Total Europe]}, ALL, RECURSIVE ) }, [Employee Measure].[Full Time Base Salary], BDESC ) } ON ROWS",
+      "FROM [Employee]",
+      "where ( [Version].[Budget], [Year].&[{{Year}}] , [Currency].[Local], [Department].&[{{Department}}],  [Employee Measure].[Full Time Base Salary] )" 
+    ],
+    "description":"",
+    "mdxParams": [
+      { "name":"Year", "value":"2015" },
+      { "name":"Region", "value":"1" },
+      { "name":"Department", "value":"1" }
+    ]
+  },
+  {
+    "id": "Employee Forecast",
+    "mdx": [
+      "SELECT {[Period].[Year], [Period].[Year].children } ON COLUMNS,",
+      " {   TM1DRILLDOWNMEMBER( {[Employee].[All Employees]}, ALL, RECURSIVE ) } ON ROWS",
+      "FROM [Employee]",
+      "where ( [Version].[Budget], [Year].&[{{Year}}] , [Currency].[Local], [Region].&[{{Region}}], [Department].&[{{Department}}], [Employee Measure].[Full Time Base Salary] )" 
+    ],
+    "description":"",
+    "mdxParams": [
+      { "name":"Year", "value":"2015" },
+      { "name":"Region", "value":"1" },
+      { "name":"Department", "value":"1" }
+    ]
+  },
+  {
+    "id": "Calendar",
+    "mdx": [
+      "SELECT {TM1SubsetToSet([Calendar Measure], \"Default\") }ON COLUMNS,",
+      "NON EMPTY {TM1DRILLDOWNMEMBER( {[Period Daily].[{{Period}}].children }, ALL, RECURSIVE )} * {[Item].[All items].children]} ON ROWS",
+      "FROM [Calendar]",
+      "where ( [Version].[Actual],  [}Clients].[{{Client}}] )" 
+    ],
+    "description":"",
+    "mdxParams": [
+      { "name":"Period", "value":"2019" },
+      { "name":"Client", "value":"Admin" }
+      
+    ]
+  },
+  {
+    "id": "Fleet Budget",
+    "mdx": [
+      "SELECT { TM1SubsetToSet([Fixed Asset Forecast Input Measure], \"Default\")  } ON COLUMNS,",
+      " {  TM1SubsetToSet([Line Item], \"Default\") } ON ROWS",
+      "FROM [Fixed Asset Forecast Input]",
+      "where ( [Version].&[{{Version}}], [Year].&[{{Year}}] , [Company].&[{{Company}}],[Department].&[{{Department}}]  )" 
+    ],
+    "description":"",
+    "mdxParams": [
+      { "name":"Year", "value":"2019" },
+      { "name":"Company", "value":"Company01" },
+      { "name":"Department", "value":"Spaceships" },
+      { "name":"Version", "value":"Working Forecast" }
+    ]
+  },
+  {
+    "id": "SystemInfo",
+    "mdx": [
+      "SELECT {  [System Info Measure].[System Info Measure].[String]  } ON COLUMNS,",
+      " {   [System Info Parameter].[System Info Parameter].[Current Day],[System Info Parameter].[System Info Parameter].[Current Date],[System Info Parameter].[System Info Parameter].[Current Period],[System Info Parameter].[System Info Parameter].[Current FY],[System Info Parameter].[System Info Parameter].[Current Week] } ON ROWS",
+      "FROM [System Info]" 
+    ],
+    "description":"",
+    "mdxParams": [
+      
+    ]
+  }
+  ,
+  {
+    "id": "Product Category",
+    "mdx": [
+      "SELECT {  [Sales Reporting Measure].[Sales Reporting Measure].[{{Measure}}]  } ON COLUMNS,",
+      "NON EMPTY {  [Product Category].[{{Product}}],[Product Category].[{{Product}}].Children   } ON ROWS",
+      "FROM [Sales Reporting]" ,
+      "WHERE ([Version].[Version].[{{Version}}], [Time Year].[Time Year].[{{Year}}], [Time Period].[Time Period].[{{Period}}], [Time Week in Year].[Time Week in Year].[All Weeks], [Time Day].[Time Day].[All Time Days],[Legal Entity].[Legal Entity].[{{Legal}}], [Business Unit].[Business Unit].[{{Business}}], [Class Type].[Class Type].[{{Type}}],[Sales Reporting Metric].[Sales Reporting Metric].[{{Metric}}]   )"
+    ],
+    "description":"",
+    "mdxParams": [
+     {  "name":"Version", "value":"Actual"},
+      { "name":"Year", "value":"FY 2020"},
+      { "name":"Period", "value":"All Time Periods"},
+      { "name":"Week", "value":"All Weeks"},
+      { "name":"Day", "value":"All Time Days"},
+      { "name":"Legal", "value":"All Legal Entities"},
+      { "name":"Business", "value":"All Business Units"},
+      { "name":"Product", "value":"All Product Categories"},
+      { "name":"Type", "value":"All Class Types"},
+      { "name":"Metric", "value":"Sales"},
+      { "name":"Measure", "value":"Total Value"}
+    ]
+  }
+  ,
+  {
+    "id": "C3 Chart",
+    "mdx": [
+      "SELECT NON EMPTY{  [Time Week in Year].[Time Week in Year].[All Weeks].children } ON COLUMNS,",
+      "NON EMPTY { ORDER(  {[Product Category].[{{Product}}],[Product Category].[{{Product}}].Children }, [Sales Reporting].([Product Category].CurrentMember, [Time Week in Year].[Time Week in Year].[All Weeks],[Sales Reporting Measure].[Sales Reporting Measure].[{{Measure}}]), BDESC )  } ON ROWS",
+      "FROM [Sales Reporting]" ,
+      "WHERE ([Version].[Version].[{{Version}}], [Time Period].[Time Period].[{{Period}}], [Time Year].[Time Year].[{{Year}}], [Time Day].[Time Day].[All Time Days],[Sales Reporting Measure].[Sales Reporting Measure].[{{Measure}}],   [Legal Entity].[Legal Entity].[{{Legal}}], [Business Unit].[Business Unit].[{{Business}}], [Class Type].[Class Type].[{{Type}}],[Sales Reporting Metric].[Sales Reporting Metric].[{{Metric}}]   )"
+    ],
+    "description":"",
+    "mdxParams": [
+     {  "name":"Version", "value":"Actual"},
+      { "name":"Year", "value":"FY 2020"},
+      { "name":"Period", "value":"All Time Periods"},
+      { "name":"Week", "value":"All Weeks"},
+      { "name":"Day", "value":"All Time Days"},
+      { "name":"Legal", "value":"All Legal Entities"},
+      { "name":"Business", "value":"All Business Units"},
+      { "name":"Product", "value":"All Product Categories"},
+      { "name":"Type", "value":"All Class Types"},
+      { "name":"Metric", "value":"Sales"},
+      { "name":"Measure", "value":"Total Value"}
+    ]
+  }
+  ,
+  {
+    "id": "C3 Chart by Week",
+    "mdx": [
+      "SELECT  { [Time Day].[Time Day].[All Time Days].children } ON COLUMNS,",
+      "NON EMPTY { ORDER(  { [Product Category].[{{Product}}],[Product Category].[{{Product}}].Children }, [Sales Reporting].([Product Category].CurrentMember ,[Sales Reporting Measure].[Sales Reporting Measure].[{{Measure}}]), BDESC )  } ON ROWS",
+      "FROM [Sales Reporting]",
+      "WHERE ([Version].[Version].[{{Version}}], [Time Period].[Time Period].[All Time Periods], [Time Week in Year].[Time Week in Year].[{{Week}}],[Time Year].[Time Year].[{{Year}}], [Time Day].[Time Day].[All Time Days],[Sales Reporting Measure].[Sales Reporting Measure].[{{Measure}}],   [Legal Entity].[Legal Entity].[{{Legal}}], [Business Unit].[Business Unit].[{{Business}}], [Class Type].[Class Type].[{{Type}}],[Sales Reporting Metric].[Sales Reporting Metric].[{{Metric}}]   )"
+    ],
+    "description":"",
+    "mdxParams": [
+     { "name":"Version", "value":"Actual"},
+      { "name":"Year", "value":"FY 2020"},
+      { "name":"Period", "value":"All Time Periods"},
+      { "name":"Week", "value":"All Weeks"},
+      { "name":"Day", "value":"All Time Days"},
+      { "name":"Legal", "value":"All Legal Entities"},
+      { "name":"Business", "value":"All Business Units"},
+      { "name":"Product", "value":"All Product Categories"},
+      { "name":"Type", "value":"All Class Types"},
+      { "name":"Metric", "value":"Sales"},
+      { "name":"Measure", "value":"Total Value"}
+    ]
+  } ,
+  {
+    "id": "C3 Chart by Year",
+    "mdx": [
+      "SELECT NON EMPTY{[Time Year].[Time Year].[All Time Years].children   } ON COLUMNS,",
+      "NON EMPTY { ORDER(  {[Product Category].[{{Product}}], [Product Category].[{{Product}}].Children }, [Sales Reporting].([Product Category].CurrentMember ,[Sales Reporting Measure].[Sales Reporting Measure].[{{Measure}}]), ASC )  } ON ROWS",
+      "FROM [Sales Reporting]" ,
+      "WHERE ([Version].[Version].[{{Version}}], [Time Period].[Time Period].[All Time Periods], [Time Day].[Time Day].[All Time Days],[Time Week in Year].[Time Week in Year].[All Weeks],[Sales Reporting Measure].[Sales Reporting Measure].[{{Measure}}],   [Legal Entity].[Legal Entity].[{{Legal}}], [Business Unit].[Business Unit].[{{Business}}], [Class Type].[Class Type].[{{Type}}],[Sales Reporting Metric].[Sales Reporting Metric].[{{Metric}}]   )"
+    ],
+    "description":"",
+    "mdxParams": [
+     {  "name":"Version", "value":"Actual"},
+      { "name":"Year", "value":"All Time Years"},
+      { "name":"Period", "value":"All Time Periods"},
+      { "name":"Week", "value":"All Weeks"},
+      { "name":"Day", "value":"All Time Days"},
+      { "name":"Legal", "value":"All Legal Entities"},
+      { "name":"Business", "value":"All Business Units"},
+      { "name":"Product", "value":"All Product Categories"},
+      { "name":"Type", "value":"All Class Types"},
+      { "name":"Metric", "value":"Sales"},
+      { "name":"Measure", "value":"Total Value"}
+    ]
+  }
+  ,
+  {
+    "id": "C3 Chart by Day",
+    "mdx": [
+      "SELECT NON EMPTY{   [Time Day].[Time Day].[{{Day}}] } ON COLUMNS,",
+      "NON EMPTY {  ORDER(  {  [Product Category].[{{Product}}],[Product Category].[{{Product}}].Children }, [Sales Reporting].([Product Category].CurrentMember ,[Sales Reporting Measure].[Sales Reporting Measure].[{{Measure}}]), BDESC ) } ON ROWS",
+      "FROM [Sales Reporting]" ,
+      "WHERE ([Version].[Version].[{{Version}}], [Time Year].[Time Year].[{{Year}}],[Time Period].[Time Period].[All Time Periods], [Time Day].[Time Day].[All Time Days],[Time Week in Year].[Time Week in Year].[{{Week}}],[Sales Reporting Measure].[Sales Reporting Measure].[{{Measure}}],   [Legal Entity].[Legal Entity].[{{Legal}}], [Business Unit].[Business Unit].[{{Business}}], [Class Type].[Class Type].[{{Type}}],[Sales Reporting Metric].[Sales Reporting Metric].[{{Metric}}]   )"
+    ],
+    "description":"",
+    "mdxParams": [
+     {  "name":"Version", "value":"Actual"},
+      { "name":"Year", "value":"All Time Years"},
+      { "name":"Period", "value":"All Time Periods"},
+      { "name":"Week", "value":"All Weeks"},
+      { "name":"Day", "value":"All Time Days"},
+      { "name":"Legal", "value":"All Legal Entities"},
+      { "name":"Business", "value":"All Business Units"},
+      { "name":"Product", "value":"All Product Categories"},
+      { "name":"Type", "value":"All Class Types"},
+      { "name":"Metric", "value":"Sales"},
+      { "name":"Measure", "value":"Total Value"}
+    ]
+  }
+  ,
+  {
+    "id": "Product Category Week",
+    "mdx": [
+      "SELECT {  [Sales Reporting Measure].[Sales Reporting Measure].[{{Measure}}]  } ON COLUMNS,",
+      "NON EMPTY {  [Product Category].[{{Product}}],[Product Category].[{{Product}}].Children  } ON ROWS",
+      "FROM [Sales Reporting]" ,
+      "WHERE ([Version].[Version].[{{Version}}], [Time Year].[Time Year].[{{Year}}], [Time Period].[Time Period].[All Time Periods], [Time Week in Year].[Time Week in Year].[{{Week}}], [Time Day].[Time Day].[{{Day}}],[Legal Entity].[Legal Entity].[{{Legal}}], [Business Unit].[Business Unit].[{{Business}}], [Class Type].[Class Type].[{{Type}}],[Sales Reporting Metric].[Sales Reporting Metric].[{{Metric}}]   )"
+    ],
+    "description":"",
+    "mdxParams": [
+     {  "name":"Version", "value":"Actual"},
+      { "name":"Year", "value":"FY 2020"},
+      { "name":"Period", "value":"All Time Periods"},
+      { "name":"Week", "value":"All Weeks"},
+      { "name":"Day", "value":"All Time Days"},
+      { "name":"Legal", "value":"All Legal Entities"},
+      { "name":"Business", "value":"All Business Units"},
+      { "name":"Product", "value":"All Product Categories"},
+      { "name":"Type", "value":"All Class Types"},
+      { "name":"Metric", "value":"Sales"},
+      { "name":"Measure", "value":"Total Value"}
+    ]
+  } ,
+  {
+    "id": "Product Category PeriodLY",
+    "mdx": [
+      "SELECT {  [Sales Reporting Measure].[Sales Reporting Measure].[{{Measure}}]  } ON COLUMNS,",
+      "NON EMPTY {  [Product Category].[{{Product}}],[Product Category].[{{Product}}].Children   } ON ROWS",
+      "FROM [Sales Reporting]" ,
+      "WHERE ([Version].[Version].[{{Version}}], [Time Year].[Time Year].[{{Year}}], [Time Period].[Time Period].[{{Period}} YTD], [Time Week in Year].[Time Week in Year].[All Weeks], [Time Day].[Time Day].[All Time Days],[Legal Entity].[Legal Entity].[{{Legal}}], [Business Unit].[Business Unit].[{{Business}}], [Class Type].[Class Type].[{{Type}}],[Sales Reporting Metric].[Sales Reporting Metric].[{{Metric}}]   )"
+    ],
+    "description":"",
+    "mdxParams": [
+     {  "name":"Version", "value":"Actual"},
+      { "name":"Year", "value":"FY 2020"},
+      { "name":"Period", "value":"All Time Periods"},
+      { "name":"Week", "value":"All Weeks"},
+      { "name":"Day", "value":"All Time Days"},
+      { "name":"Legal", "value":"All Legal Entities"},
+      { "name":"Business", "value":"All Business Units"},
+      { "name":"Product", "value":"All Product Categories"},
+      { "name":"Type", "value":"All Class Types"},
+      { "name":"Metric", "value":"Sales"},
+      { "name":"Measure", "value":"Total Value"}
+    ]
+  },
+  {
+    "id": "Product Category PeriodBud",
+    "mdx": [
+      "SELECT {  [Sales Reporting Measure].[Sales Reporting Measure].[{{Measure}}]  } ON COLUMNS,",
+      "NON EMPTY {  [Product Category].[{{Product}}],[Product Category].[{{Product}}].Children   } ON ROWS",
+      "FROM [Sales Reporting]" ,
+      "WHERE ([Version].[Version].[{{Version}}], [Time Year].[Time Year].[{{Year}}], [Time Period].[Time Period].[{{Period}}], [Time Week in Year].[Time Week in Year].[All Weeks], [Time Day].[Time Day].[All Time Days],[Legal Entity].[Legal Entity].[{{Legal}}], [Business Unit].[Business Unit].[{{Business}}], [Class Type].[Class Type].[{{Type}}],[Sales Reporting Metric].[Sales Reporting Metric].[{{Metric}}]   )"
+    ],
+    "description":"",
+    "mdxParams": [
+     {  "name":"Version", "value":"Actual"},
+      { "name":"Year", "value":"FY 2020"},
+      { "name":"Period", "value":"All Time Periods"},
+      { "name":"Week", "value":"All Weeks"},
+      { "name":"Day", "value":"All Time Days"},
+      { "name":"Legal", "value":"All Legal Entities"},
+      { "name":"Business", "value":"All Business Units"},
+      { "name":"Product", "value":"All Product Categories"},
+      { "name":"Type", "value":"All Class Types"},
+      { "name":"Metric", "value":"Sales"},
+      { "name":"Measure", "value":"Total Value"}
+    ]
+  }
+  
+  
+]

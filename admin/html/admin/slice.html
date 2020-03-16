@@ -1,0 +1,201 @@
+<div ng-controller="AdminSliceCtrl">
+
+  <style>
+  
+    button.dimension {
+      min-width: 150px;
+      margin: 5px;
+      cursor: default;
+    }
+    
+    .viewSection {
+      font-size: 1.5em;
+    }
+    
+    input[type='checkbox'] {
+      margin-left: 5px;
+    }
+    
+    .dimensionName {
+      
+    }
+    
+    .subsetName {
+      color: #FFF3BA;
+    }
+  
+  </style>
+
+  <h1><a ui-sref="admin.page-creator"><i class="fa fa-arrow-left"></i></a> <i class="fa fa-cube"></i> <span translate="SLICETM1VIEW"></span></h1>
+  
+  <section>
+  
+    <div class="row">
+      
+      <div class="col-md-3">
+         <div><label translate="INSTANCE"></label></div>
+         <select class="form-control" ng-model="page.instance" ng-change="updateCubes()" ng-options="item.name as item.name for item in options.instances"></select> 
+      </div>
+      
+      <div class="col-md-3">
+        <div><label translate="CUBE"></label></div>
+         <select class="form-control" ng-model="page.cube" ng-change="updateViews()" ng-options="item.Name as item.Name for item in options.cubes" ng-if="page.instance.length > 0"></select> 
+      </div>
+      
+      <div class="col-md-3">
+        <div><label translate="VIEW"></label></div>
+         <select class="form-control" ng-model="page.view" ng-change="getView()" ng-options="item.Name as item.Name for item in options.views" ng-if="page.cube"></select> 
+         
+      </div>
+      
+      <div class="col-md-3" ng-if="view" >
+        <div><label translate="CLICKTOCREATEPAGE"></label></div>
+        <button class="btn btn-success btn-block" ng-disabled="!page.pageName.length || view.rows.length > 1 || view.columns.length > 1" ng-click="create()">
+          <i ng-if="!isDone" class="fa fa-plus-circle"></i>
+          <span class="tm1-ui-indent" translate="CREATE" ng-if="!isDone"></span>
+          <span class="tm1-ui-indent" translate="PAGECREATED" ng-if="isDone"></span>
+        </button>
+      </div>
+      
+    </div>
+  
+  </section>
+  
+  <section ng-if="view">
+  
+    <div class="row">
+    
+      <div class="col-md-8">
+      
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="row">
+              <div>
+                <div class="col-md-12 viewSection" >
+                  <div class="pull-right">
+                    <a href="" ng-click="getView()"><i class="fa fa-refresh"></i></a>
+                  </div> 
+                  <span translate="TITLES"></span>
+                </div>
+              </div>
+              <div class="col-md-12" >
+                <button class="btn btn-primary dimension" ng-repeat="item in view.titles">
+                  <span class="dimensionName">{{item.dimension}}</span><span class="subsetName" ng-if="item.subset.length">:{{item.subset}}</span>
+                  <span> ({{item.elementCount}})</span>
+                  <span class="itemSelected">: {{item.selected}}</span>
+                </button>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="row">
+      
+          <div class="col-md-4">
+          
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="row">
+                  <div><div class="col-md-12" ><span class="viewSection" translate="ROWS"></span></div></div>
+                  <div class="col-md-12" >
+                    <div ng-repeat="item in view.rows">
+                      <button class="btn btn-primary btn-block dimension" style="text-align: left;" >
+                        <span class="dimensionName">{{item.dimension}}</span><span class="subsetName" ng-if="item.subset.length">:{{item.subset}}</span>
+                        <span> ({{item.elementCount}})</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+          </div>
+          
+          <div class="col-md-8">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="row">
+                  <div><div class="col-md-12" ><span class="viewSection" translate="COLUMNS"></span></div></div>
+                  <div class="col-md-10" >
+                    <button class="btn btn-primary dimension" ng-repeat="item in view.columns"><span class="dimensionName">
+                      <span class="dimensionName">{{item.dimension}}</span><span class="subsetName" ng-if="item.subset.length">:{{item.subset}}</span>
+                      <span> ({{item.elementCount}})</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+        
+      </div>
+      
+      <div class="col-md-4">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <i class="fa fa-wrench"></i>
+            <span class="tm1-ui-indent" translate="PAGEOPTIONS"></span>
+          </div>
+          <div class="panel-body">
+            
+            <div class="form-group">
+              <label for="pageName" translate="PAGENAME"></label>
+              <input id="pageName" type="text" class="form-control" placeholder="{{'PAGENAME' | translate}}" ng-change="updatePageProperty()" ng-model="page.pageName" ></input>
+            </div>
+            
+            <div class="form-group">
+              <label for="menuName" translate="MENUNAME"></label>
+              <input id="menuName" type="text" class="form-control" placeholder="{{'MENUNAME' | translate}}" ng-model="page.menuName" ></input>
+            </div>
+            
+            <div class="form-group">
+              <label for="menuIconClass"><span translate="MENUICONCLASS"></span><span ng-if="page.menuIconClass.length > 0"> - <i class="fa {{page.menuIconClass}}"></i></span></label>
+              <input id="menuIconClass" type="text" class="form-control" placeholder="{{'MENUICONCLASS' | translate}}" ng-model="page.menuIconClass" ></input>
+            </div>
+            
+            <section class="ng-hide">
+              	<div class="form-group">
+	              <label for="menuIconClass" translate="MENUSTATE"></label>
+	              <input id="menuIconClass" type="text" ng-disabled="true" class="form-control" placeholder="{{'MENUSTATE' | translate}}" ng-model="page.menuState" ></input>
+	            </div>
+	            
+	            <div class="form-group">
+	              <label for="menuIconClass" translate="MENUPAGELOCATION"></label>
+	              <input id="menuIconClass" type="text" class="form-control" placeholder="{{'MENUPAGELOCATION' | translate}}" ng-model="page.menuPageLocation" ></input>
+	            </div>
+	            
+              <div class="form-group">
+                <label for="usePaging" translate="USEPAGING"></label>
+                <div>
+                  <input id="usePaging" type="checkbox" ng-model="page.usePaging" ></input>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="rowFilter" translate="ROWFILTER"></label>
+                <div>
+                  <input id="rowFilter" type="checkbox" ng-model="page.rowFilter" ></input>
+                </div>
+              </div>
+            
+            </section>
+            
+          </div>
+        </div>
+      </div>
+      
+      <div class="row" ng-if="view.rows.length > 1 || view.columns.length > 1">
+        <div class="col-md-12">
+          <div class="alert alert-warning" role="alert" translate="PAGESLICEVIEWWARNING"></div>
+        </div>
+      </div>
+      
+    </div>
+  
+  </section>
+
+
+
+</div>

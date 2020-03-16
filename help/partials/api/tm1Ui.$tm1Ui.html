@@ -1,0 +1,679 @@
+<h1><code ng:non-bindable="">$tm1Ui</code>
+<div><span class="hint">service in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-tm1ui-page"><p>This service allows you interact with your Canvas applications through your Controllers. </p>
+<p>In the following example, a function was prepared to be able to call one of the services available under $tm1Ui, retrieving
+information about your Canvas application. This then gets displayed on your browser&#39;s console:</p>
+<pre class="prettyprint linenums">
+
+// this is a sample Angular controller created to support your HTML page
+app.controller('SomeCtrl', ['$scope', '$rootScope', '$tm1Ui', function($scope, $rootScope, $tm1Ui) {
+
+  // let us define here the function which will then utilize a Canvas service
+  $scope.getCanvasInformation = function(){
+	 $tm1Ui.applicationInfo().then(function(data){
+  		console.info('Returned by this function - %o', data);
+	 });
+ };
+
+ // this now calls the function  	
+ $scope.getCanvasInformation();
+
+}]);
+
+</pre>
+<p>All methods which are available with $tm1Ui service are listed below:</p>
+</div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_applicationadminlogin">applicationAdminLogin(username, password)</h3>
+<div class="applicationadminlogin"><div class="tm1ui-tm1ui-applicationadminlogin-page"><p>For logging into Canvas&#39; Admin Console.</p>
+</div><h5 id="methods_applicationadminlogin_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>username</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-applicationadminlogin-page"><p>Canvas Admin console username.</p>
+</div></td></tr><tr><td>password</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-applicationadminlogin-page"><p>Canvas Admin console password.</p>
+</div></td></tr></tbody></table><h5 id="methods_applicationadminlogin_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationadminlogin-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationadminlogout">applicationAdminLogout()</h3>
+<div class="applicationadminlogout"><div class="tm1ui-tm1ui-applicationadminlogout-page"><p>For logging out of Canvas&#39; Admin Console.</p>
+</div><h5 id="methods_applicationadminlogout_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationadminlogout-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationdeletefile">applicationDeleteFile(instance, relativeFilePath)</h3>
+<div class="applicationdeletefile"><div class="tm1ui-tm1ui-applicationdeletefile-page"><p>For deleting files uploaded on this application relative to the instance where it was uploaded.</p>
+<pre class="prettyprint linenums">
+&lt;script&gt;
+$tm1Ui.applicationDeleteFile('dev', 'tm1user1/2010/Jan/XXXXEEEEAAAASS-SSS.jpg').then(function(data){
+  if(data.success){
+  	// file at [canvas dir]/dev/tm1user1/2010/Jan/XXXXEEEEAAAASS-SSS.jpg was deleted
+  }
+  else{
+  	// ERROR - handle here
+  	console.debug('Response %o', data);
+  }
+});
+&lt;/script&gt;
+</pre>
+</div><h5 id="methods_applicationdeletefile_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-applicationdeletefile-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>relativeFilePath</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-applicationdeletefile-page"><p>File path, relative to this application to be deleted.</p>
+</div></td></tr></tbody></table><h5 id="methods_applicationdeletefile_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationdeletefile-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationgettextfile">applicationGetTextFile(instance, relativeFilePath)</h3>
+<div class="applicationgettextfile"><div class="tm1ui-tm1ui-applicationgettextfile-page"><p>For retrieving text files uploaded on this application, relative to its upload file directory.</p>
+<pre class="prettyprint linenums">
+&lt;script&gt;
+$tm1Ui.applicationGetTextFile('dev', 'XXXXEEEEAAAASS.json').then(function(data){
+  console.info(data);
+});
+&lt;/script&gt;
+</pre>
+</div><h5 id="methods_applicationgettextfile_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-applicationgettextfile-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>relativeFilePath</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-applicationgettextfile-page"><p>File path of the text file, relative to this application to be retrieved.</p>
+</div></td></tr></tbody></table><h5 id="methods_applicationgettextfile_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-applicationgettextfile-page"><p>Content of the text file.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationinfo">applicationInfo()</h3>
+<div class="applicationinfo"><div class="tm1ui-tm1ui-applicationinfo-page"><p>For retrieving your Canvas&#39; application information.</p>
+</div><h5 id="methods_applicationinfo_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationinfo-page"><p>Object representation related to your Canvas application.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationinstance">applicationInstance(instance)</h3>
+<div class="applicationinstance"><div class="tm1ui-tm1ui-applicationinstance-page"><p>For retrieving TM1 instance configuration.</p>
+</div><h5 id="methods_applicationinstance_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-applicationinstance-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr></tbody></table><h5 id="methods_applicationinstance_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationinstance-page"><p>TM1 Instance configuration in object representation.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationinstancecapabilities">applicationInstanceCapabilities(instance)</h3>
+<div class="applicationinstancecapabilities"><div class="tm1ui-tm1ui-applicationinstancecapabilities-page"><p>For retrieving TM1 instance capabilities.</p>
+</div><h5 id="methods_applicationinstancecapabilities_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-applicationinstancecapabilities-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr></tbody></table><h5 id="methods_applicationinstancecapabilities_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationinstancecapabilities-page"><p>TM1 Instance capabilities in object representation.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationinstancesettings">applicationInstanceSettings(instance)</h3>
+<div class="applicationinstancesettings"><div class="tm1ui-tm1ui-applicationinstancesettings-page"><p>For retrieving TM1 instance settings.</p>
+</div><h5 id="methods_applicationinstancesettings_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-applicationinstancesettings-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr></tbody></table><h5 id="methods_applicationinstancesettings_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationinstancesettings-page"><p>TM1 Instance settings in object representation.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationinstances">applicationInstances()</h3>
+<div class="applicationinstances"><div class="tm1ui-tm1ui-applicationinstances-page"><p>For retrieving your Canvas&#39; instances information.</p>
+</div><h5 id="methods_applicationinstances_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-applicationinstances-page"><p>Array of instance objects.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationlogin">applicationLogin(instance, username, password, cam)</h3>
+<div class="applicationlogin"><div class="tm1ui-tm1ui-applicationlogin-page"><p>For logging into your Canvas application.</p>
+</div><h5 id="methods_applicationlogin_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-applicationlogin-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>username</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-applicationlogin-page"><p>TM1 Username on the target instance.</p>
+</div></td></tr><tr><td>password</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-applicationlogin-page"><p>TM1 Password on the target instance.</p>
+</div></td></tr><tr><td>cam <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-applicationlogin-page"><p>The TM1 defined CAM instance. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div></td></tr></tbody></table><h5 id="methods_applicationlogin_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationlogin-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationlogout">applicationLogout(instance)</h3>
+<div class="applicationlogout"><div class="tm1ui-tm1ui-applicationlogout-page"><p>For logging out of your Canvas application.</p>
+</div><h5 id="methods_applicationlogout_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-applicationlogout-page"><p>Instance name for this service to disconnect from.</p>
+</div></td></tr></tbody></table><h5 id="methods_applicationlogout_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationlogout-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationmenus">applicationMenus()</h3>
+<div class="applicationmenus"><div class="tm1ui-tm1ui-applicationmenus-page"><p>For retrieving your Canvas&#39; menu information.</p>
+</div><h5 id="methods_applicationmenus_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationmenus-page"><p>Object representation of the menus on your Canvas application.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationname">applicationName()</h3>
+<div class="applicationname"><div class="tm1ui-tm1ui-applicationname-page"><p>For retrieving your Canvas&#39; name.</p>
+</div><h5 id="methods_applicationname_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-applicationname-page"><p>name of this Canvas application</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationsaveusermenus">applicationSaveUserMenus(userMenus)</h3>
+<div class="applicationsaveusermenus"><div class="tm1ui-tm1ui-applicationsaveusermenus-page"><p>For saving your Canvas&#39; user menu information.</p>
+</div><h5 id="methods_applicationsaveusermenus_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>userMenus</td><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-applicationsaveusermenus-page"><p>Array of User menu types of objects</p>
+</div></td></tr></tbody></table><h5 id="methods_applicationsaveusermenus_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationsaveusermenus-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationsaveuserstates">applicationSaveUserStates(userStates)</h3>
+<div class="applicationsaveuserstates"><div class="tm1ui-tm1ui-applicationsaveuserstates-page"><p>For saving your Canvas&#39; user states information.</p>
+</div><h5 id="methods_applicationsaveuserstates_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>userStates</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationsaveuserstates-page"><p>User states object</p>
+</div></td></tr></tbody></table><h5 id="methods_applicationsaveuserstates_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationsaveuserstates-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationsettings">applicationSettings()</h3>
+<div class="applicationsettings"><div class="tm1ui-tm1ui-applicationsettings-page"><p>For retrieving Canvas&#39; settings information.</p>
+</div><h5 id="methods_applicationsettings_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationsettings-page"><p>The contents of your Canvas application settings.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationsettingssave">applicationSettingsSave(settings)</h3>
+<div class="applicationsettingssave"><div class="tm1ui-tm1ui-applicationsettingssave-page"><p>For saving Canvas&#39; settings information.</p>
+</div><h5 id="methods_applicationsettingssave_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>settings</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationsettingssave-page"><p>The Canvas Settings JSON object representation to save.</p>
+</div></td></tr></tbody></table><h5 id="methods_applicationsettingssave_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationsettingssave-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationstates">applicationStates()</h3>
+<div class="applicationstates"><div class="tm1ui-tm1ui-applicationstates-page"><p>For retrieving your Canvas&#39; states information.</p>
+</div><h5 id="methods_applicationstates_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationstates-page"><p>Object representation of the states on your Canvas application.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationuser">applicationUser(instance)</h3>
+<div class="applicationuser"><div class="tm1ui-tm1ui-applicationuser-page"><p>For retrieving information of the user currently logged in on the target instance</p>
+</div><h5 id="methods_applicationuser_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-applicationuser-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr></tbody></table><h5 id="methods_applicationuser_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationuser-page"><p>Current user information.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationusermenus">applicationUserMenus()</h3>
+<div class="applicationusermenus"><div class="tm1ui-tm1ui-applicationusermenus-page"><p>For retrieving your Canvas&#39; user menu information.</p>
+</div><h5 id="methods_applicationusermenus_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationusermenus-page"><p>Object representation of user menus on your Canvas application.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationuserstates">applicationUserStates()</h3>
+<div class="applicationuserstates"><div class="tm1ui-tm1ui-applicationuserstates-page"><p>For retrieving your Canvas&#39; user states information.</p>
+</div><h5 id="methods_applicationuserstates_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationuserstates-page"><p>Object representation of user states on your Canvas application.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_applicationusers">applicationUsers()</h3>
+<div class="applicationusers"><div class="tm1ui-tm1ui-applicationusers-page"><p>For retrieving information of the user currently logged in on each instance.</p>
+</div><h5 id="methods_applicationusers_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-applicationusers-page"><p>Current user information per active instance.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_attributeget">attributeGet(instance, dimension, element, attribute)</h3>
+<div class="attributeget"><div class="tm1ui-tm1ui-attributeget-page"><p>For retrieving attribute data value on the target instance.</p>
+</div><h5 id="methods_attributeget_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-attributeget-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>dimension</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-attributeget-page"><p>TM1 Dimension name where this will connect to.</p>
+</div></td></tr><tr><td>element</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-attributeget-page"><p>Element to retrieve attributes from. Element names can be an ALIAS.</p>
+</div></td></tr><tr><td>attribute</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-attributeget-page"><p>Attribute to retrieve.</p>
+</div></td></tr></tbody></table><h5 id="methods_attributeget_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-attributeget-page"><p>Attribute Data in object representation.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_attributeput">attributePut(value, instance, dimension, element, attribute)</h3>
+<div class="attributeput"><div class="tm1ui-tm1ui-attributeput-page"><p>For saving cube data value on the target instance.</p>
+</div><h5 id="methods_attributeput_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>value</td><td><a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="tm1ui-tm1ui-attributeput-page"><p>Value to save into the dimension.</p>
+</div></td></tr><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-attributeput-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>dimension</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-attributeput-page"><p>Dimension name.</p>
+</div></td></tr><tr><td>element</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-attributeput-page"><p>Element name.</p>
+</div></td></tr><tr><td>attribute</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-attributeput-page"><p>Attribute to update.</p>
+</div></td></tr></tbody></table><h5 id="methods_attributeput_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-attributeput-page"><p>Status of the action as an object <label class="text-muted">{status:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cellannotationget">cellAnnotationGet(instance, cube, cubeElements)</h3>
+<div class="cellannotationget"><div class="tm1ui-tm1ui-cellannotationget-page"><p>For retrieving cell annotations.</p>
+</div><h5 id="methods_cellannotationget_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellannotationget-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellannotationget-page"><p>TM1 Cube name where this will connect to.</p>
+</div></td></tr><tr><td>cubeElements</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-tm1ui-cellannotationget-page"><p>Array of string elements in reference to the cell.</p>
+</div></td></tr></tbody></table><h5 id="methods_cellannotationget_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-tm1ui-cellannotationget-page"><p>Array of TM1 Annotations in object representation.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cellannotationput">cellAnnotationPut(value, instance, cube, cubeElements)</h3>
+<div class="cellannotationput"><div class="tm1ui-tm1ui-cellannotationput-page"><p>For saving cell annotation.</p>
+</div><h5 id="methods_cellannotationput_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>value</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellannotationput-page"><p>Cell annotation value to save.</p>
+</div></td></tr><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellannotationput-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellannotationput-page"><p>TM1 Cube name where this will connect to.</p>
+</div></td></tr><tr><td>cubeElements</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-tm1ui-cellannotationput-page"><p>Array of string elements in reference to the cell.</p>
+</div></td></tr></tbody></table><h5 id="methods_cellannotationput_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-cellannotationput-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cellget">cellGet(instance, cube, element1, element2, elementN, configuration)</h3>
+<div class="cellget"><div class="tm1ui-tm1ui-cellget-page"><p>For retrieving cube data value on the target instance.</p>
+<p>On using advance configuration, i.e. to get the data from a sandbox named &#39;My Scenario 1&#39;, the function call should look like this:</p>
+<p>$tm1Ui.cellGet(&#39;dev&#39;, &#39;System Info&#39;, &#39;Current Date&#39;, &#39;Comment&#39;, {sandbox: &#39;My Scenario 1&#39;}).then(function(data){
+        console.info(&#39;Returned by this function - %o&#39;, data);
+});</p>
+</div><h5 id="methods_cellget_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellget-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellget-page"><p>TM1 Cube name where this will connect to.</p>
+</div></td></tr><tr><td>element1</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellget-page"><p>1st element identifying the data point. Element names can be an ALIAS. Indicate an alternate hierarchy by ::, and &amp;&amp; for separating multiple hierarchies.</p>
+</div></td></tr><tr><td>element2</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellget-page"><p>2nd element identifying the data point. Element names can be an ALIAS. Indicate an alternate hierarchy by ::, and &amp;&amp; for separating multiple hierarchies.</p>
+</div></td></tr><tr><td>elementN <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellget-page"><p>Nth element identifying the data point. Element names can be an ALIAS. Indicate an alternate hierarchy by ::, and &amp;&amp; for separating multiple hierarchies.</p>
+</div></td></tr><tr><td>configuration <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-cellget-page"><p>An object containing additional properties that will affect the return of this function.</p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>sandbox <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellget-page"><p>Sandbox that will be used on this operation.</p>
+</div> <p><em>(default: "")</em></p></td></tr></tbody></table></td></tr></tbody></table><h5 id="methods_cellget_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-cellget-page"><p>Cell Data in object representation.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cellgetdrillnametransactions">cellGetDrillNameTransactions(instance, cube, cubeElements, drillName)</h3>
+<div class="cellgetdrillnametransactions"><div class="tm1ui-tm1ui-cellgetdrillnametransactions-page"><p>For retrieving the transactions of this drill associated with this cell.</p>
+</div><h5 id="methods_cellgetdrillnametransactions_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellgetdrillnametransactions-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellgetdrillnametransactions-page"><p>TM1 Cube name where this will connect to.</p>
+</div></td></tr><tr><td>cubeElements</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-tm1ui-cellgetdrillnametransactions-page"><p>Array of string elements in reference to the cell.</p>
+</div></td></tr><tr><td>drillName</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellgetdrillnametransactions-page"><p>Name of drill to get transactions from.</p>
+</div></td></tr></tbody></table><h5 id="methods_cellgetdrillnametransactions_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-cellgetdrillnametransactions-page"><p>Raw object as returned by TM1 to represent the data of this drill.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cellgetdrillnames">cellGetDrillNames(instance, cube, cubeElements)</h3>
+<div class="cellgetdrillnames"><div class="tm1ui-tm1ui-cellgetdrillnames-page"><p>For retrieving the names of the drills associated with this cell.</p>
+</div><h5 id="methods_cellgetdrillnames_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellgetdrillnames-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellgetdrillnames-page"><p>TM1 Cube name where this will connect to.</p>
+</div></td></tr><tr><td>cubeElements</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-tm1ui-cellgetdrillnames-page"><p>Array of string elements in reference to the cell.</p>
+</div></td></tr></tbody></table><h5 id="methods_cellgetdrillnames_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-cellgetdrillnames-page"><p>Array of Drills (String) associated with this cell.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cellgetpicklistvalues">cellGetPicklistValues(instance, cube, cubeElements, element1, element2, elementN)</h3>
+<div class="cellgetpicklistvalues"><div class="tm1ui-tm1ui-cellgetpicklistvalues-page"><p>For retrieving cube data picklist values on the target instance.</p>
+</div><h5 id="methods_cellgetpicklistvalues_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellgetpicklistvalues-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellgetpicklistvalues-page"><p>TM1 Cube name where this will connect to.</p>
+</div></td></tr><tr><td>cubeElements <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-cellgetpicklistvalues-page"><p>Array of string elements in reference to the cell. Use this OR specify each element as parameter.</p>
+</div></td></tr><tr><td>element1 <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellgetpicklistvalues-page"><p>1st element identifying the data point. Element names can be an ALIAS.</p>
+</div></td></tr><tr><td>element2 <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellgetpicklistvalues-page"><p>2nd element identifying the data point. Element names can be an ALIAS.</p>
+</div></td></tr><tr><td>elementN <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellgetpicklistvalues-page"><p>Nth element identifying the data point. Element names can be an ALIAS.</p>
+</div></td></tr></tbody></table><h5 id="methods_cellgetpicklistvalues_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-cellgetpicklistvalues-page"><p>Array of Picklist Values</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cellput">cellPut(value, instance, cube, element1, element2, elementN, configuration)</h3>
+<div class="cellput"><div class="tm1ui-tm1ui-cellput-page"><p>For saving cube data value on the target instance.</p>
+</div><h5 id="methods_cellput_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>value</td><td><a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="tm1ui-tm1ui-cellput-page"><p>Value to save into the cube.</p>
+</div></td></tr><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellput-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellput-page"><p>TM1 Cube name where this will connect to.</p>
+</div></td></tr><tr><td>element1</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellput-page"><p>1st element identifying the data point. Element names can be an ALIAS. Indicate an alternate hierarchy by ::.</p>
+</div></td></tr><tr><td>element2</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellput-page"><p>2nd element identifying the data point. Element names can be an ALIAS. Indicate an alternate hierarchy by ::.</p>
+</div></td></tr><tr><td>elementN <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellput-page"><p>Nth element identifying the data point. Element names can be an ALIAS. Indicate an alternate hierarchy by ::.</p>
+</div></td></tr><tr><td>configuration <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-cellput-page"><p>An object containing additional properties that will affect the return of this function.</p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>sandbox <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cellput-page"><p>Sandbox that will be used on this operation.</p>
+</div> <p><em>(default: "")</em></p></td></tr></tbody></table></td></tr></tbody></table><h5 id="methods_cellput_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-cellput-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_celltracecalculations">cellTraceCalculations(instance, cube, element1, element2, elementN, options)</h3>
+<div class="celltracecalculations"><div class="tm1ui-tm1ui-celltracecalculations-page"><p>For retrieving the cell&#39;s calculations on the target instance.</p>
+<p>$tm1Ui.cellTraceCalculations(&#39;dev&#39;, &#39;System Info&#39;, &#39;Current Date&#39;, &#39;Comment&#39;).then(function(data){
+        console.info(&#39;Returned by this function - %o&#39;, data);
+});</p>
+</div><h5 id="methods_celltracecalculations_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-celltracecalculations-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-celltracecalculations-page"><p>TM1 Cube name where this will connect to.</p>
+</div></td></tr><tr><td>element1</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-celltracecalculations-page"><p>1st element identifying the data point. Element names can be an ALIAS. Indicate an alternate hierarchy by ::, and &amp;&amp; for separating multiple hierarchies.</p>
+</div></td></tr><tr><td>element2</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-celltracecalculations-page"><p>2nd element identifying the data point. Element names can be an ALIAS. Indicate an alternate hierarchy by ::, and &amp;&amp; for separating multiple hierarchies.</p>
+</div></td></tr><tr><td>elementN <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-celltracecalculations-page"><p>Nth element identifying the data point. Element names can be an ALIAS. Indicate an alternate hierarchy by ::, and &amp;&amp; for separating multiple hierarchies.</p>
+</div></td></tr><tr><td>options <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-celltracecalculations-page"><p>An object containing additional properties that will affect the return of this function.</p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>traceCalculationLevel <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="tm1ui-tm1ui-celltracecalculations-page"><p>Use this property to set the number of levels to return for this calculation <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div></td></tr></tbody></table></td></tr></tbody></table><h5 id="methods_celltracecalculations_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-celltracecalculations-page"><p>Cell Calculations Data in object representation.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cellsetget">cellsetGet(cellGetRequests)</h3>
+<div class="cellsetget"><div class="tm1ui-tm1ui-cellsetget-page"><p>For retrieving cube data value on the target instance. An example of a CellGet request object in an Array is:</p>
+<label class="text-muted">[{instance:&#39;dev&#39;, cube:&#39;System Info&#39;, cubeElements:[&#39;Server Time&#39;, &#39;String&#39;]}]</label>
+
+<p>You can optionally send a sandbox property here as well. The object to pass should now look like this:</p>
+<label class="text-muted">[{instance:&#39;dev&#39;, cube:&#39;System Info&#39;, cubeElements:[&#39;Server Time&#39;, &#39;String&#39;], sandbox:&#39;My Scenario 1&#39;}]</label></div><h5 id="methods_cellsetget_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>cellGetRequests</td><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-cellsetget-page"><p>Array of CellGet request objects with properties: instance, cube, cubeElements[]</p>
+</div></td></tr></tbody></table><h5 id="methods_cellsetget_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-cellsetget-page"><p>Array of cell data in object representation.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cellsetput">cellsetPut(cellPutRequests)</h3>
+<div class="cellsetput"><div class="tm1ui-tm1ui-cellsetput-page"><p>For saving cube data value on the target instance. An example of a CellPut request object in an Array is:</p>
+<label class="text-muted">[{value:&#39;Test&#39;, instance:&#39;dev&#39;, cube:&#39;System Info&#39;, cubeElements:[&#39;Server Time&#39;, &#39;String&#39;]}]</label>
+
+<p>You can optionally send a sandbox property here as well. The object to pass should now look like this:</p>
+<label class="text-muted">[{value:&#39;Test&#39;, instance:&#39;dev&#39;, cube:&#39;System Info&#39;, cubeElements:[&#39;Server Time&#39;, &#39;String&#39;], sandbox:&#39;My Scenario 1&#39;}]</label></div><h5 id="methods_cellsetput_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>cellPutRequests</td><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-cellsetput-page"><p>Array of CellPut request objects with properties: value, instance, cube, cubeElements[]</p>
+</div></td></tr></tbody></table><h5 id="methods_cellsetput_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-cellsetput-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_chore">chore(instance, name)</h3>
+<div class="chore"><div class="tm1ui-tm1ui-chore-page"><p>For retrieving TM1 chore definition on the target instance.</p>
+</div><h5 id="methods_chore_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-chore-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>name</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-chore-page"><p>Name of the TM1 Chore details to retrieve.</p>
+</div></td></tr></tbody></table><h5 id="methods_chore_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-chore-page"><p>TM1 Chore in object representation.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_choreexecute">choreExecute(instance, name)</h3>
+<div class="choreexecute"><div class="tm1ui-tm1ui-choreexecute-page"><p>For executing TM1 chore on the target instance.</p>
+</div><h5 id="methods_choreexecute_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-choreexecute-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>name</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-choreexecute-page"><p>Name of the TM1 Chore to execute.</p>
+</div></td></tr></tbody></table><h5 id="methods_choreexecute_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-choreexecute-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_choreupdatetasks">choreUpdateTasks(instance, name, chore)</h3>
+<div class="choreupdatetasks"><div class="tm1ui-tm1ui-choreupdatetasks-page"><p>For updating TM1 chore&#39;s process parameters on the target instance.</p>
+</div><h5 id="methods_choreupdatetasks_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-choreupdatetasks-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>name</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-choreupdatetasks-page"><p>Name of the TM1 Chore to execute.</p>
+</div></td></tr><tr><td>chore</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-choreupdatetasks-page"><p>Chore object with updated processes parameters to push into TM1</p>
+</div></td></tr></tbody></table><h5 id="methods_choreupdatetasks_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-choreupdatetasks-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_chores">chores(instance)</h3>
+<div class="chores"><div class="tm1ui-tm1ui-chores-page"><p>For retrieving TM1 chores definition on the target instance.</p>
+</div><h5 id="methods_chores_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-chores-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr></tbody></table><h5 id="methods_chores_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-tm1ui-chores-page"><p>TM1 Chores in object representations.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cubecanvasview">cubeCanvasView(instance, cube, view, options)</h3>
+<div class="cubecanvasview"><div class="tm1ui-tm1ui-cubecanvasview-page"><p>For retrieving a Canvas view information of the cube, on the target instance.</p>
+</div><h5 id="methods_cubecanvasview_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubecanvasview-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubecanvasview-page"><p>Name of the Cube.</p>
+</div></td></tr><tr><td>view</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubecanvasview-page"><p>Name of the View.</p>
+</div></td></tr><tr><td>options <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-cubecanvasview-page"><p>An object which contains the options you can pass into this function. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>isPrivate <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-tm1ui-cubecanvasview-page"><p>To indicate whether to retrieve the private or public Canvas view. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: false)</em></p></td></tr></tbody></table></td></tr></tbody></table><h5 id="methods_cubecanvasview_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-cubecanvasview-page"><p>View definition / metadata.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cubedimensions">cubeDimensions(instance, cube)</h3>
+<div class="cubedimensions"><div class="tm1ui-tm1ui-cubedimensions-page"><p>For retrieving a cube&#39;s list of dimension names.</p>
+</div><h5 id="methods_cubedimensions_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubedimensions-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubedimensions-page"><p>Cube name.</p>
+</div></td></tr></tbody></table><h5 id="methods_cubedimensions_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-tm1ui-cubedimensions-page"><p>String array of the cube&#39;s dimension names.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cubedimensionsandhierarchies">cubeDimensionsAndHierarchies(instance, cube)</h3>
+<div class="cubedimensionsandhierarchies"><div class="tm1ui-tm1ui-cubedimensionsandhierarchies-page"><p>For retrieving a cube&#39;s list of dimensions and hierarchies.</p>
+</div><h5 id="methods_cubedimensionsandhierarchies_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubedimensionsandhierarchies-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubedimensionsandhierarchies-page"><p>Cube name.</p>
+</div></td></tr></tbody></table><h5 id="methods_cubedimensionsandhierarchies_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-tm1ui-cubedimensionsandhierarchies-page"><p>Array of the cubes&#39; dimension and their hierarchy&#39; names.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cubeexecutemdx">cubeExecuteMdx(instance, mdx, restPath)</h3>
+<div class="cubeexecutemdx"><div class="tm1ui-tm1ui-cubeexecutemdx-page"><p>For executing custom MDX as well as custom TM1 REST API URL when the MDX executes.</p>
+</div><h5 id="methods_cubeexecutemdx_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubeexecutemdx-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>mdx</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubeexecutemdx-page"><p>MDX statement to execute.</p>
+</div></td></tr><tr><td>restPath <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubeexecutemdx-page"><p>REST API override when executing the above MDX (i.e. $expand=Cells($select=Value)  ) <span class="alert alert-warning" role="alert">OPTIONAL</span>.</p>
+</div></td></tr></tbody></table><h5 id="methods_cubeexecutemdx_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-tm1ui-cubeexecutemdx-page"><p>MDX response as per TM1 REST API.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cubeexecutenamedmdx">cubeExecuteNamedMdx(instance, mdxId, options)</h3>
+<div class="cubeexecutenamedmdx"><div class="tm1ui-tm1ui-cubeexecutenamedmdx-page"><p>For getting cell set values of named MDX (defined in the server).</p>
+</div><h5 id="methods_cubeexecutenamedmdx_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubeexecutenamedmdx-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>mdxId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubeexecutenamedmdx-page"><p>Id of the named MDX statement to execute.</p>
+</div></td></tr><tr><td>options <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-cubeexecutenamedmdx-page"><p>An object which contains the options you can pass into this function. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>parameters <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-cubeexecutenamedmdx-page"><p>Use this property to set the JavaScript object containing the Name-Value properties to be passed on to the MDX when executing. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: "")</em></p></td></tr></tbody></table></td></tr></tbody></table><h5 id="methods_cubeexecutenamedmdx_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-tm1ui-cubeexecutenamedmdx-page"><p>MDX response as per TM1 REST API.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cubeexecuteview">cubeExecuteView(instance, cube, view, query)</h3>
+<div class="cubeexecuteview"><div class="tm1ui-tm1ui-cubeexecuteview-page"><p>For getting cell set values of a Cube&#39;s View.</p>
+</div><h5 id="methods_cubeexecuteview_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubeexecuteview-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubeexecuteview-page"><p>Cube name.</p>
+</div></td></tr><tr><td>view</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubeexecuteview-page"><p>Cube&#39;s View name.</p>
+</div></td></tr><tr><td>query <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubeexecuteview-page"><p>Query override to pass into the view execution.</p>
+</div></td></tr></tbody></table><h5 id="methods_cubeexecuteview_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-tm1ui-cubeexecuteview-page"><p>View-MDX response as per TM1 REST API.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cubeview">cubeView(instance, cube, view, query)</h3>
+<div class="cubeview"><div class="tm1ui-tm1ui-cubeview-page"><p>For retrieving view information of the cube, on the target instance.</p>
+</div><h5 id="methods_cubeview_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubeview-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubeview-page"><p>Name of the Cube.</p>
+</div></td></tr><tr><td>view</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubeview-page"><p>Name of the View.</p>
+</div></td></tr><tr><td>query <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubeview-page"><p>Query override to pass into the view execution.</p>
+</div></td></tr></tbody></table><h5 id="methods_cubeview_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-cubeview-page"><p>View definition / metadata.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cubeviews">cubeViews(instance, cube, options)</h3>
+<div class="cubeviews"><div class="tm1ui-tm1ui-cubeviews-page"><p>For retrieving list of views on the cube, on the target instance.</p>
+</div><h5 id="methods_cubeviews_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubeviews-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubeviews-page"><p>Name of the Cube.</p>
+</div></td></tr><tr><td>options <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-cubeviews-page"><p>An object which contains the options you can pass into this function. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>includeTM1Views <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-tm1ui-cubeviews-page"><p>To indicate whether to include TM1 views in the list. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: "true")</em></p></td></tr><tr><td>includeCanvasViews <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-tm1ui-cubeviews-page"><p>To indicate whether to include Canvas views in the list. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>includePrivateViews <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-tm1ui-cubeviews-page"><p>To indicate whether to include private views in the list. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: "true")</em></p></td></tr></tbody></table></td></tr></tbody></table><h5 id="methods_cubeviews_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-tm1ui-cubeviews-page"><p>Array of view objects on the target instance.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_cubes">cubes(instance)</h3>
+<div class="cubes"><div class="tm1ui-tm1ui-cubes-page"><p>For retrieving list of cubes on the target instance.</p>
+</div><h5 id="methods_cubes_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-cubes-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr></tbody></table><h5 id="methods_cubes_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-tm1ui-cubes-page"><p>Array of cube objects, with their corresponding dimension names on the target instance.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_datarefresh">dataRefresh(dataGroup)</h3>
+<div class="datarefresh"><div class="tm1ui-tm1ui-datarefresh-page"><p>For refreshing the directive values. This affects DBR, DBRA, Element List, Store, User and Active Form.</p>
+<p>The dataGroup parameter applies to components with the tm1-refresh group attribute (i.e. DBRs and its variations). </p>
+<p>Note that this is a synchronous function. Use simply as --&gt; $tm1Ui.dataRefresh();</p>
+</div><h5 id="methods_datarefresh_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>dataGroup <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-datarefresh-page"><p>Group name of Canvas components which will be targeted by this refresh when provided. These components are identified via their tm1-refresh-group attribute.</p>
+</div></td></tr></tbody></table><h5 id="methods_datarefresh_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-undefined">undefined</a></td><td><div class="tm1ui-tm1ui-datarefresh-page"><p>Void.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_dimensionattributes">dimensionAttributes(instance, dimension)</h3>
+<div class="dimensionattributes"><div class="tm1ui-tm1ui-dimensionattributes-page"><p>For retrieving attributes information of a dimension, on the target instance.</p>
+</div><h5 id="methods_dimensionattributes_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionattributes-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>dimension</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionattributes-page"><p>Name of the Dimension. If accessing a different hierarchy, indicate by &#39;::&#39; (i.e. Account::Account Type)</p>
+</div></td></tr></tbody></table><h5 id="methods_dimensionattributes_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-dimensionattributes-page"><p>Array of attributes object.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_dimensionelement">dimensionElement(instance, dimension, elementOrAlias, attributes)</h3>
+<div class="dimensionelement"><div class="tm1ui-tm1ui-dimensionelement-page"><p>For retrieving element information of a dimension, on the target instance.</p>
+</div><h5 id="methods_dimensionelement_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionelement-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>dimension</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionelement-page"><p>Name of the Dimension. If accessing a different hierarchy, indicate by &#39;::&#39; (i.e. Account::Account Type)</p>
+</div></td></tr><tr><td>elementOrAlias</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionelement-page"><p>Name of the Element.</p>
+</div></td></tr><tr><td>attributes <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionelement-page"><p>Comma separated TM1 Attributes to retrieve. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div></td></tr></tbody></table><h5 id="methods_dimensionelement_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-dimensionelement-page"><p>Element object information.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_dimensionelements">dimensionElements(instance, dimension, options)</h3>
+<div class="dimensionelements"><div class="tm1ui-tm1ui-dimensionelements-page"><p>For retrieving a list of elements and their information on a dimension in the target instance.</p>
+</div><h5 id="methods_dimensionelements_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionelements-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>dimension</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionelements-page"><p>Name of the Dimension.</p>
+</div></td></tr><tr><td>options <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-dimensionelements-page"><p>An object which contains the options you can pass into this function. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>hierarchy <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionelements-page"><p>Use this property to indicate which hierarchy to retrieve the elements from. If not provided, this will retrieve from the hierarchy of the same name as the dimension. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div></td></tr><tr><td>attributes <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionelements-page"><p>Use this property to set the Comma separated Attributes to retrieve. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: "")</em></p></td></tr><tr><td>subset <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionelements-page"><p>Use this property to set the Subset to use for retrieving the elements. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: "")</em></p></td></tr><tr><td>mdx <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionelements-page"><p>Use this property to set the MDX to use for retrieving the elements. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: "")</em></p></td></tr><tr><td>filter <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionelements-page"><p>Use this property to set the Filter string for reducing the elements. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: "")</em></p></td></tr><tr><td>batchSize <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionelements-page"><p>Use this property to Reduce the number of elements being returned. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: "0")</em></p></td></tr><tr><td>showHierarchy <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-tm1ui-dimensionelements-page"><p>Use this property to Flag to indicate that the returned list of elements is to be in hierarchy list. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: false)</em></p></td></tr><tr><td>elementsOnly <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-tm1ui-dimensionelements-page"><p>Use this property to Flag to indicate whether to include the Parent/Components in the properties returned for each element. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: true)</em></p></td></tr></tbody></table></td></tr></tbody></table><h5 id="methods_dimensionelements_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-dimensionelements-page"><p>Array of element objects information.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_dimensionhierarchies">dimensionHierarchies(instance, dimension)</h3>
+<div class="dimensionhierarchies"><div class="tm1ui-tm1ui-dimensionhierarchies-page"><p>For retrieving hierarchies information of a dimension, on the target instance.</p>
+</div><h5 id="methods_dimensionhierarchies_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionhierarchies-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>dimension</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionhierarchies-page"><p>Name of the Dimension.</p>
+</div></td></tr></tbody></table><h5 id="methods_dimensionhierarchies_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-dimensionhierarchies-page"><p>Array of hierarchies object.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_dimensionhierarchy">dimensionHierarchy(instance, dimension, hierarchy)</h3>
+<div class="dimensionhierarchy"><div class="tm1ui-tm1ui-dimensionhierarchy-page"><p>For retrieving hierarchy information of a dimension, on the target instance.</p>
+</div><h5 id="methods_dimensionhierarchy_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionhierarchy-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>dimension</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionhierarchy-page"><p>Name of the Dimension.</p>
+</div></td></tr><tr><td>hierarchy</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionhierarchy-page"><p>Name of the Hierarchy.</p>
+</div></td></tr></tbody></table><h5 id="methods_dimensionhierarchy_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-dimensionhierarchy-page"><p>The hierarchy object.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_dimensionsubsetalias">dimensionSubsetAlias(instance, dimension, subset)</h3>
+<div class="dimensionsubsetalias"><div class="tm1ui-tm1ui-dimensionsubsetalias-page"><p>For retrieving the alias set on a subset, if there is any, on a dimension, at the target instance.</p>
+</div><h5 id="methods_dimensionsubsetalias_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetalias-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>dimension</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetalias-page"><p>Name of the Dimension. If accessing a different hierarchy, indicate by &#39;::&#39; (i.e. Account::Account Type)</p>
+</div></td></tr><tr><td>subset</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetalias-page"><p>Name of the Subset.</p>
+</div></td></tr></tbody></table><h5 id="methods_dimensionsubsetalias_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetalias-page"><p>Alias set on the Subset.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_dimensionsubsetcreateorupdate">dimensionSubsetCreateOrUpdate(instance, dimension, subset, options)</h3>
+<div class="dimensionsubsetcreateorupdate"><div class="tm1ui-tm1ui-dimensionsubsetcreateorupdate-page"><p>For creating / updating subsets of a dimension.</p>
+</div><h5 id="methods_dimensionsubsetcreateorupdate_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetcreateorupdate-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>dimension</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetcreateorupdate-page"><p>Name of the Dimension.</p>
+</div></td></tr><tr><td>subset</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetcreateorupdate-page"><p>Name of the Subset.</p>
+</div></td></tr><tr><td>options <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetcreateorupdate-page"><p>An object which contains the options you can pass into this function. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>hierarchy <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetcreateorupdate-page"><p>Use this property to indicate which hierarchy to retrieve the subsets from. If not provided, this will retrieve from the hierarchy of the same name as the dimension. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div></td></tr><tr><td>mdx <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetcreateorupdate-page"><p>Use this property to indicate the expression to use for this subset. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div></td></tr><tr><td>alias <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetcreateorupdate-page"><p>Use this property to indicate which alias to set for this subset. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div></td></tr><tr><td>elementsOrAliases <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetcreateorupdate-page"><p>Use this property to indicate the elements (or their aliases) to set for this subset. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div></td></tr></tbody></table></td></tr></tbody></table><h5 id="methods_dimensionsubsetcreateorupdate_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetcreateorupdate-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_dimensionsubsetdelete">dimensionSubsetDelete(instance, dimension, subset, options)</h3>
+<div class="dimensionsubsetdelete"><div class="tm1ui-tm1ui-dimensionsubsetdelete-page"><p>For deleting subset of a dimension on a target instance.</p>
+</div><h5 id="methods_dimensionsubsetdelete_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetdelete-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>dimension</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetdelete-page"><p>Name of the Dimension.</p>
+</div></td></tr><tr><td>subset</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetdelete-page"><p>Name of the Subset.</p>
+</div></td></tr><tr><td>options <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetdelete-page"><p>An object which contains the options you can pass into this function. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>hierarchy <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetdelete-page"><p>Use this property to indicate which hierarchy to retrieve the subsets from. If not provided, this will retrieve from the hierarchy of the same name as the dimension. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div></td></tr></tbody></table></td></tr></tbody></table><h5 id="methods_dimensionsubsetdelete_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-dimensionsubsetdelete-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_dimensionsubsets">dimensionSubsets(instance, dimension, options)</h3>
+<div class="dimensionsubsets"><div class="tm1ui-tm1ui-dimensionsubsets-page"><p>For retrieving a list of subsets and their information on a dimension in the target instance.</p>
+</div><h5 id="methods_dimensionsubsets_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionsubsets-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>dimension</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionsubsets-page"><p>Name of the Dimension.</p>
+</div></td></tr><tr><td>options <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-dimensionsubsets-page"><p>An object which contains the options you can pass into this function. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>hierarchy <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensionsubsets-page"><p>Use this property to indicate which hierarchy to retrieve the subsets from. If not provided, this will retrieve from the hierarchy of the same name as the dimension. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div></td></tr><tr><td>includePrivateObjects <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-tm1ui-dimensionsubsets-page"><p>Use this property indicate inclusion of private subsets by the current user. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: false)</em></p></td></tr></tbody></table></td></tr></tbody></table><h5 id="methods_dimensionsubsets_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-dimensionsubsets-page"><p>Subsets of the dimension.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_dimensions">dimensions(instance, options)</h3>
+<div class="dimensions"><div class="tm1ui-tm1ui-dimensions-page"><p>For retrieving dimensions and their hierarchies, on the target instance.</p>
+</div><h5 id="methods_dimensions_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensions-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>options <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-dimensions-page"><p>An object which contains the options you can pass into this function. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>dimensionFilter <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensions-page"><p>Use this property to set a contains-search parameter used for finding specific dimensions. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: "")</em></p></td></tr><tr><td>odataQuery <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-dimensions-page"><p>Use this property to override the OData query used in retrieving the dimensions. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: "")</em></p></td></tr><tr><td>formatResult <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-tm1ui-dimensions-page"><p>Use this property to get the raw result from TM1 for querying dimensions. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: true)</em></p></td></tr><tr><td>nameOnly <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-tm1ui-dimensions-page"><p>Use this property to return only the Name property of the dimensions and hierarchies. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: false)</em></p></td></tr><tr><td>excludeControlDimensions <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-tm1ui-dimensions-page"><p>Use this property to remove control dimensions in the list. <span class="alert alert-warning" role="alert">OPTIONAL</span></p>
+</div> <p><em>(default: false)</em></p></td></tr></tbody></table></td></tr></tbody></table><h5 id="methods_dimensions_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-dimensions-page"><p>Array of dimensions object and the hierarchies defined within.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_formatnumber">formatNumber(value, decimal)</h3>
+<div class="formatnumber"><div class="tm1ui-tm1ui-formatnumber-page"><p>For converting your numeric values into a string formatted number, as processed by the accounting.js library.</p>
+</div><h5 id="methods_formatnumber_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>value</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="tm1ui-tm1ui-formatnumber-page"><p>Number to be formatted via the <a href="http://openexchangerates.github.io/accounting.js/" target="_blank">accounting.js</a> library.</p>
+</div></td></tr><tr><td>decimal <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="tm1ui-tm1ui-formatnumber-page"><p>Number of decimal places. By default, this will use what is set globally within the application.</p>
+</div></td></tr></tbody></table><h5 id="methods_formatnumber_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-formatnumber-page"><p>The string formatted number.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_formatpercentage">formatPercentage(value, decimal)</h3>
+<div class="formatpercentage"><div class="tm1ui-tm1ui-formatpercentage-page"><p>For converting your numeric values into a string formatted percentage number, as processed by the accounting.js library.</p>
+</div><h5 id="methods_formatpercentage_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>value</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="tm1ui-tm1ui-formatpercentage-page"><p>Number to be formatted into percentage via the <a href="http://openexchangerates.github.io/accounting.js/" target="_blank">accounting.js</a> library.</p>
+</div></td></tr><tr><td>decimal <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="tm1ui-tm1ui-formatpercentage-page"><p>Number of decimal places. By default, this will use what is set globally within the application.</p>
+</div></td></tr></tbody></table><h5 id="methods_formatpercentage_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-formatpercentage-page"><p>The string formatted number.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_gettoken">getToken()</h3>
+<div class="gettoken"><div class="tm1ui-tm1ui-gettoken-page"><p>For retrieving the current token required for data altering APIs such as api/mdx, api/dbs, etc.</p>
+</div><h5 id="methods_gettoken_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-gettoken-page"><p>Current Token for data altering functions.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_helperconvertelementstoarray">helperConvertElementsToArray(elements, config)</h3>
+<div class="helperconvertelementstoarray"><div class="tm1ui-tm1ui-helperconvertelementstoarray-page"><p>This is to help generate an array of string elements for operations such as cellGets.</p>
+</div><h5 id="methods_helperconvertelementstoarray_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>elements</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-helperconvertelementstoarray-page"><p>Comma separated string of cube elements.</p>
+</div></td></tr><tr><td>config <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-helperconvertelementstoarray-page"><p>Additional configuration as defined <a target="_blank" href="http://papaparse.com/docs#config">here</a>.</p>
+</div></td></tr></tbody></table><h5 id="methods_helperconvertelementstoarray_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-helperconvertelementstoarray-page"><p>The array representation of the element string passed.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_helperdoespageexists">helperDoesPageExists(pageUrl)</h3>
+<div class="helperdoespageexists"><div class="tm1ui-tm1ui-helperdoespageexists-page"><p>For checking if an HTML page exists.</p>
+</div><h5 id="methods_helperdoespageexists_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>pageUrl</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-helperdoespageexists-page"><p>Relative URL of the HTML page (i.g. html/MyPage.html).</p>
+</div></td></tr></tbody></table><h5 id="methods_helperdoespageexists_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-helperdoespageexists-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_helpergenerateuuid">helperGenerateUUID()</h3>
+<div class="helpergenerateuuid"><div class="tm1ui-tm1ui-helpergenerateuuid-page"><p>For generating a universally unique identifier (UUID).</p>
+</div><h5 id="methods_helpergenerateuuid_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-helpergenerateuuid-page"><p>A universally unique identifier string.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_helperisstatussuccessful">helperIsStatusSuccessful(status)</h3>
+<div class="helperisstatussuccessful"><div class="tm1ui-tm1ui-helperisstatussuccessful-page"><p>For checking if status code is a success or error.</p>
+</div><h5 id="methods_helperisstatussuccessful_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>status</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="tm1ui-tm1ui-helperisstatussuccessful-page"><p>Status code returned by any $http service.</p>
+</div></td></tr></tbody></table><h5 id="methods_helperisstatussuccessful_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-tm1ui-helperisstatussuccessful-page"><p>Checks whether returned status code is successful based on Http Status codes (i.e. 200 to 399 is true, everything else is false).</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_helperissuccessful">helperIsSuccessful(success)</h3>
+<div class="helperissuccessful"><div class="tm1ui-tm1ui-helperissuccessful-page"><p>For checking if the object return by your $http is a success or error.</p>
+</div><h5 id="methods_helperissuccessful_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>success</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-helperissuccessful-page"><p>Success object returned by $http service.</p>
+</div></td></tr></tbody></table><h5 id="methods_helperissuccessful_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-tm1ui-helperissuccessful-page"><p>Checks whether returned object has error based on Http Status codes (i.e. 200 to 399 is true, everything else is false).</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_process">process(instance, name)</h3>
+<div class="process"><div class="tm1ui-tm1ui-process-page"><p>For retrieving TM1 process definition on the target instance.</p>
+</div><h5 id="methods_process_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-process-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>name</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-process-page"><p>Name of the TM1 Process to retrieve.</p>
+</div></td></tr></tbody></table><h5 id="methods_process_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-process-page"><p>TM1 Process in object representation.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_processexecute">processExecute(instance, name, paramName1, paramValue1, paramNameN, paramValueN)</h3>
+<div class="processexecute"><div class="tm1ui-tm1ui-processexecute-page"><p>For executing the TM1 process definition on the target instance.</p>
+</div><h5 id="methods_processexecute_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-processexecute-page"><p>Instance name for this service to connect to.</p>
+</div></td></tr><tr><td>name</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-processexecute-page"><p>Name of the TM1 Process to execute.</p>
+</div></td></tr><tr><td>paramName1 <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-processexecute-page"><p>Parameter Name</p>
+</div></td></tr><tr><td>paramValue1 <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="tm1ui-tm1ui-processexecute-page"><p>Parameter Value</p>
+</div></td></tr><tr><td>paramNameN <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-processexecute-page"><p>Parameter Name</p>
+</div></td></tr><tr><td>paramValueN <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="tm1ui-tm1ui-processexecute-page"><p>Parameter Value</p>
+</div></td></tr></tbody></table><h5 id="methods_processexecute_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-processexecute-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_resultsettransform">resultsetTransform(instance, cube, result, options)</h3>
+<div class="resultsettransform"><div class="tm1ui-tm1ui-resultsettransform-page"><p>For initializing your table which will be used for sorting, paging, etc.</p>
+</div><h5 id="methods_resultsettransform_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-resultsettransform-page"><p>Name of the instance where data was loaded from.</p>
+</div></td></tr><tr><td>cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-resultsettransform-page"><p>The name of the cube where data was loaded from.</p>
+</div></td></tr><tr><td>result</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-resultsettransform-page"><p>The result of executing api/mdx/(instance)/(named MDX)</p>
+</div></td></tr><tr><td>options</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-resultsettransform-page"><p>A set of options to change the output <label class="text-muted">{ alias: {Dimension: &#39;Attribute&#39;}, collapseAll: false, collapse: [], expand: [] }</label></p>
+</div></td></tr></tbody></table><h5 id="methods_resultsettransform_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="tm1ui-tm1ui-resultsettransform-page"><p>A flattened resultset that can be used with a HTML table dataset <label class="text-muted">{ metadata: {}, elements: [], headers: [], rows: [] }</label></p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_sandbox">sandbox(instance, name)</h3>
+<div class="sandbox"><div class="tm1ui-tm1ui-sandbox-page"><p>For retrieving sandboxes related to the current user.</p>
+</div><h5 id="methods_sandbox_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-sandbox-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>name</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-sandbox-page"><p>Name of the Sandbox to retrieve.</p>
+</div></td></tr></tbody></table><h5 id="methods_sandbox_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-sandbox-page"><p>Array of TM1 sandboxes associated with the user.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_sandboxcreate">sandboxCreate(instance, name)</h3>
+<div class="sandboxcreate"><div class="tm1ui-tm1ui-sandboxcreate-page"><p>For creating a sandbox related to the current user.</p>
+</div><h5 id="methods_sandboxcreate_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-sandboxcreate-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>name</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-sandboxcreate-page"><p>Name of the Sandbox to create.</p>
+</div></td></tr></tbody></table><h5 id="methods_sandboxcreate_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-sandboxcreate-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_sandboxdelete">sandboxDelete(instance, name)</h3>
+<div class="sandboxdelete"><div class="tm1ui-tm1ui-sandboxdelete-page"><p>For deleting a sandbox related to the current user.</p>
+</div><h5 id="methods_sandboxdelete_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-sandboxdelete-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>name</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-sandboxdelete-page"><p>Name of the Sandbox to delete.</p>
+</div></td></tr></tbody></table><h5 id="methods_sandboxdelete_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-sandboxdelete-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_sandboxdiscardchanges">sandboxDiscardChanges(instance, name)</h3>
+<div class="sandboxdiscardchanges"><div class="tm1ui-tm1ui-sandboxdiscardchanges-page"><p>For discarding changes made on a sandbox.</p>
+</div><h5 id="methods_sandboxdiscardchanges_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-sandboxdiscardchanges-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>name</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-sandboxdiscardchanges-page"><p>Name of the Sandbox whose changes will be discarded.</p>
+</div></td></tr></tbody></table><h5 id="methods_sandboxdiscardchanges_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-sandboxdiscardchanges-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_sandboxpublishchanges">sandboxPublishChanges(instance, name)</h3>
+<div class="sandboxpublishchanges"><div class="tm1ui-tm1ui-sandboxpublishchanges-page"><p>For publishing changes made on a sandbox.</p>
+</div><h5 id="methods_sandboxpublishchanges_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-sandboxpublishchanges-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr><tr><td>name</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-sandboxpublishchanges-page"><p>Name of the Sandbox whose changes will be published.</p>
+</div></td></tr></tbody></table><h5 id="methods_sandboxpublishchanges_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-sandboxpublishchanges-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_sandboxes">sandboxes(instance)</h3>
+<div class="sandboxes"><div class="tm1ui-tm1ui-sandboxes-page"><p>For retrieving sandboxes related to the current user.</p>
+</div><h5 id="methods_sandboxes_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1ui-sandboxes-page"><p>Name of the Instance this service to connect to.</p>
+</div></td></tr></tbody></table><h5 id="methods_sandboxes_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1ui-sandboxes-page"><p>Array of TM1 sandboxes associated with the user.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_tablecreate">tableCreate(scope, data, options)</h3>
+<div class="tablecreate"><div class="tm1ui-tm1ui-tablecreate-page"><p>For initializing your table which will be used for sorting, paging, etc.</p>
+</div><h5 id="methods_tablecreate_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>scope</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-tablecreate-page"><p>The current page&#39;s scope.</p>
+</div></td></tr><tr><td>data</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-tablecreate-page"><p>An array to be used as the datasource for table.</p>
+</div></td></tr><tr><td>options</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1ui-tablecreate-page"><p>Optional parameters to pass to the table. <label class="text-muted">{index: 0, pageSize: 10, sortType: null, sortReverse: false, filter: null, preload: true, watch: true }</label></p>
+</div></td></tr></tbody></table><h5 id="methods_tablecreate_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="tm1ui-tm1ui-tablecreate-page"><p>A table object data to be used with HTML.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_deletetask">deleteTask(taskId)</h3>
+<div class="deletetask"><div class="tm1ui-tm1uitask-deletetask-page"><p>For deleting the task created.</p>
+</div><h5 id="methods_deletetask_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>taskId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1uitask-deletetask-page"><p>ID to identify the task to delete.</p>
+</div></td></tr></tbody></table><h5 id="methods_deletetask_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1uitask-deletetask-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_saveorupdatetask">saveOrUpdateTask(task)</h3>
+<div class="saveorupdatetask"><div class="tm1ui-tm1uitask-saveorupdatetask-page"><p>For saving / updating the task object.</p>
+</div><h5 id="methods_saveorupdatetask_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>task</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1uitask-saveorupdatetask-page"><p>Task JSON Object representation to save / update.</p>
+</div></td></tr></tbody></table><h5 id="methods_saveorupdatetask_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1uitask-saveorupdatetask-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_task">task(taskId)</h3>
+<div class="task"><div class="tm1ui-tm1uitask-task-page"><p>For retrieving the task object identified by this ID.</p>
+</div><h5 id="methods_task_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>taskId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1uitask-task-page"><p>ID to identify the task to retrieve.</p>
+</div></td></tr></tbody></table><h5 id="methods_task_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1uitask-task-page"><p>JSON Object representation of the task found.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_taskrun">taskRun(taskId)</h3>
+<div class="taskrun"><div class="tm1ui-tm1uitask-taskrun-page"><p>For running a task.</p>
+</div><h5 id="methods_taskrun_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>taskId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1uitask-taskrun-page"><p>ID to identify the task to check the running status of.</p>
+</div></td></tr></tbody></table><h5 id="methods_taskrun_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1uitask-taskrun-page"><p>The new UUID (if the task is not active yet) and a boolean indicating if it is a one time task run.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_taskrunstatus">taskRunStatus(taskId)</h3>
+<div class="taskrunstatus"><div class="tm1ui-tm1uitask-taskrunstatus-page"><p>For checking the run status of an activated task.</p>
+</div><h5 id="methods_taskrunstatus_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>taskId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-tm1uitask-taskrunstatus-page"><p>ID to identify the task to check the running status of.</p>
+</div></td></tr></tbody></table><h5 id="methods_taskrunstatus_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-tm1uitask-taskrunstatus-page"><p>Status of the action as an object <label class="text-muted">{success:boolean, message:object}</label>.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_tasks">tasks()</h3>
+<div class="tasks"><div class="tm1ui-tm1uitask-tasks-page"><p>For retrieving a list of tasks created.</p>
+</div><h5 id="methods_tasks_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">array</a></td><td><div class="tm1ui-tm1uitask-tasks-page"><p>Created tasks.</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+</div>

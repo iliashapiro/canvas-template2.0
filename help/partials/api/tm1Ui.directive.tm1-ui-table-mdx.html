@@ -1,0 +1,29 @@
+<h1><code ng:non-bindable="">tm1-ui-table-mdx</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-table-mdx-page"><p>For retrieving and displaying the result of a named MDX (defined in WEB-INF/resources/mdx_named.json file), in table format.</p>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-table-mdx
+       tm1-instance="{string}"
+       tm1-cube="{string}"
+       tm1-mdx-id="{string}"
+       [tm1-mdx-parameters="{object}"]
+       [tm1-dimension-attribute="{object}"]
+       [tm1-ui-class="{string}"]&gt;
+&lt;/tm1-ui-table-mdx&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-table-mdx-page"><p>Instance name for this directive to connect to. <span class="alert alert-danger" role="alert">REQUIRED</span></p>
+</div></td></tr><tr><td>tm1-cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-table-mdx-page"><p>TM1 Cube name where this will connect to. <span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-mdx-id</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-table-mdx-page"><p>The id of the named MDX to get data from. <span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-mdx-parameters <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-table-mdx-page"><p>For specifying the parameters of the named MDX. <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-dimension-attribute <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-table-mdx-page"><p>For specifying the attribute to show instead of the element names. <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-ui-class <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-table-mdx-page"><p>Add other custom classes into this directive.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "tm1-ui-table-mdx")</em></p></td></tr></tbody></table></div>
+</div>

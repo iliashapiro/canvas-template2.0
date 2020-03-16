@@ -1,0 +1,54 @@
+<div class="panel panel-default"
+    tm1-admin-validator-empty="{{burstType.instance}},{{burstType.dimension}},{{burstType.mdx}},{{burstType.placeholder}}" 
+    tm1-error-class="panel-danger">
+  <div class="panel-heading">  
+  
+    <table style="width: 100%;">
+      <tbody>
+        <tr>
+          <td>
+            <span class="panel-title">{{'DIMENSION' | translate}} {{'MDX' | translate}}</span>
+          </td>
+          <td class="text-right">
+            <div ng-include="'burst-button-group.tpl'"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group" tm1-admin-validator-empty="{{burstType.instance}}">
+          <label class="control-label" translate="INSTANCE"></label>
+          <select class="form-control" ng-model="burstType.instance">
+            <option ng-repeat="credential in values.taskDetail.credentials" ng-value="credential.instance">{{credential.instance}}</option>
+          </select>
+        </div>        
+      </div>
+      <div class="col-md-6">
+        <div class="form-group" tm1-admin-validator-empty="{{burstType.dimension}}">
+          <label class="control-label" translate="DIMENSION"></label>
+          <input type="text" class="form-control" ng-model="burstType.dimension">
+        </div>        
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group" tm1-admin-validator-empty="{{burstType.mdx}}">
+          <label class="control-label" translate="MDX"></label>
+          <input type="text" class="form-control" ng-model="burstType.mdx">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group" tm1-admin-validator-empty="{{burstType.placeholder}}">
+          <label class="control-label">{{'PLACEHOLDER' | translate}} {{'NAME' | translate}}</label>
+          <input type="text" class="form-control" ng-model="burstType.placeholder">
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>

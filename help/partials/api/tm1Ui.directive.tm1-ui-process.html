@@ -1,0 +1,61 @@
+<h1><code ng:non-bindable="">tm1-ui-process</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-process-page"><p>A directive that allows you to call a TI process.</p>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-process
+       tm1-instance="{string}"
+       tm1-name="{string}"
+       [tm1-parameter-*="{string}"]
+       [tm1-display-name="{string}"]
+       [tm1-message-running="{string}"]
+       [tm1-message-success="{string}"]
+       [tm1-message-error="{string}"]
+       [tm1-ui-class="{string}"]
+       [tm1-ui-button-class="{string}"]
+       [tm1-after-run="{function}"]
+       [tm1-show-dialog="{boolean}"]
+       [tm1-refresh-page="{boolean}"]
+       [tm1-disabled="{boolean}"]&gt;
+&lt;/tm1-ui-process&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-process-page"><p>Instance name for this directive to connect to. <span class="alert alert-danger" role="alert">REQUIRED</span></p>
+</div></td></tr><tr><td>tm1-name</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-process-page"><p>Name of the Process<span class="alert alert-danger" role="alert">REQUIRED</span></p>
+</div></td></tr><tr><td>tm1-parameter-* <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-process-page"><p>Parameters of the process where the asterisk corresponds to the name of the TI parameter.
+For example, if the name of a TI parameter is pCostCentre, then this attribute will be tm1-parameter-pCostCentre=&quot;1001&quot;. <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-display-name <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-process-page"><p>Display name of the Process button<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-message-running <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-process-page"><p>Process running display message<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-message-success <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-process-page"><p>On success display message<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-message-error <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-process-page"><p>On error display message<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-ui-class <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-process-page"><p>Add other custom classes into this directive.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "tm1-ui-process")</em></p></td></tr><tr><td>tm1-ui-button-class <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-process-page"><p>Add other custom classes to change the appearance of the button. Note that you can alternatively customize the CSS classes: tm1-ui-process-button and tm1-ui-process-cancel-button <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "tm1-ui-process-button")</em></p></td></tr><tr><td>tm1-after-run <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-process-page"><p>A function that will be called after the process has ran. Add a parameter named &#39;success&#39; into the function for the status of the process just ran.</p>
+<p>For example, if you have declared a function on your page&#39;s controller, named and with signature: </p>
+<pre class="prettyprint linenums">
+	$scope.runOtherThings = function(success){ 
+		console.log('Success: %o', success); 
+
+		// do other actions
+	};
+</pre>
+Call them like:</p>
+<pre class="prettyprint linenums">
+&lt;tm1-ui-process
+		tm1-instance="dev"
+		tm1-name="Bedrock.Server.SaveDataAll"
+		tm1-after-run="runOtherThings(success)"
+&gt;
+&lt;/tm1-ui-process&gt;
+</pre>
+</div></td></tr><tr><td>tm1-show-dialog <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-process-page"><p>To show this TI&#39;s dialog box and run from there.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-refresh-page <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-process-page"><p>To trigger an update to the DBR, DBRA, Element-List, Store and ActiveForm components on the page.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-disabled <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-process-page"><p>To disable the process button pass a true or false or an expression.</p>
+</div> <p><em>(default: "false")</em></p></td></tr></tbody></table></div>
+</div>

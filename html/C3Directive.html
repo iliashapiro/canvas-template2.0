@@ -1,0 +1,461 @@
+<div ng-controller="C3DirectiveCtrl"   
+ng-if=" $root.defaults['Version']  && $root.defaults['Year'] && $root.defaults['Region'] && $root.defaults['Period'] && $root.defaults['Account'] && $root.defaults['Department'] && $root.defaults['General_Ledger_Measure']"
+ng-style="{'pointer-events': $root.loading ? 'none':'auto' ,'margin-top': !$root.isPrinting ? '120px':(0)+'px'}"
+style="   background-color: transparent; padding-top:10px;  -webkit-transition:margin-top 1s; transition-property:margin-top; transition-duration: 1s;" 
+ng-click="$root.topOffSet = $root.defaultOffSet; $root.indexOver = '';" 
+ > 
+  
+<style>
+	 
+	 
+	 .legend span {
+			 width: 33.333333%;
+			 display: inline-block;
+			 text-align: center;
+			 cursor: pointer;
+			 color: white;
+	 }
+	 .modal {
+  overflow: hidden;
+}
+.modal:focus {
+  outline: 0;
+}
+.modal {
+     
+    background-color: transparent !important;
+    background-position: center;
+}
+.modal {
+     pointer-events:none;
+	 background-color: transparent !important;
+	 background-position: center;
+ }
+
+</style>
+ <!-- <div class="row"    >
+ 	<div class="col-md-12">
+		<span class="pull-left" style="font-size:initial; font-weight:400; ">
+		 
+			<strong>{{$root.defaults.year}}  | {{$root.defaults.region}} </strong>
+		</span>
+	</div>
+</div>   -->
+<div class="row">
+<div class="col-md-12 col-xs-12" style="padding:10px;min-height:100px;">
+	 
+		  <namedmdx-component 
+					chart-target-id = "9"
+					component-height = "150"
+					dimension-column-width="150"
+					mdx-id="MesureByMonth"  
+					heading=" by Month"
+					cube-name="General Ledger"  
+					mdx-param='{{mdxParam}}'
+					dimension-alias="{{dimensionAlias}}"
+					class-name="col-md-12" 
+					show-chart="true"
+					chart-type="bar" 
+					chart-ledgend-position="absolute"
+					chart-column-driver-dimension-name="Period" 
+				
+ 
+					chart-row-driver-dimension-name="General Ledger Measure"
+					chart-row-dimension-driver= "Amount"
+					chart-dimension-colors = "{{dimensionColors}}"
+					chart-position="inside"
+					chart-ledgends-show=""
+					chart-rotate-axis="false"
+					decimal-format-val = "{{$root.defaults.decimalPlace}}"
+					slider-mode = "true" 
+					multi-slider = "true"
+					hide-xaxis = "true" 
+							 show-slider-if-not="Year"
+							 measure="{{$root.defaults['General_Ledger_Measure']}}"
+              
+					>
+			</namedmdx-component>    
+							
+	 
+</div>
+</div>
+<div class="row" >
+		<div class="col-md-12 " style="padding:10px;">
+			<namedmdx-component 
+			chart-target-id = "8"
+			component-height = "auto"
+			dimension-column-width="150"
+			mdx-id="P&L SUBNM Region"  
+			heading=" Revenue by Account  "
+			cube-name="General Ledger"  
+			mdx-param='{{mdxParam}}'
+			dimension-alias="{{dimensionAlias}}"
+			class-name="col-md-12 pull-left" 
+			show-chart=""
+			hide-chart="true"  
+			chart-type="area"  
+			chart-column-driver-dimension-name="Period" 
+		
+ 
+			chart-row-driver-dimension-name="Region"
+			chart-row-dimension-driver= "1"
+			chart-dimension-colors = ""
+			chart-position="outside"
+			chart-ledgends-show=""
+			chart-rotate-axis="false"
+			decimal-format-val = "{{$root.defaults.decimalPlace}}" 
+         justify-list="true" 
+			filter-show-cells = "true"
+			measure="{{$root.defaults['General_Ledger_Measure']}}"
+			>
+		
+		</namedmdx-component>    
+		</div>
+</div>
+<div class="row"    >
+ 
+      <div class="col-md-6 " style="padding:10px;">
+            <namedmdx-component 
+            chart-target-id = "12"
+            component-height = "{{$root.isPrinting ? 'auto': '300'}}"
+            dimension-column-width="150"
+            mdx-id="P&L SUBNM Region"  
+            heading="{{$root.defaults.year}} Revenue by Account  "
+            cube-name="General Ledger"  
+            mdx-param='{{mdxParam}}'
+            dimension-alias="{{dimensionAlias}}"
+            class-name="col-md-12 pull-left" 
+            show-chart=""
+            hide-chart="true"  
+            chart-type="area"  
+            chart-column-driver-dimension-name="Period" 
+            chart-dimension-driver= "Period"
+         
+            chart-row-driver-dimension-name="Region"
+            chart-row-dimension-driver= "1"
+            chart-dimension-colors = ""
+            chart-position="outside"
+            chart-ledgends-show=""
+            chart-rotate-axis="false"
+            decimal-format-val = "{{$root.defaults.decimalPlace}}" 
+            column-list="true"
+            column-list-show-progress-bar = "true"
+						filter-show-cells = "true"
+						measure="{{$root.defaults['General_Ledger_Measure']}}"
+            >
+         
+         </namedmdx-component>    
+         </div>
+         <div class="col-md-6 " style="padding:10px;">
+               <namedmdx-component 
+               chart-target-id = "13"
+               component-height = "{{$root.isPrinting ? 'auto': '300'}}"
+               dimension-column-width="150"
+               mdx-id="P&L SUBNM Region"  
+               heading="{{$root.defaults.year}} Revenue by Account  "
+               cube-name="General Ledger"  
+               mdx-param='{{mdxParam}}'
+               dimension-alias="{{dimensionAlias}}"
+               class-name="col-md-12 pull-left" 
+               show-chart=""
+               hide-chart="true"  
+               chart-type="area"  
+               chart-column-driver-dimension-name="Period" 
+               chart-dimension-driver= "Period"
+            
+               chart-row-driver-dimension-name="Region"
+               chart-row-dimension-driver= "1"
+               chart-dimension-colors = ""
+               chart-position="outside"
+               chart-ledgends-show=""
+               chart-rotate-axis="false"
+               decimal-format-val = "{{$root.defaults.decimalPlace}}" 
+               column-list="true"
+               column-list-show-progress-bar = "true"
+               filter-show-cells = "true"
+							 column-list-leaf-only = "true"
+							 measure="{{$root.defaults['General_Ledger_Measure']}}"
+               >
+            
+            </namedmdx-component>    
+            </div>
+</div>
+<div class="row"    >
+	<div class="col-md-12 col-xs-12 " style="padding:0px;">
+
+		 
+		<div class="col-md-4 col-xs-12 " style="margin-bottom:5px; padding:10px; z-index:999">
+			<namedmdx-component 
+				chart-target-id = "5"
+				component-height = "auto"
+				dimension-column-width="150"
+				mdx-id="P&L SUBNM"  
+				heading="{{$root.defaults['Year']}} Revenue by Account  "
+				cube-name="General Ledger"  
+				mdx-param='{{mdxParam}}'
+				dimension-alias="{{dimensionAlias}}"
+				class-name="col-md-12 pull-left" 
+				show-chart=""
+				hide-chart="true"  
+				chart-type="area"  
+				chart-column-driver-dimension-name="Period" 
+			
+				 
+				chart-row-driver-dimension-name="Account"
+				chart-row-dimension-driver= "1"
+				chart-dimension-colors = ""
+				chart-position="outside"
+				chart-ledgends-show=""
+				chart-rotate-axis="false"
+				decimal-format-val = "{{$root.defaults.decimalPlace}}"
+				filter-mode = "true"
+				filter-show-cells = "true"
+				measure="{{$root.defaults['General_Ledger_Measure']}}"
+				>
+			
+			</namedmdx-component>  
+	</div>
+	<div class="col-md-4 col-xs-12 " style="margin-bottom:5px; padding:10px; z-index:998">
+		<namedmdx-component 
+			chart-target-id = "6"
+			component-height = "auto"
+			dimension-column-width="150"
+			mdx-id="P&L SUBNM Department"  
+			heading="{{$root.defaults.year}} Revenue by Account  "
+			cube-name="General Ledger"  
+			mdx-param='{{mdxParam}}'
+			dimension-alias="{{dimensionAlias}}"
+			drill-dimension="Version"
+			drill-dimension-subset="Default"
+			class-name="col-md-12 pull-left" 
+			show-chart=""
+			hide-chart="true"  
+			chart-type="area"  
+			chart-column-driver-dimension-name="Period" 
+		
+		 
+			chart-row-driver-dimension-name="Department"
+			chart-row-dimension-driver= "1"
+			chart-dimension-colors = ""
+			chart-position="outside"
+			chart-ledgends-show=""
+			chart-rotate-axis="false"
+			decimal-format-val = "{{$root.defaults.decimalPlace}}"
+			filter-mode = "true"
+			filter-show-cells = "true"
+			measure="{{$root.defaults['General_Ledger_Measure']}}"
+			>
+
+		
+		</namedmdx-component>    
+		</div>
+		<div class="col-md-4 col-xs-12 " style="margin-bottom:5px; padding:10px;  z-index:997">
+			<namedmdx-component 
+				chart-target-id = "7"
+				component-height = "auto"
+				dimension-column-width="150"
+				mdx-id="P&L SUBNM Region"  
+				heading="{{$root.defaults.year}} Revenue by Account  "
+				cube-name="General Ledger"  
+				mdx-param='{{mdxParam}}'
+				dimension-alias="{{dimensionAlias}}"
+				class-name="col-md-12 pull-left" 
+				show-chart=""
+				hide-chart="true"  
+				chart-type="area"  
+				chart-column-driver-dimension-name="Period" 
+			
+		 
+				chart-row-driver-dimension-name="Region"
+				chart-row-dimension-driver= "1"
+				chart-dimension-colors = ""
+				chart-position="outside"
+				chart-ledgends-show=""
+				chart-rotate-axis="false"
+				decimal-format-val = "{{$root.defaults.decimalPlace}}"
+				filter-mode = "true"
+				filter-show-cells = "true"
+				measure="{{$root.defaults['General_Ledger_Measure']}}"
+				>
+			
+			</namedmdx-component>    
+			</div>
+	</div>
+</div>
+ 
+<div class="row"    >
+		<div class="col-md-4 " style=" padding:10px;   ">
+ <namedmdx-component 
+		chart-target-id = "1"
+		component-height = "300"
+		dimension-column-width="150"
+		mdx-id="P&L"  
+		heading="{{$root.defaults.year}} Revenue by Account "
+		cube-name="General Ledger"  
+		mdx-param='{{mdxParam}}'
+		dimension-alias="{{dimensionAlias}}"
+		drill-dimension="Version"
+		drill-dimension-subset="Default"
+		class-name="col-md-12" 
+		show-chart="true" 
+		chart-type="area" 
+		chart-ledgend-position="absolute"
+		chart-column-driver-dimension-name="Period" 
+	
+		 
+		chart-row-driver-dimension-name="Account"
+		chart-row-dimension-driver= "1"
+		chart-dimension-colors = "{{dimensionColors}}"
+		chart-position="inside"
+		chart-ledgends-show=""
+		chart-rotate-axis="false"
+		drill-enabled = "true"
+		decimal-format-val = "{{$root.defaults.decimalPlace}}"
+		measure="{{$root.defaults['General_Ledger_Measure']}}"
+		>
+	</namedmdx-component>    
+		</div>
+		<div class="col-md-4 " style=" padding:10px;   "> 
+<namedmdx-component 
+chart-target-id = "2"
+component-height = "300"
+dimension-column-width="150"
+mdx-id="P&L 2"  
+heading="{{$root.defaults.year}} Revenue by Department "
+cube-name="General Ledger"  
+mdx-param='{{mdxParam}}'
+dimension-alias="{{dimensionAlias}}"
+drill-dimension="Version"
+drill-dimension-subset="Default"
+class-name="col-md-12" 
+show-chart="true" 
+chart-type="area" 
+chart-ledgend-position="absolute"
+chart-column-driver-dimension-name="Period" 
+chart-dimension-driver= "Period"
+
+chart-row-driver-dimension-name="Department"
+chart-row-dimension-driver= "1"
+chart-dimension-colors = "{{dimensionColors}}"
+chart-position="inside"
+chart-ledgends-show=""
+chart-rotate-axis="false"
+decimal-format-val = "{{$root.defaults.decimalPlace}}"
+measure="{{$root.defaults['General_Ledger_Measure']}}">
+</namedmdx-component>    
+</div>
+<div class="col-md-4 " style=" padding:10px;   "> 
+<namedmdx-component 
+chart-target-id = "3"
+component-height = "300"
+dimension-column-width="150"
+mdx-id="P&L 3"  
+heading="{{$root.defaults.year}} Revenue by Region"
+cube-name="General Ledger"  
+mdx-param='{{mdxParam}}'
+dimension-alias="{{dimensionAlias}}"
+drill-dimension="Version"
+drill-dimension-subset="Default"
+class-name="col-md-12" 
+show-chart="true" 
+chart-type="area" 
+chart-ledgend-position="absolute"
+chart-column-driver-dimension-name="Period" 
+chart-dimension-driver= "Period"
+ 
+chart-row-driver-dimension-name="Region"
+chart-row-dimension-driver= "1"
+chart-dimension-colors = "{{dimensionColors}}"
+chart-position="inside"
+chart-ledgends-show=""
+chart-rotate-axis="false"
+decimal-format-val = "{{$root.defaults.decimalPlace}}"
+measure="{{$root.defaults['General_Ledger_Measure']}}">
+</namedmdx-component>     
+</div>
+ </div> 
+  
+ <div class="row"    > 
+ <div class="col-md-12 col-xs-12 " style=" padding:10px;   ">
+
+		<namedmdx-component 
+		chart-target-id = "4"
+		component-height = "auto"
+		dimension-column-width="150"
+		mdx-id="P&L"  
+		heading="{{$root.defaults.year}} Revenue by Account  "
+		cube-name="General Ledger"  
+		mdx-param='{{mdxParam}}'
+		dimension-alias="{{dimensionAlias}}"
+		drill-dimension="General Ledger Measure"
+		drill-dimension-subset="Default"
+		class-name="col-md-12" 
+		show-chart=""
+		hide-chart="true"  
+		chart-type="area"  
+		chart-column-driver-dimension-name="Period" 
+	
+ 
+		chart-row-driver-dimension-name="Account"
+		chart-row-dimension-driver= "1"
+		chart-dimension-colors = "{{dimensionColors}}"
+		chart-position="outside"
+		chart-ledgends-show=""
+		chart-rotate-axis="false"
+		decimal-format-val = "{{$root.defaults.decimalPlace}}"
+		measure="{{$root.defaults['General_Ledger_Measure']}}"
+		drill-enabled = "true">
+
+	</namedmdx-component>  
+ </div>
+	</div>
+	 
+ 
+	<div id="myModal" style="pointer-events:none !important; z-index:99999999; "  
+	class="modal fade bs-example-modal-lg" tabindex="-1"  role="dialog"  data-backdrop="false"   role="dialog" tabindex="-1">  
+	<div class="modal-dialog" style="pointer-events:none !important;">
+	  <div class="modal-content"   style="pointer-events:auto;  overflow:auto ; min-height:250px; ">
+		<div class="modal-header" >
+		  <button ng-click="reloadPage()" aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
+		  <h4 class="modal-title"  uib-popover-html="seeParam(mdxParam)"
+		  popover-trigger="'mouseenter'" popover-placement="right-top">Cube: {{$root.cellreferenceCube}}</h4>
+		</div>
+		<div class="modal-body" >
+			<table class="table">
+				<tbody>
+					<tr>
+					 
+						<td class="text-right" colspan="2" style="font-weight:bold; font-size:1.3em;">
+							<tm1-ui-dbr   
+							tm1-instance="{{$root.defaults.settingsInstance}}" 
+							tm1-cube="{{$root.cellreferenceCube}}" 
+							tm1-elements="{{($root.cellreferenceArray).toString()}}" 
+							tm1-data-decimal="0" 
+							tm1-onchange="reloadPage()"
+							></tm1-ui-dbr>
+						</td>
+					</tr>
+					<tr ng-repeat="row in $root.dimensionArray track by $index">
+						<td class="text-left">
+							{{row}}
+						</td>
+						<td class="text-right">
+							{{$root.cellreferenceArray[$index]}}
+						</td>
+					</tr>
+				</tbody>
+				 
+		
+			</table>
+		  <!-- <small>btw: if you drag me around, close and reopen me i will appear
+			where you left me off. At least in Chrome, it seems.</small> -->
+		</div>
+		 
+	  </div>
+	</div>
+  </div>
+	 
+
+</div>
+
+ 

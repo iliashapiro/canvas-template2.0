@@ -1,0 +1,73 @@
+<h1><code ng:non-bindable="">tm1-ui-subnm</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>Allows you to select a specific element on a targeted dimension. </p>
+<p><p class="lead">Directive Level APIs</p></p>
+<dl>
+    <dt>refreshData()</dt>
+    <dd>For refreshing the list of elements</dd>
+</dl>
+<dl>
+    <dt>getElements()</dt>
+    <dd>For retrieving the elements on the current state of this SUBNM</dd>
+</dl>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-subnm
+       tm1-instance="{string}"
+       tm1-dimension="{string}"
+       [tm1-subset="{string}"]
+       [tm1-attribute="{string}"]
+       [tm1-default-element="{string}"]
+       [tm1-mdx="{string}"]
+       [tm1-show-hierarchy="{boolean}"]
+       [tm1-select-only="{boolean}"]
+       [tm1-radio-only="{vertical|horizontal}"]
+       [tm1-server-mode="{boolean}"]
+       [tm1-batch-size="{string}"]
+       [tm1-api="{object}"]
+       [tm1-on-load="{function}"]
+       [tm1-on-change="{function}"]
+       [tm1-change="{function}"]
+       [tm1-ui-class="{string}"]
+       ng-model="{object}"&gt;
+&lt;/tm1-ui-subnm&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>Instance name for this directive to connect to. <span class="alert alert-danger" role="alert">REQUIRED</span></p>
+</div></td></tr><tr><td>tm1-dimension</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>Dimension name to query. <span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-subset <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>Subset name to query. <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-attribute <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>Attribute to use for display. If combined with a subset, this will be prioritized over the alias set on it. <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-default-element <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>This is to set the element initially selected by this TI <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-mdx <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>MDX to execute against the dimension (note: this only works if the dimension has an attribute). <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-show-hierarchy <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>Option to let the directive show the elements for selection in hierarchy</p>
+</div> <p><em>(default: "true")</em></p></td></tr><tr><td>tm1-select-only <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>Option to restrict the selection to a SELECT element</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-radio-only <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-vertical">vertical</a><a href="" class="label type-hint type-hint-horizontal">horizontal</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>Option to restrict the selection to a RADIO element</p>
+</div> <p><em>(default: "none")</em></p></td></tr><tr><td>tm1-server-mode <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>Use this to minimize the number of elements for each query.
+Note that once this is provided, this directive will automatically be in a non-hierarchy search mode. </p>
+<p>This is helpful, when querying a dimension with a large number of elements.</p>
+<p>Also take note that this is <span class="alert alert-warning" role="alert">not applicable if <strong>tm1-mdx</strong> is used</span>. 
+If MDX is needed, then create a Subset with that MDX, and <strong>use tm1-subset instead</strong>.</p>
+<p>Also, due to the nature of the search and in relation to OData compliance as per IBM, ensure that the Alias set in the Subset or the tm1-attribute provided to this directive
+during tm1-server-mode operation only has alpha numeric characters. So instead of having &#39;Code &amp; Description&#39; or &#39;Code and Description&#39;,
+change or use another attribute with a name like: &#39;CodeAndDescription&#39;. </p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-batch-size <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>MAXIMUM Number of elements retrieved for each query / search. This is to affect tm1-server-mode.</p>
+</div> <p><em>(default: "15")</em></p></td></tr><tr><td>tm1-api <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>Object where directive level APIs are attached to and be called from (see description for further details on the APIs).</p>
+</div></td></tr><tr><td>tm1-on-load <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>A function that will be called after the value in the ngModel of this directive first loads. To get the value in the directive, the signature of the function
+should have &#39;data&#39; as one of the parameter(s).</p>
+<p>For example, if you have a function named checkData, it should be written as &#39;tm1-on-load=&quot;checkData(data)&quot;&#39;.</p>
+</div></td></tr><tr><td>tm1-on-change <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>A function that will be called after the value in the ngModel of this directive has been refreshed. To get the value in the directive, the signature of the function
+should have &#39;data&#39; as one of the parameter(s).</p>
+<p>For example, if you have a function named checkData, it should be written as &#39;tm1-on-change=&quot;checkData(data)&quot;&#39;.</p>
+</div></td></tr><tr><td>tm1-change <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>A function that will be called every time the value in the ngModel of this directive has been refreshed, be it on load or on change. To get the value in the directive, the signature of the function
+should have &#39;data&#39; as one of the parameter(s).</p>
+<p>For example, if you have a function named checkData, it should be written as &#39;tm1-change=&quot;checkData(data)&quot;&#39;.</p>
+</div></td></tr><tr><td>tm1-ui-class <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>Add other custom classes into this directive.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "tm1-ui-subnm")</em></p></td></tr><tr><td>ng-model</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-subnm-page"><p>Angular JSON object where the actual values are stored, for usage in other parts of the page.</p>
+</div></td></tr></tbody></table></div>
+</div>

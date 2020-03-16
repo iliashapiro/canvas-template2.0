@@ -1,0 +1,69 @@
+<div>
+  	
+  	<a href="{{page.licenses.canvas.site}}" target="_blank"><img alt="Brand" src="assets/img/canvas.png" style="background-size:contain; height: 40px; margin-top:40px;"></a>  	
+  	
+  	<div class="row">
+		<div class="col-md-6">
+			<div class="panel panel-default">
+			  <div class="panel-body"> 
+			    <ul style="list-style:none;">
+			    	<li>Name: {{page.licenses.canvas.name}}</li>
+			    	<li>Version: {{page.licenses.canvas.version}}</li>
+			    	<li>License: {{page.licenses.canvas.license}}</li>
+			    </ul>
+			  </div>
+			</div>
+			
+		</div>
+		
+		<div class="col-md-6">
+			
+			<div class="panel panel-default">
+			  <div class="panel-body">
+			    <ul style="list-style:none;">
+			    	<li ng-if="license.isValid && license.daysRemaining > 15">License State: Licensed</li>
+			    	<li ng-if="license.isValid && license.daysRemaining <= 15" class="alert alert-warning" role="alert">License State: Licensed ({{license.daysRemaining}} days remaining)</li>
+			    	<li ng-if="!license.isValid" class="alert alert-danger" role="alert">License State: License is Expired</li>
+			    	
+			    	<li>Website: <a href="{{page.licenses.canvas.site}}" target="_blank">code.cubewise.com</a></li>
+			    	<li>Support: <a href="mailto:{{page.licenses.canvas.support}}?Subject=About%20Canvas" target="_top">{{page.licenses.canvas.support}}</a></li>
+			    </ul>
+			  </div>
+			</div>
+			
+		</div>
+	</div>
+  	
+  	<div class="row">
+		<div class="col-md-12">
+			
+			<ul class="nav nav-tabs" ng-init="activeTab = 1">
+			  <li role="tablist" ng-class="{'active':activeTab == 1}"><a ng-click="activeTab = 1">License</a></li>
+			  <li role="tablist" ng-class="{'active':activeTab == 2}"><a ng-click="activeTab = 2">Third Party Libraries</a></li>
+        <li ng-show="appSettings.showSystemDiagnostics" role="tablist" ng-class="{'active':activeTab == 3}"><a ng-click="activeTab = 3">System</a></li>
+			</ul>
+			
+			<!--  Main License -->
+			<div ng-show="activeTab == 1">
+				<pre ng-include="'assets/html/LICENSE.txt'">
+				
+				</pre>
+			</div>
+			
+			<!-- 3rd party -->
+			<div ng-show="activeTab == 2">
+				<tm1-ui-about ng-model="page.licenses"></tm1-ui-about>
+			</div>
+      
+      <!-- 3rd party -->
+      <div ng-show="activeTab == 3">
+        <div class="row">
+          <div class="col-md-6">
+            <tm1-ui-system></tm1-ui-system>
+          </div>
+          <div class="col-md-6"></div>
+        </div>        
+      </div>
+		</div>
+	</div>
+</div>

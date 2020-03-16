@@ -1,0 +1,64 @@
+<h1><code ng:non-bindable="">tm1-ui-dbra</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbra-page"><p>A DBRA-like implementation for retrieving an element&#39;s attribute from TM1.</p>
+<p><p class="lead">Directive Level APIs</p></p>
+<dl>
+     <dt>onUpdate(status, data)</dt>
+     <dd>A <strong>function</strong> called after an update request has been initiated.</dd>
+</dl>
+<dl>
+     <dt>setContextTimeout(seconds)</dt>
+     <dd>A <strong>function</strong>, that sets how long will the context button be visible on activation. Default is 5 seconds.</dd>
+</dl>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-dbra
+       tm1-instance="{string}"
+       tm1-dimension="{string}"
+       tm1-element="{string}"
+       tm1-attribute="{string}"
+       [tm1-read-only="{boolean}"]
+       [tm1-data-decimal="{string}"]
+       [tm1-placeholder="{string}"]
+       [tm1-validate="{string}"]
+       [tm1-validate-message="{string}"]
+       [tm1-hide-reference="{boolean}"]
+       [tm1-api="{object}"]
+       [tm1-on-load="{function}"]
+       [tm1-on-change="{function}"]
+       [tm1-change="{function}"]
+       [tm1-ui-class="{string}"]
+       [ng-model="{object}"]&gt;
+&lt;/tm1-ui-dbra&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbra-page"><p>Instance name for this directive to connect to. <span class="alert alert-danger" role="alert">REQUIRED</span></p>
+</div></td></tr><tr><td>tm1-dimension</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbra-page"><p>Dimension name to query. <span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-element</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbra-page"><p>Element name to get the attribute of. <span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-attribute</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbra-page"><p>Attribute name of the Element to get the value of. <span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-read-only <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbra-page"><p>To force the cell to be READ-ONLY, always. <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-data-decimal <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbra-page"><p>Sets the decimal places of the display value when in read-only mode.</p>
+</div></td></tr><tr><td>tm1-placeholder <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbra-page"><p>When defined, this value is used as a background text on empty text boxes. Default is the name of the dimension.</p>
+</div></td></tr><tr><td>tm1-validate <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbra-page"><p>An expression used in validating the value before updating. Use <strong>&#64;Value</strong> to represent this directive&#39;s content that you wanted to validate. <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-validate-message <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbra-page"><p>Message in the tooltip to display if validation fails. Use <strong>&#64;Value</strong> to represent this directive&#39;s content that you wanted to validate. <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-hide-reference <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbra-page"><p>Determines whether to hide &#39;Reference&#39; context menu for this directive.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-api <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbra-page"><p>Object where directive level APIs are attached to and be called from (see description for further details on the APIs).</p>
+</div></td></tr><tr><td>tm1-on-load <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbra-page"><p>A function that will be called after the value in the ngModel of this directive first loads. To get the value in the directive, the signature of the function
+should have &#39;data&#39; as one of the parameter(s).</p>
+<p>For example, if you have a function named checkData, it should be written as &#39;tm1-on-load=&quot;checkData(data)&quot;&#39;.</p>
+</div></td></tr><tr><td>tm1-on-change <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbra-page"><p>A function that will be called after the value in the ngModel of this directive has been refreshed. To get the value in the directive, the signature of the function
+should have &#39;data&#39; as one of the parameter(s).</p>
+<p>For example, if you have a function named checkData, it should be written as &#39;tm1-on-change=&quot;checkData(data)&quot;&#39;.</p>
+</div></td></tr><tr><td>tm1-change <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbra-page"><p>A function that will be called every time the value in the ngModel of this directive has been refreshed, be it on load or on change. To get the value in the directive, the signature of the function
+should have &#39;data&#39; as one of the parameter(s).</p>
+<p>For example, if you have a function named checkData, it should be written as &#39;tm1-change=&quot;checkData(data)&quot;&#39;.</p>
+</div></td></tr><tr><td>tm1-ui-class <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbra-page"><p>Add other custom classes into this directive.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "tm1-ui-dbra")</em></p></td></tr><tr><td>ng-model <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbra-page"><p>Angular JSON object where the actual values are stored, for usage in other parts of the page.</p>
+</div></td></tr></tbody></table></div>
+</div>

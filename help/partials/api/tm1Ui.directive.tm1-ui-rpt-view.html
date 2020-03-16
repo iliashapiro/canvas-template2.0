@@ -1,0 +1,58 @@
+<h1><code ng:non-bindable="">tm1-ui-rpt-view</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-rpt-view-page"><p>This is the parent directive that allows you to build an active form.</p>
+<p><p class="lead">Directive Level APIs. Access via ng-model.</p></p>
+<dl>
+    <dt>pageFirst()</dt>
+    <dd>For going to the first page.</dd>
+</dl>
+<dl>
+    <dt>pagePrevious()</dt>
+    <dd>For going to the previous page. This is one page prior to the current one.</dd>
+</dl>
+<dl>
+    <dt>pageNext()</dt>
+    <dd>For going to the next page. This is one page after the current one.</dd>
+</dl>
+<dl>
+    <dt>pageLast()</dt>
+    <dd>For going to the last page.</dd>
+</dl>
+<dl>
+    <dt>page()</dt>
+    <dd>For getting the current page.</dd>
+</dl>
+<dl>
+    <dt>pages()</dt>
+    <dd>For retrieving the total number of pages.</dd>
+</dl>
+<dl>
+    <dt>isPageSize(pageSize)</dt>
+    <dd>For checking if this is the current page size.</dd>
+</dl>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-rpt-view
+       tm1-instance="{string}"
+       tm1-cube="{string}"
+       [tm1-suppress-zero="{both|row|column|none}"]
+       [tm1-page-size="{string}"]
+       [tm1-show-message="{boolean}"]
+       [ng-model="{object}"]&gt;
+&lt;/tm1-ui-rpt-view&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-rpt-view-page"><p>Instance name for this directive to connect to. <span class="alert alert-danger" role="alert">REQUIRED</span></p>
+</div></td></tr><tr><td>tm1-cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-rpt-view-page"><p>Name of the Cube<span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-suppress-zero <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-both">both</a><a href="" class="label type-hint type-hint-row">row</a><a href="" class="label type-hint type-hint-column">column</a><a href="" class="label type-hint type-hint-none">none</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-rpt-view-page"><p>Option to suppress zero on the view created by this active form based on Row and/or Column axis.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "none")</em></p></td></tr><tr><td>tm1-page-size <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-rpt-view-page"><p>When defined, this will always be the maximum rows present at anytime. Use your ng-model&#39;s pageFirst(), pageNext(), pagePrevious(), pageLast() and pageGoto(pageNo) to manipulate pages.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-show-message <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-rpt-view-page"><p>To enable/disable messages displayed by the active form on certain events.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>ng-model <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-rpt-view-page"><p>Angular JSON object where the actual values are stored, for usage in other parts of the page.</p>
+</div></td></tr></tbody></table></div>
+</div>

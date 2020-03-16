@@ -1,0 +1,39 @@
+<h1><code ng:non-bindable="">tm1-ui-chart-dbr</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-dbr-page"><p>A child directive to always use in conjunction with <a href="api/tm1Ui.directive:tm1-ui-chart">tm1-ui-chart</a> as a data source.</p>
+<p>For alternate hierarchy, consider a Product dimension used in a cube having a hierarchy by attribute named Location. To get the values of Bikes product, on the AU market:</p>
+<p>tm1-elements=&quot;.., Bikes &amp;&amp; Location::AU, ..&quot;</p>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-chart-dbr
+       tm1-instance="{string}"
+       tm1-cube="{string}"
+       tm1-elements="{string}"
+       [tm1-label="{string}"]
+       [tm1-label-empty="{boolean}"]
+       [tm1-series="{string}"]
+       [tm1-area="{boolean}"]
+       [tm1-order-no="{string}"]
+       [tm1-color="{string}"]
+       [tm1-show-movement="{boolean}"]&gt;
+&lt;/tm1-ui-chart-dbr&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-dbr-page"><p>Instance name for this directive to connect to. <span class="alert alert-danger" role="alert">REQUIRED</span></p>
+</div></td></tr><tr><td>tm1-cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-dbr-page"><p>TM1 Cube name where this will connect to. <span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-elements</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-dbr-page"><p>comma separated element names that identifies the cube&#39;s data point to get. Element names can be an ALIAS. Indicate an alternate hierarchy by ::, and &amp;&amp; for separating multiple hierarchies. <span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-label <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-dbr-page"><p>Description of this data point as will be seen on the chart<span class="alert alert-info" role="alert">WATCHED</span> if defined.</p>
+</div> <p><em>(default: "DNN")</em></p></td></tr><tr><td>tm1-label-empty <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-dbr-page"><p>To force label to be blank.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-series <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-dbr-page"><p>Data series where this data point will belong to.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "Data")</em></p></td></tr><tr><td>tm1-area <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-dbr-page"><p>To format a line chart as an area. Only need to be defined ONCE, and it will set the whole series as AREA, if used in a LINE chart.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-order-no <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-dbr-page"><p>The order or X-axis value of this data, if used in a LINE|WATERFALL chart.</p>
+</div> <p><em>(default: "NN")</em></p></td></tr><tr><td>tm1-color <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-dbr-page"><p>Assign a specific color to a data point in CSS color format (i.g. #FFXXXX or Red or rgb(1,1,1) ). Applicable to line charts only. For line series, the first color encountered on the DBR will be used on that whole series.</p>
+</div></td></tr><tr><td>tm1-show-movement <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-chart-dbr-page"><p>Used with WATERFALL chart. To indicate whether the bar rendered is movement only, or the full value.</p>
+</div> <p><em>(default: "true")</em></p></td></tr></tbody></table></div>
+</div>

@@ -1,0 +1,69 @@
+<style>
+  .on-file-drop{
+    color: Red;
+  }
+  
+  .on-file-hover{
+    cursor: pointer;
+  }
+</style>
+
+<div class="panel panel-default">
+  <div class="panel-heading">  
+  
+    <table style="width: 100%;">
+      <tbody>
+        <tr>
+          <td>
+            <span class="panel-title">{{'CSV' | translate}}</span>
+          </td>
+          <td class="text-right">
+            <div ng-include="'burst-button-group.tpl'"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+  <div class="panel-body">
+      
+    <div class="row">
+      <div class="col-md-12">        
+        <div ngf-drop ngf-select 
+          ng-model="datafile"
+          ngf-change="onReceivedFile($files, $file, $newFiles, $duplicateFiles, $invalidFiles, $event, values.modalObject, $index)" 
+          class="on-file-hover" ngf-drag-over-class="'on-file-drop'">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h4 class="text-center" translate="TASKEDITORLOADCSV"></h4>
+                <h5 class="text-center" ng-if="values.modalObject.burstTypes[$index].lastFileUploaded.length > 0">({{values.messages.TASKEDITORLASTFILELOAD}}: {{values.modalObject.burstTypes[$index].lastFileUploaded}})</h5>
+              </div>
+            </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <div class="pull-right">
+          <button type="button" class="btn btn-default" ng-click="addRow(values.modalObject, $index)">
+            <i class="fa fa-list"></i>
+            <span class="h5 tm1-ui-indent">{{'ADD' | translate}} {{'ROW' | translate}}</span>
+          </button>
+          <button type="button" class="btn btn-default" ng-click="addColumn(values.modalObject, $index)">
+            <i class="fa fa-columns"></i>
+            <span class="h5 tm1-ui-indent">{{'ADD' | translate}} {{'COLUMN' | translate}}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row" ng-if="values.activeReportTab == 3">
+      <div class="col-md-12">
+        <div id="grid1" ui-grid="gridOptions" ui-grid-edit class="grid"></div>
+      </div>
+    </div>
+    
+  </div>
+</div>

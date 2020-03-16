@@ -1,0 +1,31 @@
+<h1><code ng:non-bindable="">tm1-ui-progress</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-progress-page"><p>This directive will show a spinning gear icon whenever there is an pending request on the current page. 
+You also place your own indicator or message by putting your content or image within the two special markups of this directive.</p>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-progress
+       [tm1-ui-class="{string}"]&gt;
+&lt;/tm1-ui-progress&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-ui-class <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-progress-page"><p>Add other custom classes into this directive.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "tm1-ui-progress")</em></p></td></tr></tbody></table></div>
+<h2 id="example">Example</h2>
+<div class="example"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-progress-page"><p><p>For the default activity indicator, using Font Awesome&#39;s spinning Cog icon
+<pre class="prettyprint linenums">&lt;tm1-ui-progress&gt;&lt;/tm1-ui-progress&gt;</pre>
+<p><p>To place your own custom content</p>
+<pre class="prettyprint linenums">&lt;tm1-ui-progress&gt;&lt;tm1-ui-progress-pending&gt;Please Wait...&lt;/tm1-ui-progress-pending&gt;&lt;/tm1-ui-progress&gt;</pre>
+<p><p>To place your own custom pending content AND content to show once it is ready</p>
+<pre class="prettyprint linenums">&lt;tm1-ui-progress&gt;
+			&lt;tm1-ui-progress-pending&gt;Please Wait...&lt;/tm1-ui-progress-pending&gt;
+			&lt;tm1-ui-progress-ready&gt;Ready&lt;/tm1-ui-progress-ready&gt;
+		&lt;/tm1-ui-progress&gt;</pre>
+</div></div>
+</div>

@@ -1,0 +1,23 @@
+<div class="row" ng-controller="AdminLoginCtrl">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="login-panel-admin panel panel-danger">
+		    <div class="panel-heading">
+		        <h3 class="panel-title">Login to Admin Console</h3>
+		    </div>
+		    <div class="panel-body">
+		        <form role="form" method="post">
+		            <fieldset>
+		                <div ng-class="['form-group', {'has-error':errorMessage.length > 0}]">
+		                    <input class="form-control" placeholder="User Name" type="text" autofocus ng-model="credentials.userName" ng-change="onUpdate()">
+		                </div>
+		                <div ng-class="['form-group', {'has-error':errorMessage.length > 0}]">
+		                    <input class="form-control" ng-disabled="!loginEnabled" placeholder="Password" type="password" ng-model="credentials.password" aria-describedby="errorMessageBlock" ng-change="onUpdate()">
+		                    <span ng-if="errorMessage.length > 0" id="errorMessageBlock" class="help-block">{{errorMessage}}</span>
+		                </div>
+		                <button ng-click="login()" class="btn btn-lg btn-block btn-danger" ng-class="{'disabled':!loginEnabled}">{{loginButtonText}}</button>
+		            </fieldset>
+		        </form>
+		    </div>
+		</div>		
+    </div>
+</div>

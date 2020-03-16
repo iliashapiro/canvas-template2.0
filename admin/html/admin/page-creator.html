@@ -1,0 +1,80 @@
+<div ng-controller="AdminPageCreatorCtrl">
+  <h1><i class="fa fa-edit"></i> <span translate="PAGECREATOR"></span></h1>
+  
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <i class="fa fa-file-o"></i>
+          <span class="tm1-ui-indent" translate="SELECTPAGETYPE"></span>
+        </div>
+        <div class="panel-body">
+          <div class="list-group">
+            <a ng-click="page.type = 'blank'" class="list-group-item" ng-class="{'active':page.type == 'blank'}" translate="PAGETYPEBLANK"></a>
+            <a ng-click="page.type = 'dashboard'" class="list-group-item" ng-class="{'active':page.type == 'dashboard'}" translate="PAGETYPEDASHBOARD"></a>
+            <a ui-sref="admin.slice" class="list-group-item" translate="PAGETYPESLICE"></a>
+            <a ui-sref="admin.active-form" class="list-group-item" translate="PAGETYPEACTIVEFORM"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-info" ng-if="isPageTypeSupported(page.type)">
+        <div class="panel-heading">
+          <i class="fa fa-info"></i>
+          <span class="tm1-ui-indent" translate="PAGEOPTIONS"></span>
+        </div>
+        <div class="panel-body">
+          
+          <div class="form-group">
+            <label translate="PAGENAME"></label>
+            <input type="text" class="form-control" placeholder="{{'PAGENAME' | translate}}" ng-change="updatePageProperty()" ng-model="page.pageName">
+          </div>
+          
+          <div class="form-group">
+            <label for="menuName" translate="MENUNAME"></label>
+            <input id="menuName" type="text" class="form-control" placeholder="{{'MENUNAME' | translate}}" ng-model="page.menuName" ></input>
+          </div>
+          
+          <div class="form-group">
+            <label for="menuIconClass"><span translate="MENUICONCLASS"></span><span ng-if="page.menuIconClass.length > 0"> - <i class="fa {{page.menuIconClass}}"></i></span></label>
+            <input id="menuIconClass" type="text" class="form-control" placeholder="{{'MENUICONCLASS' | translate}}" ng-model="page.menuIconClass" ></input>
+          </div>
+          
+          <section class="ng-hide">
+            <div class="form-group">
+              <label for="menuIconClass" translate="MENUSTATE"></label>
+              <input id="menuIconClass" type="text" ng-disabled="true" class="form-control" placeholder="{{'MENUSTATE' | translate}}" ng-model="page.menuState"></input>
+            </div>
+
+            <div class="form-group">
+              <label for="menuIconClass" translate="MENUPAGELOCATION"></label>
+              <input id="menuIconClass" type="text" class="form-control" placeholder="{{'MENUPAGELOCATION' | translate}}" ng-model="page.menuPageLocation"></input>
+            </div>
+          </section>
+          
+          <!-- Button -->
+          <hr ng-if="page.pageName.length > 0" />
+          <div ng-if="page.pageName.length > 0" class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+              <button ng-disabled="!button.isEnabled" type="button" class="pull-right btn" ng-class="{'btn-primary':button.isEnabled, 'btn-default':!button.isEnabled}"
+                style="width: 250px;" ng-click="createPage(page.type)">
+                <i class="fa fa-plus-circle"></i>
+                <span class="tm1-ui-indent">{{button.text}}</span>                
+              </button>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div class="form-group" ng-if="page.message.length > 0">
+            <div class="col-sm-12">
+              <br />
+              <div class="alert" ng-class="{'alert-success':page.success, 'alert-danger':!page.success}" role="alert">{{page.message}}</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

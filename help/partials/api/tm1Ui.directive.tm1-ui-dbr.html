@@ -1,0 +1,172 @@
+<h1><code ng:non-bindable="">tm1-ui-dbr</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>A DBR-like implementation for retrieving cube data from TM1. </p>
+<p>For alternate hierarchy, consider a Product dimension used in a cube having a hierarchy by attribute named Location. To get the values of Bikes product, on the AU market:</p>
+<p>tm1-elements=&quot;.., Bikes &amp;&amp; Location::AU, ..&quot;</p>
+<p><p class="lead">Directive Level APIs</p></p>
+<dl>
+     <dt>onUpdate(status, data)</dt>
+     <dd>A <strong>function</strong> called after an update request has been initiated.</dd>
+</dl>
+<dl>
+     <dt>setContextTimeout(seconds)</dt>
+     <dd>A <strong>function</strong>, that sets how long will the context button be visible on activation. Default is 5 seconds.</dd>
+</dl>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-dbr
+       tm1-instance="{string}"
+       tm1-cube="{string}"
+       tm1-elements="{string}"
+       [tm1-comment-cube="{string}"]
+       [tm1-comment-elements="{string}"]
+       [tm1-comment-format-html-buttons="{Array}"]
+       [tm1-picklist-disable-search="{boolean}"]
+       [tm1-picklist-radio="{vertical|horizontal}"]
+       [tm1-multi-line="{string}"]
+       [tm1-refresh-group="{string}"]
+       [tm1-sandbox="{string}"]
+       [tm1-sandbox-class="{string}"]
+       [tm1-read-only="{boolean}"]
+       [tm1-comment-read-only="{boolean}"]
+       [tm1-data-decimal="{string}"]
+       [tm1-data-scale="{string}"]
+       [tm1-default-empty="{string}"]
+       [tm1-placeholder="{string}"]
+       [tm1-date-option="{object}"]
+       [tm1-format-percentage="{boolean}"]
+       [tm1-format-parenthesis="{boolean}"]
+       [tm1-format-html="{boolean}"]
+       [tm1-format-html-popup="{boolean}"]
+       [tm1-hide-reference="{boolean}"]
+       [tm1-hide-comment="{boolean}"]
+       [tm1-hide-spread="{boolean}"]
+       [tm1-hide-drill="{boolean}"]
+       [tm1-hide-trace-calculation="{boolean}"]
+       [tm1-hide-context-menu="{boolean}"]
+       [tm1-add-context-menu="{Array}"]
+       [tm1-format-html-buttons="{Array}"]
+       [tm1-validate="{string}"]
+       [tm1-validate-message="{string}"]
+       [tm1-ui-class="{string}"]
+       [tm1-consol-input="{boolean}"]
+       [tm1-consol-input-spread-method="{string}"]
+       [tm1-before-update="{function}"]
+       [tm1-drill-model="{object}"]
+       [tm1-api="{object}"]
+       [tm1-on-load="{function}"]
+       [tm1-on-change="{function}"]
+       [tm1-change="{function}"]
+       [tm1-accounting-settings-override="{object}"]
+       [tm1-options="{object}"]
+       [tm1-rpt-view-model="{object}"]
+       [tm1-rpt-row-cell="{object}"]
+       [ng-model="{object}"]&gt;
+&lt;/tm1-ui-dbr&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Instance name for this directive to connect to. <span class="alert alert-danger" role="alert">REQUIRED</span></p>
+</div></td></tr><tr><td>tm1-cube</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>TM1 Cube name where this will connect to. <span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-elements</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>comma separated element names that identifies the cube&#39;s data point to get. Element names can be an ALIAS. Indicate an alternate hierarchy by ::, and &amp;&amp; for separating multiple hierarchies. <span class="alert alert-danger" role="alert">REQUIRED</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-comment-cube <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>TM1 Cube name where this will connect to for saving/retrieving comments.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-comment-elements <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>comma separated element names that identifies the cube&#39;s data point to get. Element names can be an ALIAS.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-comment-format-html-buttons <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>An array of buttons strings as per Text Angular Toolbar definition described in <a href="https://github.com/fraywing/textAngular/wiki/Customising-The-Toolbar" target="_blank">Customizing TA Toolbar</a>. By default,
+this will show: <strong>[[&#39;h1&#39;,&#39;h2&#39;,&#39;h3&#39;],[&#39;bold&#39;,&#39;italics&#39;,&#39;underline&#39;,&#39;justifyLeft&#39;,&#39;justifyCenter&#39;,&#39;justifyRight&#39;,&#39;justifyFull&#39;],[&#39;indent&#39;,&#39;outdent&#39;,&#39;ul&#39;,&#39;ol&#39;]]</strong></p>
+</div></td></tr><tr><td>tm1-picklist-disable-search <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>For enabling/disabling the search text functionality on DBRs with Picklist. Not applicable when Picklist was set to be a radio button.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-picklist-radio <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-vertical">vertical</a><a href="" class="label type-hint type-hint-horizontal">horizontal</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Option to set PickList to RADIO elements, instead of the usual SELECT</p>
+</div> <p><em>(default: "none")</em></p></td></tr><tr><td>tm1-multi-line <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>An integer value that should start from 2, that shows this directive as a multiple lines of input if editable.</p>
+</div></td></tr><tr><td>tm1-refresh-group <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>An ID that will allow DBRs belonging to the same group to be refreshed only. Editing a DBR on this group refreshes only those having the same group as this.</p>
+</div></td></tr><tr><td>tm1-sandbox <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Name of the sandbox that this DBR will be associated with.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-sandbox-class <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>CSS class used when value on the sandbox differs from the base.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-read-only <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>To force the cell to be READ-ONLY, always. <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-comment-read-only <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>To force the comment cell to be READ-ONLY, always.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-data-decimal <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Sets the decimal places of the display value.</p>
+</div></td></tr><tr><td>tm1-data-scale <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Sets the scale applied to the display value.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-default-empty <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>When defined, this value is used in the model if the returned cube data is empty<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-placeholder <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>When defined and combined with tm1DefaultEmpty being empty, this value is used as a background text on empty text boxes.</p>
+</div></td></tr><tr><td>tm1-date-option <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>For String inputs that requires a date format. For info about the date picker&#39;s options, visit <a href="https://bootstrap-datepicker.readthedocs.io/en/latest/options.html">here</a>.</p>
+</div></td></tr><tr><td>tm1-format-percentage <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Determines whether to show numbers for input and display, with percentage. This will allow user to type in 1.5% for example, and send 0.015 into TM1.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-format-parenthesis <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Determines whether to show parenthesis for negative numbers.</p>
+</div> <p><em>(default: "true")</em></p></td></tr><tr><td>tm1-format-html <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Determines whether this is to allow rich text format input. Ensure that the underlying cube point is a String.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-format-html-popup <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Determines whether the HTML editor will appear as a pop-up or inline.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-hide-reference <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Determines whether to hide &#39;Reference&#39; context menu for this directive.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-hide-comment <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Determines whether to hide &#39;Comment&#39; context menu for this directive.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-hide-spread <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Determines whether to hide &#39;Spread&#39; context menu for this directive where applicable.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-hide-drill <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Determines whether to hide &#39;Drill&#39; context menu for this directive where applicable.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-hide-trace-calculation <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Determines whether to hide &#39;Calculations&#39; context menu for this directive where applicable.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-hide-context-menu <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Determines whether to show or hide all the context menus for this directive.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-add-context-menu <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Add menus that can be called from the context button. The function will have cell properties available.</p>
+<p>As an example, to call a function called myContextMenuAction, setup as follows:</p>
+<p>On your JS file,</p>
+<style>
+    .code-indent{
+        padding-left: 20px;
+    }
+</style>
+
+<div class="well">
+<p>$scope.myContextMenus = [</p>
+<p style='padding-left: 10px;'>{</p>
+<p style='padding-left: 20px;'>display: &#39;Click Me!&#39;,</p>
+<p style='padding-left: 20px;'>action: function(data){</p>
+<p style='padding-left: 40px;'>            console.debug(&#39;myContextMenuAction() %o&#39;, data);</p>
+<p style='padding-left: 20px;'>        }</p>
+<p style='padding-left: 10px;'>}</p>
+];
+</div>
+
+<p>Then on your HTML,</p>
+<pre class="prettyprint linenums">&lt;tm1-ui-dbr ... tm1-add-context-menu="myContextMenus"&gt;&lt;tm1-ui-dbr&gt;</pre>
+</div></td></tr><tr><td>tm1-format-html-buttons <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>An array of buttons strings as per Text Angular Toolbar definition described in <a href="https://github.com/fraywing/textAngular/wiki/Customising-The-Toolbar" target="_blank">Customizing TA Toolbar</a>. By default,
+this will show: <strong>[[&#39;h1&#39;,&#39;h2&#39;,&#39;h3&#39;],[&#39;bold&#39;,&#39;italics&#39;,&#39;underline&#39;,&#39;justifyLeft&#39;,&#39;justifyCenter&#39;,&#39;justifyRight&#39;,&#39;justifyFull&#39;],[&#39;indent&#39;,&#39;outdent&#39;,&#39;ul&#39;,&#39;ol&#39;]]</strong></p>
+</div></td></tr><tr><td>tm1-validate <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>An expression used in validating the value before updating. Use <strong>&#64;Value</strong> to represent this directive&#39;s content that you wanted to validate. <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-validate-message <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Message in the tooltip to display if validation fails. Use <strong>&#64;Value</strong> to represent this directive&#39;s content that you wanted to validate. <span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-ui-class <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Add other custom classes into this directive.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "tm1-ui-dbr")</em></p></td></tr><tr><td>tm1-consol-input <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Determines whether Consolidated elements of Numeric types will be opened up for spreading input.</p>
+</div> <p><em>(default: "false")</em></p></td></tr><tr><td>tm1-consol-input-spread-method <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Default spread command that will be appended into consolidated numeric elements when in input mode.</p>
+</div> <p><em>(default: "p")</em></p></td></tr><tr><td>tm1-before-update <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>A function that will be called when an update event executes. The signature of the function
+that you can should have &#39;$event&#39; as one of the parameter. The next step would just be to call the cancel() function of the $event object received.</p>
+<p>For example, if you have a function named checkData, it should be written as &#39;tm1-before-update=&quot;checkData($event)&quot;&#39;. To cancel the update after your validation</p>
+<pre class="prettyprint linenums">
+$scope.checkData = function($event){
+		// do some validation here
+		if($scope.dataIsInvalid){
+			$event.cancel();
+		}
+};
+</pre>
+<p>Note: If you want to return the response to DBR to prevent the update, use SYNCHRONOUS mode (i.g. use jQuery&#39;s ajax() instead).</p>
+<p>You can also pass you own custom message validation by calling the cancel function with the message as parameter. It should look like below:</p>
+<pre class="prettyprint linenums">
+$scope.checkData = function($event){
+		// do some validation here
+		if($scope.dataIsInvalid){
+			$event.cancel('Invalid Value has been detected!');
+		}
+};
+</pre>
+</div></td></tr><tr><td>tm1-drill-model <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Angular JSON object where the drill data transactions are stored, for usage in other parts of the page.</p>
+</div></td></tr><tr><td>tm1-api <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Object where directive level APIs are attached to and be called from (see description for further details on the APIs).</p>
+</div></td></tr><tr><td>tm1-on-load <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>A function that will be called after the value in the ngModel of this directive first loads. To get the value in the directive, the signature of the function
+should have &#39;data&#39; as one of the parameter(s).</p>
+<p>For example, if you have a function named checkData, it should be written as &#39;tm1-on-load=&quot;checkData(data)&quot;&#39;.</p>
+</div></td></tr><tr><td>tm1-on-change <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>A function that will be called after the value in the ngModel of this directive has been refreshed. To get the value in the directive, the signature of the function
+should have &#39;data&#39; as one of the parameter(s).</p>
+<p>For example, if you have a function named checkData, it should be written as &#39;tm1-on-change=&quot;checkData(data)&quot;&#39;.</p>
+</div></td></tr><tr><td>tm1-change <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>A function that will be called every time the value in the ngModel of this directive has been refreshed, be it on load or on change. To get the value in the directive, the signature of the function
+should have &#39;data&#39; as one of the parameter(s).</p>
+<p>For example, if you have a function named checkData, it should be written as &#39;tm1-change=&quot;checkData(data)&quot;&#39;.</p>
+</div></td></tr><tr><td>tm1-accounting-settings-override <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>JSON object for overriding the global &#39;accounting.settings&#39;. See <a href="http://openexchangerates.github.io/accounting.js/#documentation" target="_blank">here</a> for further reference.</p>
+</div></td></tr><tr><td>tm1-options <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>JSON object for customization of this directive.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>contextPopUpMode <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Change the behavior of the context menu to show in pop-up mode, instead of dropdown.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: false)</em></p></td></tr></tbody></table></td></tr><tr><td>tm1-rpt-view-model <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>The model assigned on the <a href="api/tm1Ui.directive:tm1-ui-rpt-view">tm1-ui-rpt-view</a> directive. Note that tm1-cube and tm1-elements will not be required if this is present, and will be overridden by this.</p>
+</div></td></tr><tr><td>tm1-rpt-row-cell <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>The model assigned that represent the rows on the <a href="api/tm1Ui.directive:tm1-ui-rpt-view">tm1-ui-rpt-view</a> directive. Note that tm1-cube and tm1-elements will not be required if this is present, and will be overridden by this.</p>
+</div></td></tr><tr><td>ng-model <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-dbr-page"><p>Angular JSON object where the actual values are stored, for usage in other parts of the page.</p>
+</div></td></tr></tbody></table></div>
+</div>

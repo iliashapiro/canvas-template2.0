@@ -1,0 +1,41 @@
+<h1><code ng:non-bindable="">tm1-ui-upload</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">tm1Ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-upload-page"><p>A component for uploading files into your Canvas application, by instance.</p>
+<p>On after a successful upload, information regarding the file can be received via the tm1AfterUpload attribute. Assign a function with
+a signature of function(file).</p>
+<p>For example:</p>
+<pre class="prettyprint linenums">
+	&lt;tm1-ui-upload tm1-instance="dev" tm1-after-upload="myFunction(file)"&gt;&lt;/tm1-ui-upload&gt;
+</pre>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;tm1-ui-upload
+       tm1-instance="{string}"
+       [tm1-max-size="{string}"]
+       [tm1-display-name="{string}"]
+       [tm1-image-options="{string}"]
+       [tm1-path="{string}"]
+       [tm1-retain-name="{boolean}"]
+       [tm1-after-upload="{function}"]
+       [tm1-ui-class="{string}"]&gt;
+&lt;/tm1-ui-upload&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tm1-instance</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-upload-page"><p>Instance name for this directive to connect to. <span class="alert alert-danger" role="alert">REQUIRED</span></p>
+</div></td></tr><tr><td>tm1-max-size <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-upload-page"><p>Size in MB of the maximum file size that can be uploaded.</p>
+</div> <p><em>(default: "5")</em></p></td></tr><tr><td>tm1-display-name <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-upload-page"><p>Button display name for prompting user for file selection.</p>
+</div> <p><em>(default: "Select File")</em></p></td></tr><tr><td>tm1-image-options <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-upload-page"><p>Options that can be passed on to affect the upload of images. See ngf-resize property <a href="https://github.com/danialfarid/ng-file-upload" target="_blank">here</a> for full reference.</p>
+</div></td></tr><tr><td>tm1-path <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-upload-page"><p>Additional path to be appended in relation to where the file will be saved.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div></td></tr><tr><td>tm1-retain-name <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-upload-page"><p>If set to true, this will keep the name of the file when uploaded. <span class="text-danger">Note that this will overwrite an existing file.</span><span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: false)</em></p></td></tr><tr><td>tm1-after-upload <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-upload-page"><p>A function that will be called after a successful upload. The signature of the function
+that you can add should have &#39;file&#39; as one of the parameter(s).</p>
+<p>For example, if you have a function named checkData, it should be written as &#39;tm1-after-upload=&quot;checkData(file)&quot;&#39;.</p>
+</div></td></tr><tr><td>tm1-ui-class <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="tm1ui-directive-page tm1ui-directive-tm1-ui-upload-page"><p>Add other custom classes into this directive.<span class="alert alert-info" role="alert">WATCHED</span></p>
+</div> <p><em>(default: "tm1-ui-upload")</em></p></td></tr></tbody></table></div>
+</div>
