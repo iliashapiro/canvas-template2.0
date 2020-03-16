@@ -13,3 +13,4 @@ The canvas-plus project contains a ready to use Canvas application with few cool
 1. Download the canvas-template2.0 folder
 1. Paste it inside your new application folder
  
+<img src="images/canvas-template-v2.png" >
