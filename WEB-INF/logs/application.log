@@ -732,3 +732,7 @@
 2020-03-16 17:07:50	com.cubewise.rest.api.n	ERROR	DBActionBase:208	Unable to execute MDX: {"error":{"code":"501","message":"\"Retail_Measure\" : member not found (rte 81)"}}
 2020-03-16 17:07:50	com.cubewise.rest.api.n	ERROR	DBActionBase:209	Response status code: 400
 2020-03-16 17:07:50	com.cubewise.rest.api.n	ERROR	DBActionBase:210	SELECT {[}Clients].[}Clients].[Admin]} ON COLUMNS,  { ( [System User Settings Parameter].[Retail_Measure], [System User Settings Measure].[String]) } ON ROWS  FROM [System User Settings] 
+2020-03-16 17:52:46	org.quartz.core.QuartzScheduler	INFO 	QuartzScheduler:694	Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED shutting down.
+2020-03-16 17:52:46	org.quartz.core.QuartzScheduler	INFO 	QuartzScheduler:613	Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED paused.
+2020-03-16 17:52:46	org.quartz.core.QuartzScheduler	INFO 	QuartzScheduler:771	Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED shutdown complete.
+2020-03-16 17:52:46	org.quartz.ee.servlet.QuartzInitializerListener	INFO 	QuartzInitializerListener:264	Quartz Scheduler successful shutdown.
