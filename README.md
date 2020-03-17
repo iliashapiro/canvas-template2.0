@@ -15,4 +15,11 @@ The canvas-plus project contains a ready to use Canvas application with a single
  
 <img src="/images/canvas-template-v2.png" />
 <img src="/images/canvas-template-v2.1.png" />
+# New Component Features
+1. SUBNM with values + indicator + search
 <img src="/images/canvas-template-v2.2.png" />
+1. Freezepane Table
+<img src="/images/canvas-template-v2.3.png" />
+1. Time Slider + Chart
+<img src="/images/canvas-template-v2.4.png" />
+ 
